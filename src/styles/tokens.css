@@ -1,0 +1,253 @@
+/**
+ * tokens.css
+ *
+ * Design tokens for ElementalSugar Creative Studio.
+ * Single source of truth for colors, typography, spacing, layout, and animation.
+ *
+ * Matches Next.js tokens.scss with Astro-specific additions (semantic colors,
+ * effects, breakpoints) that don't exist in the Next.js build.
+ *
+ * Token naming follows the Next.js convention:
+ * - Colors: --color-{name}
+ * - Fonts: --font-family-{role}, --font-size-{name}, --font-weight-{name}
+ * - Spacing: --space-{size}
+ * - Layout: --header-height, --margin-{breakpoint}, --content-max
+ * - Animation: --duration-{speed}, --ease-{type}
+ */
+
+/* ============================================================================
+   FONT IMPORTS (Self-Hosted for Zero External Requests)
+   ============================================================================ */
+
+/* Cardo (serif, display/headlines) - Self-hosted, Google Fonts subset */
+@font-face {
+  font-family: 'Cardo';
+  src: url('/fonts/cardo/cardo-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Cardo';
+  src: url('/fonts/cardo/cardo-latin-700-normal.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Comfortaa (sans, playful) - Self-hosted, Google Fonts subset */
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('/fonts/comfortaa/comfortaa-latin-700-normal.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Atkinson Hyperlegible (accessible body text) - Self-hosted */
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  src: url('/fonts/atkinson/AtkinsonHyperlegibleNext-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  src: url('/fonts/atkinson/AtkinsonHyperlegibleNext-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================================
+   CSS CUSTOM PROPERTIES (Design Tokens)
+   ============================================================================ */
+
+:root {
+  /* --------------------------------------------------------------------------
+     COLORS — Muted, low-contrast, nature-derived (Rose Pine palette)
+     -------------------------------------------------------------------------- */
+
+  /* Base Colors */
+  --color-parchment: #F5EFE7;
+  --color-ink: #2E2E2B;
+  --color-fog: #D4CFC4;
+  --color-stone: #EAE2D6;
+
+  /* Forest Accents */
+  --color-moss: #5A6A55;
+  --color-pine: #2F4A3A;
+  --color-lichen: #B8A875;
+
+  /* Sparkle Accent (Rose Pine, WCAG AA adjusted) */
+  --color-iris: #9d7fd4;
+  --color-iris-dark: #6a4fa0;
+  --color-iris-muted: #5B4580;
+  --color-rose: #d7827e;
+  --color-rose-dark: #a55550;
+  --color-rose-muted: #8B4340;
+
+  /* Alpha variants (for overlays and glass effects) */
+  --color-parchment-95: rgba(245, 239, 231, 0.95);
+  --color-parchment-80: rgba(245, 239, 231, 0.80);
+  --color-pine-20: rgba(47, 74, 58, 0.2);
+  --color-ink-30: rgba(46, 46, 43, 0.3);
+
+  /* Semantic Colors (Astro-specific convenience aliases) */
+  --color-bg-primary: var(--color-parchment);
+  --color-bg-secondary: var(--color-stone);
+  --color-bg-dark: var(--color-pine);
+  --color-text-primary: var(--color-ink);
+  --color-text-secondary: #5A5A56;
+  --color-border: var(--color-fog);
+  --color-accent: var(--color-lichen);
+  --color-focus: var(--color-iris);
+
+  /* --------------------------------------------------------------------------
+     TYPOGRAPHY
+     -------------------------------------------------------------------------- */
+
+  /* Font Families (match Next.js naming: --font-family-*) */
+  --font-family-body: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-display: 'Cardo', Georgia, serif;
+  --font-family-playful: 'Comfortaa', system-ui, -apple-system, 'Segoe UI', 'Trebuchet MS', sans-serif;
+
+  /* Legacy aliases (used in existing component CSS) */
+  --font-serif: var(--font-family-display);
+  --font-sans: var(--font-family-playful);
+  --font-body: var(--font-family-body);
+  --font-mono: 'JetBrains Mono', 'Menlo', monospace;
+
+  /* Font Sizes — match Next.js tokens exactly */
+  --font-size-body: 18px;
+  --font-size-body-lg: 20px;
+  --font-size-body-sm: 14px;
+  --font-size-display: clamp(3.889rem, 12vw, 8.889rem);
+  --font-size-display-mobile: clamp(3.111rem, 12vw, 4.889rem);
+  --font-size-heading-1: clamp(2.222rem, 5vw, 3.556rem);
+  --font-size-heading-2: clamp(1.556rem, 3vw, 2.222rem);
+  --font-size-heading-3: clamp(1.5rem, 3vw, 1.778rem);
+  --font-size-heading-4: clamp(1.111rem, 2vw, 1.333rem);
+
+  /* Legacy size aliases (used in existing component CSS) */
+  --font-size-xs: 0.875rem;       /* 14px */
+  --font-size-sm: 1rem;           /* 16px */
+  --font-size-md: 1.125rem;       /* 18px */
+  --font-size-lg: 1.5rem;         /* 24px */
+  --font-size-xl: 2rem;           /* 32px */
+  --font-size-2xl: 3rem;          /* 48px */
+  --font-size-3xl: 3.5rem;        /* 56px */
+  --font-size-4xl: clamp(4.5rem, 12vw, 10rem);
+
+  /* Line Heights */
+  --line-height-tight: 1.1;
+  --line-height-snug: 1.3;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.8;
+  --line-height-loose: 2.0;
+
+  /* Legacy alias */
+  --line-height-base: var(--line-height-normal);
+
+  /* Font Weights (mapped to available weights only) */
+  --font-weight-light: 400;       /* Cardo 400 (300 doesn't exist) */
+  --font-weight-normal: 400;
+  --font-weight-medium: 700;      /* Comfortaa only has 700 (500 doesn't exist) */
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 700;   /* Cardo/Comfortaa 700 (800 doesn't exist) */
+
+  /* Letter Spacing — match Next.js naming */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.02em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+
+  /* Legacy aliases (used in existing component CSS) */
+  --tracking-tight: var(--letter-spacing-tight);
+  --tracking-normal: var(--letter-spacing-normal);
+  --tracking-wide: var(--letter-spacing-wide);
+  --tracking-wider: var(--letter-spacing-wider);
+  --tracking-widest: var(--letter-spacing-widest);
+
+  /* --------------------------------------------------------------------------
+     SPACING — 8px base grid
+     -------------------------------------------------------------------------- */
+
+  --space-2xs: 0.25rem;           /* 4px */
+  --space-xs: 0.5rem;             /* 8px */
+  --space-sm: 1rem;               /* 16px */
+  --space-md: 1.5rem;             /* 24px */
+  --space-lg: 2.5rem;             /* 40px */
+  --space-xl: 4rem;               /* 64px */
+  --space-2xl: 6rem;              /* 96px */
+  --space-3xl: 8rem;              /* 128px */
+  --space-4xl: 10rem;             /* 160px */
+
+  /* Semantic Spacing */
+  --space-section: var(--space-3xl);
+  --space-block: var(--space-xl);
+  --space-element: var(--space-md);
+
+  /* Button Padding (optical alignment for Comfortaa font) */
+  --btn-padding-block-start: 0.5rem;   /* 8px - adjusted for Comfortaa cap height */
+  --btn-padding-block-end: 0.375rem;   /* 6px - optical alignment */
+  --btn-padding-inline: 1.25rem;       /* 20px */
+  --btn-padding-block-start-mobile: 0.375rem; /* 6px */
+  --btn-padding-block-end-mobile: 0.25rem;    /* 4px */
+  --btn-padding-inline-mobile: 1rem;   /* 16px */
+
+  /* --------------------------------------------------------------------------
+     LAYOUT
+     -------------------------------------------------------------------------- */
+
+  --header-height: 6rem;  /* 96px - generous to accommodate dynamic clamp() logo size */
+  --margin-desktop: 4vw;
+  --margin-mobile: 6vw;
+  --content-max: 1600px;
+
+  /* Legacy aliases */
+  --margin-page: var(--margin-desktop);
+  --container-max: 1200px;
+  --content-reading: 65ch;        /* Optimal reading width */
+  --sidebar-width: 280px;
+
+  /* --------------------------------------------------------------------------
+     ANIMATION — Calm, not snappy
+     -------------------------------------------------------------------------- */
+
+  --duration-instant: 150ms;
+  --duration-fast: 200ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
+
+  --ease-in: cubic-bezier(0.32, 0, 0.67, 0);
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* --------------------------------------------------------------------------
+     EFFECTS — Subtle shadows and borders
+     -------------------------------------------------------------------------- */
+
+  --shadow-sm: 0 1px 2px rgba(46, 46, 43, 0.08);
+  --shadow-md: 0 4px 12px rgba(46, 46, 43, 0.06);
+
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 22px;
+
+  /* --------------------------------------------------------------------------
+     BREAKPOINTS (for reference; use values directly in media queries)
+     -------------------------------------------------------------------------- */
+
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+}
