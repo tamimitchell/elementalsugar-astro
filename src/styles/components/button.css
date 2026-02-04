@@ -17,10 +17,11 @@
 
 .btn {
   display: inline-block;
-  font-family: var(--font-sans);
-  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-playful);
+  font-weight: 700;
   font-size: var(--font-size-sm);
-  letter-spacing: var(--tracking-wide);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
   text-decoration: none;
   padding: 8px 20px 6px;
   border-radius: var(--border-radius-md);

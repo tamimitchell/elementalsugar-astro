@@ -229,6 +229,99 @@ const atkinson = localFont({
 
 ---
 
+## CSS-First Scroll Detection (Header Blur)
+
+**Pattern:** Use a tiny inline script to toggle a data attribute, then handle all visual changes in CSS.
+
+**Problem solved:** The header needs a frosted glass blur effect on scroll. React used `useState`/`useEffect` (~40KB+ runtime). Astro should minimize JS.
+
+**Implementation:**
+```html
+<!-- Header element with data attribute for CSS targeting -->
+<header class="header" data-header>...</header>
+
+<script>
+  // ~200 bytes minified. Toggles data-scrolled attribute.
+  const header = document.querySelector('[data-header]');
+  if (header) {
+    const updateHeader = () => {
+      if (window.scrollY > 10) {
+        header.setAttribute('data-scrolled', '');
+      } else {
+        header.removeAttribute('data-scrolled');
+      }
+    };
+    updateHeader(); // Handle page refresh mid-scroll
+    window.addEventListener('scroll', updateHeader, { passive: true });
+  }
+</script>
+```
+
+```css
+/* All visual logic in CSS -- no JS dependency */
+.header {
+  background: transparent;
+  transition: background-color 350ms, backdrop-filter 350ms;
+}
+
+.header[data-scrolled] {
+  backdrop-filter: blur(8px);
+  background-color: rgba(246, 244, 239, 0.95);
+}
+
+/* Fallback for browsers without backdrop-filter */
+@supports not (backdrop-filter: blur(8px)) {
+  .header[data-scrolled] {
+    background-color: var(--color-parchment);
+  }
+}
+```
+
+**Why this is soft-tech:**
+- **Performance** - ~200B inline vs ~40KB+ React runtime for the same effect
+- **Progressive enhancement** - Works without JS (header stays visible, just no blur)
+- **Passive scroll listener** - Does not block main thread during scroll
+- **GPU composited** - `transform: translateZ(0)` + `will-change` for smooth rendering
+
+**Used in:**
+- `src/components/Header.astro` (script)
+- `src/styles/components/header.css` (visual logic)
+
+---
+
+## Reusable Gradient Button (.btn Pattern)
+
+**Pattern:** Extract button styles into a shared CSS file with BEM variant classes.
+
+**Problem solved:** The gradient CTA button (iris -> rose) will be reused in multiple sections (header, contact, hero). Putting it in a component-scoped style would duplicate it.
+
+**Implementation:**
+```css
+/* src/styles/components/button.css */
+.btn { /* base: font, padding, border-radius */ }
+.btn--gradient { /* iris -> rose gradient, parchment text */ }
+.btn--gradient:hover { /* darker gradient */ }
+.btn--gradient:focus-visible { /* rose outline */ }
+```
+
+```astro
+---
+import '../styles/components/button.css';
+---
+<a href="#contact" class="btn btn--gradient">Contact</a>
+```
+
+**Why this is soft-tech:**
+- **DRY** - One definition, many uses
+- **Maintainable** - Change button style in one file, updates everywhere
+- **Composable** - Add new variants (`.btn--outline`) when needed, not before
+
+**Used in:**
+- `src/components/Header.astro` (contact CTA)
+- Future: contact section, hero CTA
+
+---
+
 ## Template for New Patterns
 
 ```markdown

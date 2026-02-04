@@ -5,8 +5,14 @@
  * Uses data-scrolled attribute (set via JS) for frosted glass transition.
  * Works without JavaScript -- header stays visible, just no blur.
  *
+ * Typography classes applied in markup:
+ * - .heading-3 on logo (font-family, size, weight, line-height from typography.css)
+ * - .playful on nav links (font-family, weight, letter-spacing from typography.css)
+ * - .gradient-text on "Creative Studio" span (from typography.css)
+ *
  * Depends on:
- * - global.css (design tokens, .gradient-text utility)
+ * - tokens.css (design tokens)
+ * - typography.css (.heading-3, .playful, .gradient-text)
  * - button.css (.btn, .btn--gradient for the CTA)
  *
  * BEM naming: .header, .header__inner, .header__logo, .header__nav, etc.
@@ -59,7 +65,7 @@
 .header__inner {
   max-width: 1600px;
   margin: 0 auto;
-  padding-inline: 6vw;
+  padding-inline: var(--margin-desktop);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -67,17 +73,14 @@
 
 /* ==========================================================================
    LOGO — "ELEMENTAL SUGAR" in dark, "CREATIVE STUDIO" in gradient
-   Cardo serif, all caps, wider tracking
+   Font from .heading-3 (Cardo, clamp(1.5rem, 3vw, 1.778rem))
    ========================================================================== */
 
+/* Font properties come from .heading-3 class in typography.css.
+   Only layout/decoration overrides live here. */
 .header__logo {
-  font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 3vw, 1.778rem);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   text-decoration: none;
-  line-height: 1.3;
 }
 
 /* "ELEMENTAL SUGAR" -- dark color */
@@ -115,17 +118,15 @@
   gap: var(--space-lg);
 }
 
-/* Nav links -- Comfortaa, pine color, gradient underline on hover */
+/* Font properties come from .playful class in typography.css.
+   Only layout/decoration/color overrides live here. */
 .header__nav-link {
-  font-family: var(--font-sans);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-sm);
-  letter-spacing: var(--tracking-wide);
+  font-size: var(--font-size-body);
   color: var(--color-pine);
   text-decoration: none;
   position: relative;
   padding: var(--space-2xs) var(--space-xs);
-  line-height: 1.6;
+  line-height: var(--line-height-normal);
 }
 
 /* Gradient underline -- starts at width 0, expands on hover */
@@ -190,7 +191,7 @@
   }
 
   .header__inner {
-    padding-inline: 5vw;
+    padding-inline: var(--margin-mobile);
   }
 
   .header__nav {

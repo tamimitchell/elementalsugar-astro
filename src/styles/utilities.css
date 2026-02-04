@@ -1,0 +1,161 @@
+/**
+ * utilities.css
+ *
+ * Utility classes, component-agnostic helpers, and shared animations.
+ * Converted from Next.js utilities.scss -- no SCSS, all plain CSS.
+ *
+ * Classes:
+ *   .sparkle-gradient   — Italic gradient word (hero "sparkle")
+ *   .section-label      — Section label positioning
+ *   .eyebrow            — Small uppercase tracked text
+ *   .container           — Centered content box (1200px max)
+ *   .section             — Section vertical padding
+ *   .visually-hidden     — Screen reader only
+ *   .skip-link           — Skip to main content
+ *   .mystical-art        — Gold foil SVG base opacity
+ *
+ * Depends on: tokens.css
+ */
+
+/* ============================================================================
+   SPARKLE GRADIENT — Italic gradient word in hero
+   ============================================================================ */
+
+.sparkle-gradient {
+  font-weight: 800;
+  font-style: italic;
+  /* Inlined from gradient-text mixin */
+  background: linear-gradient(
+    135deg,
+    var(--color-pine) 0%,
+    var(--color-moss) 30%,
+    var(--color-iris) 60%,
+    var(--color-rose) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================================
+   SECTION LABEL
+   ============================================================================ */
+
+.section-label {
+  width: fit-content;
+}
+
+@media (max-width: 768px) {
+  .section-label {
+    padding-top: var(--space-lg);
+  }
+}
+
+/* ============================================================================
+   EYEBROW — Small uppercase tracked text
+   ============================================================================ */
+
+.eyebrow {
+  font-family: var(--font-family-playful);
+  font-size: var(--font-size-body-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  color: var(--color-moss);
+}
+
+/* ============================================================================
+   CONTAINER — Centered content box
+   ============================================================================ */
+
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--margin-desktop);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-inline: var(--margin-mobile);
+  }
+}
+
+/* ============================================================================
+   SECTION — Vertical padding
+   ============================================================================ */
+
+.section {
+  padding-block: var(--space-section);
+}
+
+/* ============================================================================
+   VISUALLY HIDDEN — Screen reader only content
+   ============================================================================ */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================================
+   SKIP LINK — Accessibility navigation
+   ============================================================================ */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--color-pine);
+  color: var(--color-parchment);
+  padding: var(--space-sm) var(--space-md);
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ============================================================================
+   MYSTICAL ART — Gold foil SVG styles
+   ============================================================================ */
+
+.mystical-art {
+  opacity: 0.35;
+  transition:
+    opacity var(--duration-slow) var(--ease-in-out),
+    filter var(--duration-slow) var(--ease-in-out);
+}
+
+/* ============================================================================
+   SHIMMER ANIMATION — Hover effect on capability cards
+   ============================================================================ */
+
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 0.35;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.55;
+    filter: brightness(1.3);
+  }
+}
+
+.capability:hover .mystical-art {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capability:hover .mystical-art {
+    animation: none;
+    opacity: 0.55;
+  }
+}

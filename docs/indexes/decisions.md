@@ -19,6 +19,31 @@ purpose: Quick reference for "Why did we do X?" questions (project-specific)
 
 ---
 
+## 2026-02-04: Separate CSS Files Per Component (Not Scoped Styles)
+
+**Decision:** Use separate CSS files in `src/styles/components/` with BEM naming, imported via Astro frontmatter, instead of Astro's built-in scoped `<style>` blocks.
+
+**Why:**
+- **Consistency** - `global.css` already has hero styles in it; having some styles in `styles/` and some scoped creates an inconsistent pattern
+- **Readability** - Header.astro went from 343 lines (74% CSS) to 94 lines (just markup + script). Easier to scan and edit.
+- **Familiar pattern** - Mirrors the Next.js build's co-located SCSS files per component. Same mental model, plain CSS instead of SCSS.
+- **BEM naming prevents collisions** - `.header__nav-link`, `.btn--gradient` are unique enough without Astro's scoping hashes
+
+**Trade-off:** Styles are not auto-scoped by Astro. Relies on naming discipline (BEM) to prevent collisions. Acceptable because BEM naming makes collisions essentially impossible and the team is already comfortable with the pattern.
+
+**Structure:**
+```
+src/styles/
+  global.css                  (tokens, resets, utilities)
+  components/
+    header.css                (header layout, logo, nav, scroll blur)
+    button.css                (reusable .btn / .btn--gradient)
+```
+
+**Related:** TAM-111, PR #3
+
+---
+
 ## 2026-02-04: Darkened Moss Color for Universal Accessibility
 
 **Decision:** Updated Moss color from `#6F7F6A` to `#5A6A55` in design tokens.
