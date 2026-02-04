@@ -1,0 +1,1 @@
+/Users/athena/claude-workspace/SoftForge/active/projects/ElementalSugar/content-architecture.md

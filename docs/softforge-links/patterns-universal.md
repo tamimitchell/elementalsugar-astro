@@ -1,0 +1,1 @@
+/Users/athena/claude-workspace/SoftForge/reference/indexes/patterns.md
