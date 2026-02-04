@@ -77,9 +77,14 @@
   --color-pine: #2F4A3A;          /* Deep pine */
   --color-lichen: #B8A875;        /* Lichen gold */
 
-  /* Sparkle Accent (Rosé Pine, WCAG AA adjusted) */
+  /* Sparkle Accent (Rose Pine, WCAG AA adjusted) */
   --color-iris: #9d7fd4;          /* Darker lavender (WCAG AA) */
+  --color-iris-dark: #6a4fa0;     /* Darker iris for hover states */
   --color-rose: #d7827e;          /* Deeper rose (WCAG AA) */
+  --color-rose-dark: #a55550;     /* Darker rose for hover states */
+
+  /* Alpha variants (for overlays and glass effects) */
+  --color-parchment-95: rgba(246, 244, 239, 0.95);
 
   /* Semantic Colors */
   --color-bg-primary: var(--color-parchment);

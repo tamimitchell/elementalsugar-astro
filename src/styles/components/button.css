@@ -1,0 +1,82 @@
+/**
+ * button.css
+ *
+ * Reusable gradient button component.
+ * Used in: header CTA, contact section, future CTAs.
+ *
+ * Variants:
+ * - .btn--gradient: Iris -> rose gradient background (primary CTA)
+ *
+ * Usage:
+ *   <a href="#contact" class="btn btn--gradient">Contact</a>
+ */
+
+/* ==========================================================================
+   BASE BUTTON — Shared styles for all variants
+   ========================================================================== */
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--tracking-wide);
+  text-decoration: none;
+  padding: 8px 20px 6px;
+  border-radius: var(--border-radius-md);
+  border: none;
+  cursor: pointer;
+  transition: background var(--duration-base) var(--ease-out);
+}
+
+/* ==========================================================================
+   GRADIENT VARIANT — Iris -> rose background (primary CTA)
+   ========================================================================== */
+
+.btn--gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-iris) 0%,
+    var(--color-rose) 100%
+  );
+  color: var(--color-parchment);
+
+  /* Prevent gradient-text utility from leaking through ancestor styles */
+  -webkit-text-fill-color: var(--color-parchment);
+}
+
+.btn--gradient:hover {
+  background: linear-gradient(
+    135deg,
+    var(--color-iris-dark) 0%,
+    var(--color-rose-dark) 100%
+  );
+  color: var(--color-parchment);
+  -webkit-text-fill-color: var(--color-parchment);
+}
+
+.btn--gradient:focus-visible {
+  outline: 2px solid var(--color-rose);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-md);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .btn {
+    padding: 6px 16px 4px;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
