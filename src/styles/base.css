@@ -44,7 +44,7 @@ html {
    ============================================================================ */
 
 ::selection {
-  background: #663399;
+  background: var(--color-iris-dark);
   color: var(--color-parchment);
 }
 

@@ -23,7 +23,8 @@
   letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
   text-decoration: none;
-  padding: 8px 20px 6px;
+  /* Asymmetric padding for optical alignment of Comfortaa cap height */
+  padding: var(--btn-padding-block-start) var(--btn-padding-inline) var(--btn-padding-block-end);
   border-radius: var(--border-radius-md);
   border: none;
   cursor: pointer;
@@ -68,7 +69,7 @@
 
 @media (max-width: 768px) {
   .btn {
-    padding: 6px 16px 4px;
+    padding: var(--btn-padding-block-start-mobile) var(--btn-padding-inline-mobile) var(--btn-padding-block-end-mobile);
   }
 }
 
