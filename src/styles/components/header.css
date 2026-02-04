@@ -40,7 +40,6 @@
 
   /* GPU compositing for smooth scroll performance */
   transform: translateZ(0);
-  will-change: background-color, backdrop-filter;
 }
 
 /* Scrolled state: frosted glass effect */
