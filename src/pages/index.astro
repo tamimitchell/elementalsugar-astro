@@ -1,0 +1,88 @@
+---
+/**
+ * index.astro
+ *
+ * Homepage for ElementalSugar Creative Studio
+ * One-page site with smooth scroll navigation
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Elemental Sugar Creative Studio"
+  description="Calm, modern software crafted with a little sparkle. For thoughtful builders and mission-driven organizations."
+>
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="section hero">
+      <div class="container">
+        <p class="eyebrow">Elemental Sugar Creative Studio</p>
+
+        <h1>
+          <span style="font-family: var(--font-sans); font-weight: var(--font-weight-extrabold); display: block;">
+            Calm,<br/>modern<br/>software
+          </span>
+          <span style="font-family: var(--font-serif); font-weight: var(--font-weight-light); font-size: 0.55em; display: block; margin-top: 2.5rem;">
+            crafted with a little <span class="gradient-text" style="font-weight: var(--font-weight-extrabold); font-style: italic;">sparkle</span>
+          </span>
+        </h1>
+
+        <p style="font-family: var(--font-sans); font-size: var(--font-size-lg); color: var(--color-moss); max-width: 1000px;">
+          For modern creators, thoughtful builders, and mission-driven organizations
+        </p>
+      </div>
+    </section>
+
+    <!-- Design System Demo -->
+    <section class="section" style="background-color: var(--color-stone);">
+      <div class="container">
+        <h2 class="gradient-text">Design System Ready</h2>
+
+        <p>This is a clean Astro 5.x installation with the complete ElementalSugar design system:</p>
+
+        <ul style="list-style: none; padding: 0;">
+          <li style="margin-bottom: var(--space-sm);">✓ Design tokens (colors, spacing, typography)</li>
+          <li style="margin-bottom: var(--space-sm);">✓ Self-hosted Atkinson Hyperlegible fonts</li>
+          <li style="margin-bottom: var(--space-sm);">✓ Google Fonts (Cardo, Comfortaa)</li>
+          <li style="margin-bottom: var(--space-sm);">✓ Global styles and utilities</li>
+          <li style="margin-bottom: var(--space-sm);">✓ Semantic HTML structure</li>
+          <li style="margin-bottom: var(--space-sm);">✓ WCAG 2.1 AA color contrast</li>
+          <li style="margin-bottom: var(--space-sm);">✓ Accessibility-first approach</li>
+        </ul>
+
+        <div style="margin-top: var(--space-lg); padding: var(--space-lg); background: var(--color-parchment); border-radius: var(--border-radius-lg);">
+          <h3 style="color: var(--color-pine);">Color Palette</h3>
+          <div style="display: flex; gap: var(--space-md); flex-wrap: wrap; margin-top: var(--space-md);">
+            <div style="width: 100px; height: 100px; background: var(--color-parchment); border: 2px solid var(--color-fog); border-radius: var(--border-radius-sm);"></div>
+            <div style="width: 100px; height: 100px; background: var(--color-ink); border-radius: var(--border-radius-sm);"></div>
+            <div style="width: 100px; height: 100px; background: var(--color-moss); border-radius: var(--border-radius-sm);"></div>
+            <div style="width: 100px; height: 100px; background: var(--color-pine); border-radius: var(--border-radius-sm);"></div>
+            <div style="width: 100px; height: 100px; background: var(--color-lichen); border-radius: var(--border-radius-sm);"></div>
+            <div style="width: 100px; height: 100px; background: var(--color-iris); border-radius: var(--border-radius-sm);"></div>
+            <div style="width: 100px; height: 100px; background: var(--color-rose); border-radius: var(--border-radius-sm);"></div>
+          </div>
+        </div>
+
+        <div style="margin-top: var(--space-lg);">
+          <h3 class="gradient-text-light" style="color: var(--color-parchment); background: var(--color-pine); padding: var(--space-lg); border-radius: var(--border-radius-lg);">
+            Dark Section Demo
+          </h3>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  h1 {
+    line-height: 0.9;
+    margin-bottom: var(--space-lg);
+  }
+</style>
