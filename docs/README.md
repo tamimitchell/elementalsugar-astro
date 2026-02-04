@@ -130,9 +130,15 @@ All animations disabled for users who prefer reduced motion.
 ```
 elementalsugar-astro/
 ├── public/
-│   └── fonts/                    # Self-hosted Atkinson Hyperlegible
-│       ├── AtkinsonHyperlegibleNext-Regular.woff2
-│       └── AtkinsonHyperlegibleNext-Bold.woff2
+│   └── fonts/                    # All fonts self-hosted (zero external requests)
+│       ├── atkinson/             # Atkinson Hyperlegible (accessibility)
+│       │   ├── AtkinsonHyperlegibleNext-Regular.woff2
+│       │   └── AtkinsonHyperlegibleNext-Bold.woff2
+│       ├── cardo/                # Cardo (serif, Google Fonts subset)
+│       │   ├── cardo-latin-400-normal.woff2
+│       │   └── cardo-latin-700-normal.woff2
+│       └── comfortaa/            # Comfortaa (sans, Google Fonts subset)
+│           └── comfortaa-latin-700-normal.woff2
 ├── src/
 │   ├── layouts/
 │   │   └── BaseLayout.astro      # Base HTML structure

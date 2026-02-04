@@ -75,13 +75,16 @@ updated: 2026-02-04
 # Navigate to project
 cd ~/claude-workspace/elementalsugar-astro
 
-# Start work with timer + branch
+# Start work with timer + branch (solo dev, no prefix needed)
 tam start 109 "Build hero section"
+# Creates branch: tam-109-build-hero-section
 
 # Or manually:
 harvest start "TAM-109: Build hero section" --project "ElementalSugar"
 git checkout -b tam-109-build-hero-section
 ```
+
+**Branch naming:** `tam-<issue-number>-<short-description>` (no prefix, solo dev project)
 
 ### Step 2: Do the Work (With Code Craftsperson Agent)
 

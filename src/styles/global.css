@@ -8,17 +8,42 @@
  */
 
 /* ============================================================================
-   FONT IMPORTS
+   FONT IMPORTS (Self-Hosted for Zero External Requests)
    ============================================================================ */
 
-/* Google Fonts: Cardo (serif, display) & Comfortaa (sans, playful) */
-@import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+/* Cardo (serif, display/headlines) - Self-hosted, Google Fonts subset */
+@font-face {
+  font-family: 'Cardo';
+  src: url('/fonts/cardo/cardo-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
-/* Self-hosted: Atkinson Hyperlegible (accessible body text) */
+@font-face {
+  font-family: 'Cardo';
+  src: url('/fonts/cardo/cardo-latin-700-normal.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Comfortaa (sans, playful) - Self-hosted, Google Fonts subset */
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('/fonts/comfortaa/comfortaa-latin-700-normal.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Atkinson Hyperlegible (accessible body text) - Self-hosted */
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('/fonts/AtkinsonHyperlegibleNext-Regular.woff2') format('woff2');
+  src: url('/fonts/atkinson/AtkinsonHyperlegibleNext-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -26,7 +51,7 @@
 
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('/fonts/AtkinsonHyperlegibleNext-Bold.woff2') format('woff2');
+  src: url('/fonts/atkinson/AtkinsonHyperlegibleNext-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -91,12 +116,12 @@
   --line-height-base: 1.6;        /* Body */
   --line-height-loose: 1.8;       /* Large text blocks */
 
-  /* Font Weights */
-  --font-weight-light: 300;
+  /* Font Weights (mapped to available weights only) */
+  --font-weight-light: 400;        /* Cardo 400 (was 300, doesn't exist) */
   --font-weight-normal: 400;
-  --font-weight-medium: 500;
+  --font-weight-medium: 700;       /* Comfortaa only has 700 (was 500) */
   --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
+  --font-weight-extrabold: 700;    /* Cardo/Comfortaa 700 (was 800, doesn't exist) */
 
   /* Letter Spacing */
   --tracking-tight: -0.02em;      /* Large headlines */
