@@ -96,9 +96,9 @@ updated: 2026-02-04
 
 ### Fonts
 
-- **Cardo** (serif, display/headlines) — Google Fonts
-- **Comfortaa** (sans, playful headings/nav) — Google Fonts
-- **Atkinson Hyperlegible** (body text, accessibility) — Self-hosted WOFF2
+- **Cardo** (serif, display/headlines) — Self-hosted WOFF2 (weights: 400, 700)
+- **Comfortaa** (sans, playful headings/nav) — Self-hosted WOFF2 (weight: 700 only)
+- **Atkinson Hyperlegible** (body text, accessibility) — Self-hosted WOFF2 (weights: 400, 700)
 
 ---
 
@@ -203,15 +203,17 @@ Complete design token system available as CSS custom properties in `src/styles/g
 ```bash
 cd ~/claude-workspace/elementalsugar-astro
 
-# Start work with automatic timer + branch
+# Start work with automatic timer + branch (solo dev, no prefix)
 tam start <issue-number> "Short description"
 
 # Example:
 tam start 109 "Hero section"
 # → Starts Harvest timer: "TAM-109: Hero section"
-# → Creates branch: tam-109-hero-section
+# → Creates branch: tam-109-hero-section (no mail/ prefix)
 # → Shows Linear issue link
 ```
+
+**Branch naming:** `tam-<issue-number>-<short-description>` (no prefix needed, solo dev project)
 
 ### Step 2: Do the Work (But Don't Commit Yet!)
 
