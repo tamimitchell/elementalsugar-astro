@@ -154,6 +154,7 @@
   --container-max: 1200px;
   --content-max: 65ch;            /* Optimal reading width */
   --sidebar-width: 280px;
+  --header-height: 4.5rem;        /* Header/nav height (72px) */
 
   --margin-page: 10vw;            /* Left/right page margins */
   --margin-mobile: 5vw;           /* Mobile page margins */
@@ -447,7 +448,7 @@ img {
 .section-inner--viewport {
   display: flex;
   align-items: center;
-  min-height: calc(100vh - 4.5rem); /* Account for header height */
+  min-height: calc(100vh - var(--header-height));
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -485,7 +486,7 @@ img {
   font-size: clamp(2rem, 5vw, 4.889rem);
   line-height: 1.2;
   display: block;
-  margin-top: 2.5rem;
+  margin-top: var(--space-lg);
   color: var(--color-ink);
 }
 
@@ -508,8 +509,9 @@ img {
     var(--color-rose) 100%
   );
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
   font-weight: var(--font-weight-extrabold);
   font-style: italic;
 }

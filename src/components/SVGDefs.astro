@@ -1,0 +1,26 @@
+---
+/**
+ * SVGDefs.astro
+ *
+ * Shared SVG gradient definitions for mystical gold foil art
+ * Reusable across components via ID references
+ */
+---
+
+<svg class="svg-defs" aria-hidden="true">
+  <defs>
+    <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color: #B8A875; stop-opacity: 1;" />
+      <stop offset="50%" style="stop-color: #9d7fd4; stop-opacity: 1;" />
+      <stop offset="100%" style="stop-color: #d7827e; stop-opacity: 1;" />
+    </linearGradient>
+  </defs>
+</svg>
+
+<style>
+  .svg-defs {
+    width: 0;
+    height: 0;
+    position: absolute;
+  }
+</style>
