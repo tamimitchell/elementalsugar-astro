@@ -1,0 +1,165 @@
+/**
+ * typography.css
+ *
+ * Typography classes and element defaults.
+ * Converted from Next.js typography.scss -- no SCSS, all plain CSS.
+ * SCSS mixins (gradient-text, gradient-text-light) are inlined.
+ *
+ * Classes:
+ *   .display       — Hero display text (Cardo, light weight)
+ *   .heading-1     — Primary headings (Comfortaa, uppercase)
+ *   .heading-2     — Section headings (Cardo, bold)
+ *   .heading-3     — Sub-headings, logo (Cardo, semibold)
+ *   .heading-4     — Small headings (Cardo, semibold)
+ *   .body-text-lg  — Large body text (20px)
+ *   .body-small    — Small text (14px)
+ *   .playful       — Comfortaa font (nav, labels)
+ *   .label         — Uppercase label text
+ *   .gradient-text — Pine->moss->iris->rose gradient
+ *   .gradient-text-light — Parchment->iris->rose gradient (dark backgrounds)
+ *
+ * Depends on: tokens.css
+ */
+
+/* ============================================================================
+   ELEMENT DEFAULTS
+   ============================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-display);
+  line-height: var(--line-height-tight);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+h1 { font-size: var(--font-size-heading-1); }
+h2 { font-size: var(--font-size-heading-2); }
+h3 { font-size: var(--font-size-heading-3); }
+h4 { font-size: var(--font-size-heading-4); }
+
+p {
+  margin-bottom: var(--space-md);
+  max-width: var(--content-reading);
+}
+
+/* ============================================================================
+   DISPLAY — Hero text
+   ============================================================================ */
+
+.display {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-display);
+  font-weight: 300;
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+@media (max-width: 768px) {
+  .display {
+    font-size: var(--font-size-display-mobile);
+  }
+}
+
+/* ============================================================================
+   HEADING CLASSES
+   ============================================================================ */
+
+.heading-1 {
+  font-family: var(--font-family-playful);
+  font-size: var(--font-size-heading-1);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.heading-2 {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-heading-2);
+  font-weight: 700;
+  line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.heading-3 {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-heading-3);
+  font-weight: 600;
+  line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.heading-4 {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-heading-4);
+  font-weight: 600;
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* ============================================================================
+   BODY TEXT VARIANTS
+   ============================================================================ */
+
+.body-text-lg {
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-relaxed);
+}
+
+.body-small {
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-normal);
+}
+
+/* ============================================================================
+   PLAYFUL — Comfortaa font for nav, labels, UI elements
+   ============================================================================ */
+
+.playful {
+  font-family: var(--font-family-playful);
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* ============================================================================
+   LABEL — Uppercase tracking
+   ============================================================================ */
+
+.label {
+  font-size: var(--font-size-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* ============================================================================
+   GRADIENT TEXT — Inlined from SCSS mixins
+   ============================================================================ */
+
+/* Pine -> moss -> iris -> rose (for light backgrounds) */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--color-pine) 0%,
+    var(--color-moss) 30%,
+    var(--color-iris) 60%,
+    var(--color-rose) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Parchment -> iris -> rose (for dark backgrounds) */
+.gradient-text-light {
+  background: linear-gradient(
+    135deg,
+    var(--color-parchment) 0%,
+    var(--color-iris) 50%,
+    var(--color-rose) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

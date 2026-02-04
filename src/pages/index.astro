@@ -7,30 +7,27 @@
  */
 
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import '../styles/components/hero.css';
 ---
 
 <BaseLayout
   title="Elemental Sugar Creative Studio"
   description="Calm, modern software crafted with a little sparkle. For thoughtful builders and mission-driven organizations."
 >
-  <header role="banner">
-    <div class="section-inner">
-      <!-- Header content will go here in next phase -->
-      <p class="eyebrow">Elemental Sugar Creative Studio</p>
-    </div>
-  </header>
+  <Header />
 
   <main id="main-content" role="main">
     <!-- Hero Section -->
-    <section id="hero" aria-labelledby="hero-heading">
-      <div class="section-inner section-inner--viewport">
+    <section id="hero" class="section--viewport" aria-labelledby="hero-heading">
+      <div class="section-inner">
         <div>
           <h1 id="hero-heading">
             <span class="hero__headline-main">
               Calm,<br/>modern<br/>software
             </span>
             <span class="hero__headline-sub">
-              crafted with a little <span class="sparkle-gradient">sparkle</span>
+              crafted with a little <span class="hero__sparkle sparkle-gradient">sparkle</span>
             </span>
           </h1>
 

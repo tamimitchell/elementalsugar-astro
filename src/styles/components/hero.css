@@ -1,0 +1,95 @@
+/**
+ * hero.css
+ *
+ * Hero section styles for the homepage.
+ * Used inline in index.astro until a Hero.astro component is created.
+ *
+ * Classes:
+ *   .hero__headline-main — Large Comfortaa display text
+ *   .hero__headline-sub  — Cardo serif subtitle
+ *   .hero__tagline       — Comfortaa descriptive text
+ *
+ * Depends on: tokens.css, utilities.css (.sparkle-gradient)
+ */
+
+/* ============================================================================
+   HERO — Headline wrapper (prevents gradient text clipping)
+   ============================================================================ */
+
+h1[id="hero-heading"] {
+  color: var(--color-ink);
+  overflow: visible;
+}
+
+/* ============================================================================
+   HERO — Main headline (Comfortaa, bold, display size)
+   ============================================================================ */
+
+.hero__headline-main {
+  font-family: var(--font-family-playful);
+  font-weight: 700;
+  font-size: clamp(4.5rem, 12vw, 8.889rem);
+  line-height: 0.95;
+  display: block;
+  color: var(--color-ink);
+}
+
+/* ============================================================================
+   HERO — Subtitle (Cardo, light weight)
+   ============================================================================ */
+
+.hero__headline-sub {
+  font-family: var(--font-family-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 5vw, 4.889rem);
+  line-height: 1.2;
+  display: block;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  color: var(--color-ink);
+}
+
+/* ============================================================================
+   HERO — "sparkle" word (larger, inline-block prevents descender clipping)
+   ============================================================================ */
+
+.hero__sparkle {
+  font-size: clamp(3rem, 10vw, 10rem);
+  display: inline-block;
+  padding-right: 0.2em;
+}
+
+/* ============================================================================
+   HERO — Tagline
+   ============================================================================ */
+
+.hero__tagline {
+  font-family: var(--font-family-playful);
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-moss);
+  max-width: 1000px;
+  margin-top: var(--space-xl);
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .hero__headline-main {
+    font-size: clamp(3.5rem, 14vw, 5rem);
+    line-height: 0.9;
+  }
+
+  .hero__headline-sub {
+    font-size: clamp(1.75rem, 6.2vw, 2.5rem);
+    margin-top: var(--space-lg);
+  }
+
+  .hero__tagline {
+    font-size: var(--font-size-md);
+    margin-top: var(--space-lg);
+  }
+}

@@ -1,0 +1,94 @@
+---
+/**
+ * Header.astro
+ *
+ * Fixed header with gradient logo and blur-on-scroll effect.
+ * CSS-first approach: uses a small inline script for scroll detection.
+ *
+ * Features:
+ * - Fixed positioning with transparent -> frosted glass transition
+ * - Gradient logo using design tokens
+ * - Navigation with gradient hover underlines
+ * - Gradient button (iris -> rose) for contact CTA
+ * - Focus states for keyboard navigation
+ * - Reduced motion support
+ * - Mobile responsive (stacks at 1024px)
+ *
+ * Accessibility:
+ * - role="banner" on header
+ * - role="navigation" with aria-label on nav
+ * - aria-label on logo link
+ * - Visible focus indicators on all interactive elements
+ * - Works without JavaScript (header stays visible, just no blur transition)
+ *
+ * Styles:
+ * - src/styles/components/header.css (header layout, logo, nav, scroll blur)
+ * - src/styles/components/button.css (gradient CTA button, reusable)
+ */
+
+import '../styles/components/header.css';
+import '../styles/components/button.css';
+
+interface Props {
+  /** Navigation items to display. Defaults to site sections. */
+  navItems?: Array<{ href: string; label: string }>;
+}
+
+const defaultNavItems = [
+  { href: '#build', label: 'Build' },
+  { href: '#solve', label: 'Solve' },
+  { href: '#work', label: 'Work' },
+  { href: '#about', label: 'About' },
+];
+
+const { navItems = defaultNavItems } = Astro.props;
+---
+
+<header class="header" role="banner" data-header>
+  <div class="header__inner">
+    <a
+      href="#hero"
+      class="header__logo heading-3 gradient-text"
+      aria-label="Elemental Sugar Creative Studio - Back to top"
+    >
+      Elemental Sugar<br class="header__logo-break" /> Creative Studio
+    </a>
+
+    <nav class="header__nav" role="navigation" aria-label="Main navigation">
+      {navItems.map((item) => (
+        <a href={item.href} class="header__nav-link playful">
+          {item.label}
+        </a>
+      ))}
+      <a href="#contact" class="btn btn--gradient">
+        Contact
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!--
+  Minimal inline script for scroll detection.
+  Adds/removes a data attribute that CSS uses for the blur effect.
+  The header works fine without JS -- it just stays transparent.
+-->
+<script>
+  const header = document.querySelector('[data-header]');
+  if (header) {
+    const SCROLL_THRESHOLD = 10;
+
+    const updateHeader = () => {
+      if (window.scrollY > SCROLL_THRESHOLD) {
+        header.setAttribute('data-scrolled', '');
+      } else {
+        header.removeAttribute('data-scrolled');
+      }
+    };
+
+    // Check initial scroll position (for page refreshes mid-scroll)
+    updateHeader();
+
+    // Use passive listener for best scroll performance
+    window.addEventListener('scroll', updateHeader, { passive: true });
+  }
+</script>

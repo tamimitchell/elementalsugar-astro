@@ -1,0 +1,218 @@
+/**
+ * header.css
+ *
+ * Fixed header with gradient logo and blur-on-scroll effect.
+ * Uses data-scrolled attribute (set via JS) for frosted glass transition.
+ * Works without JavaScript -- header stays visible, just no blur.
+ *
+ * Typography classes applied in markup:
+ * - .heading-3 on logo (font-family, size, weight, line-height from typography.css)
+ * - .gradient-text on logo (full gradient across entire text, from typography.css)
+ * - .playful on nav links (font-family, weight, letter-spacing from typography.css)
+ *
+ * Depends on:
+ * - tokens.css (design tokens)
+ * - typography.css (.heading-3, .playful, .gradient-text)
+ * - button.css (.btn, .btn--gradient for the CTA)
+ *
+ * BEM naming: .header, .header__inner, .header__logo, .header__nav, etc.
+ */
+
+/* ==========================================================================
+   HEADER — Fixed with transparent-to-frosted-glass transition
+   ========================================================================== */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding-block: var(--space-md);
+  border-bottom: 1px solid transparent;
+  background: transparent;
+
+  /* Smooth transition for scroll effect */
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    backdrop-filter var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out);
+
+  /* GPU compositing for smooth scroll performance */
+  transform: translateZ(0);
+}
+
+/* Scrolled state: frosted glass effect */
+.header[data-scrolled] {
+  border-bottom-color: var(--color-fog);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: var(--color-parchment-95);
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(8px)) {
+  .header[data-scrolled] {
+    background-color: var(--color-parchment);
+  }
+}
+
+/* ==========================================================================
+   HEADER INNER — Layout container
+   ========================================================================== */
+
+.header__inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-inline: var(--margin-desktop);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ==========================================================================
+   LOGO — Full gradient text (pine -> moss -> iris -> rose)
+   Font from .heading-3 (Cardo, clamp(1.5rem, 3vw, 1.778rem))
+   Gradient from .gradient-text (typography.css)
+   ========================================================================== */
+
+/* Font properties come from .heading-3 and .gradient-text classes.
+   Only layout/decoration overrides live here. */
+.header__logo {
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+}
+
+.header__logo:hover {
+  text-decoration: none;
+}
+
+.header__logo:focus-visible {
+  outline: 2px solid var(--color-iris);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Line break in logo -- only on very small screens */
+.header__logo-break {
+  display: none;
+}
+
+/* ==========================================================================
+   NAVIGATION — Links with gradient underline hover
+   ========================================================================== */
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+/* Font properties come from .playful class in typography.css.
+   Only layout/decoration/color overrides live here. */
+.header__nav-link {
+  font-size: var(--font-size-body);
+  color: var(--color-pine);
+  text-decoration: none;
+  position: relative;
+  padding: var(--space-2xs) var(--space-xs);
+  line-height: var(--line-height-normal);
+}
+
+/* Gradient underline -- starts at width 0, expands on hover */
+.header__nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-iris-dark) 0%,
+    var(--color-rose-dark) 100%
+  );
+  transition: width var(--duration-base) var(--ease-out);
+}
+
+.header__nav-link:hover {
+  /* Gradient text on hover */
+  background: linear-gradient(
+    90deg,
+    var(--color-iris-dark) 0%,
+    var(--color-rose-dark) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header__nav-link:hover::after {
+  width: 100%;
+}
+
+.header__nav-link:focus-visible {
+  outline: 2px solid var(--color-iris);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+/* Tablet/small desktop: stack header vertically */
+@media (max-width: 1024px) {
+  .header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .header__nav {
+    gap: var(--space-md);
+  }
+}
+
+/* Mobile: tighter padding, full-width nav */
+@media (max-width: 768px) {
+  .header {
+    padding-block: var(--space-sm);
+  }
+
+  .header__inner {
+    padding-inline: var(--margin-mobile);
+  }
+
+  .header__nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .header__nav-link {
+    padding: var(--space-xs) 0;
+  }
+}
+
+/* Small mobile: logo breaks to two lines */
+@media (max-width: 480px) {
+  .header__logo-break {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .header {
+    transition: none;
+  }
+
+  .header__nav-link::after {
+    transition: none;
+  }
+}
