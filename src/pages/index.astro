@@ -3,7 +3,7 @@
  * index.astro
  *
  * Homepage for ElementalSugar Creative Studio
- * One-page site with smooth scroll navigation
+ * One-page site with semantic HTML5 structure
  */
 
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -13,76 +13,72 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Elemental Sugar Creative Studio"
   description="Calm, modern software crafted with a little sparkle. For thoughtful builders and mission-driven organizations."
 >
-  <main id="main-content">
+  <header role="banner">
+    <div class="section-inner">
+      <!-- Header content will go here in next phase -->
+      <p class="eyebrow">Elemental Sugar Creative Studio</p>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
     <!-- Hero Section -->
-    <section class="section hero">
-      <div class="container">
-        <p class="eyebrow">Elemental Sugar Creative Studio</p>
+    <section id="hero" aria-labelledby="hero-heading">
+      <div class="section-inner section-inner--viewport">
+        <div>
+          <h1 id="hero-heading">
+            <span class="hero__headline-main">
+              Calm,<br/>modern<br/>software
+            </span>
+            <span class="hero__headline-sub">
+              crafted with a little <span class="sparkle-gradient">sparkle</span>
+            </span>
+          </h1>
 
-        <h1>
-          <span style="font-family: var(--font-sans); font-weight: var(--font-weight-extrabold); display: block;">
-            Calm,<br/>modern<br/>software
-          </span>
-          <span style="font-family: var(--font-serif); font-weight: var(--font-weight-light); font-size: 0.55em; display: block; margin-top: 2.5rem;">
-            crafted with a little <span class="gradient-text" style="font-weight: var(--font-weight-extrabold); font-style: italic;">sparkle</span>
-          </span>
-        </h1>
-
-        <p style="font-family: var(--font-sans); font-size: var(--font-size-lg); color: var(--color-moss); max-width: 1000px;">
-          For modern creators, thoughtful builders, and mission-driven organizations
-        </p>
+          <p class="hero__tagline">
+            For modern creators, thoughtful builders, and mission-driven organizations
+          </p>
+        </div>
       </div>
     </section>
 
-    <!-- Design System Demo -->
-    <section class="section" style="background-color: var(--color-stone);">
-      <div class="container">
-        <h2 class="gradient-text">Design System Ready</h2>
+    <!-- Build Section -->
+    <section id="build" aria-labelledby="build-heading">
+      <div class="section-inner">
+        <h2 id="build-heading" class="gradient-text">We BUILD</h2>
+        <p>Build section content will go here</p>
+      </div>
+    </section>
 
-        <p>This is a clean Astro 5.x installation with the complete ElementalSugar design system:</p>
+    <!-- Solve Section -->
+    <section id="solve" aria-labelledby="solve-heading">
+      <div class="section-inner">
+        <h2 id="solve-heading" class="gradient-text">We SOLVE</h2>
+        <p>Solve section content will go here</p>
+      </div>
+    </section>
 
-        <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: var(--space-sm);">✓ Design tokens (colors, spacing, typography)</li>
-          <li style="margin-bottom: var(--space-sm);">✓ Self-hosted Atkinson Hyperlegible fonts</li>
-          <li style="margin-bottom: var(--space-sm);">✓ Self-hosted fonts (Cardo, Comfortaa)</li>
-          <li style="margin-bottom: var(--space-sm);">✓ Global styles and utilities</li>
-          <li style="margin-bottom: var(--space-sm);">✓ Semantic HTML structure</li>
-          <li style="margin-bottom: var(--space-sm);">✓ WCAG 2.1 AA color contrast</li>
-          <li style="margin-bottom: var(--space-sm);">✓ Accessibility-first approach</li>
-        </ul>
+    <!-- Recent Work Section -->
+    <section id="work" aria-labelledby="work-heading">
+      <div class="section-inner">
+        <h2 id="work-heading" class="gradient-text">Recent Work</h2>
+        <p>Work section content will go here</p>
+      </div>
+    </section>
 
-        <div style="margin-top: var(--space-lg); padding: var(--space-lg); background: var(--color-parchment); border-radius: var(--border-radius-lg);">
-          <h3 style="color: var(--color-pine);">Color Palette</h3>
-          <div style="display: flex; gap: var(--space-md); flex-wrap: wrap; margin-top: var(--space-md);">
-            <div style="width: 100px; height: 100px; background: var(--color-parchment); border: 2px solid var(--color-fog); border-radius: var(--border-radius-sm);"></div>
-            <div style="width: 100px; height: 100px; background: var(--color-ink); border-radius: var(--border-radius-sm);"></div>
-            <div style="width: 100px; height: 100px; background: var(--color-moss); border-radius: var(--border-radius-sm);"></div>
-            <div style="width: 100px; height: 100px; background: var(--color-pine); border-radius: var(--border-radius-sm);"></div>
-            <div style="width: 100px; height: 100px; background: var(--color-lichen); border-radius: var(--border-radius-sm);"></div>
-            <div style="width: 100px; height: 100px; background: var(--color-iris); border-radius: var(--border-radius-sm);"></div>
-            <div style="width: 100px; height: 100px; background: var(--color-rose); border-radius: var(--border-radius-sm);"></div>
-          </div>
-        </div>
+    <!-- About Section -->
+    <section id="about" aria-labelledby="about-heading">
+      <div class="section-inner">
+        <h2 id="about-heading" class="gradient-text">About</h2>
+        <p>About section content will go here</p>
+      </div>
+    </section>
 
-        <div style="margin-top: var(--space-lg);">
-          <h3 class="gradient-text-light" style="color: var(--color-parchment); background: var(--color-pine); padding: var(--space-lg); border-radius: var(--border-radius-lg);">
-            Dark Section Demo
-          </h3>
-        </div>
+    <!-- Contact Section -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <div class="section-inner">
+        <h2 id="contact-heading" class="gradient-text">Get in Touch</h2>
+        <p>Contact section content will go here</p>
       </div>
     </section>
   </main>
 </BaseLayout>
-
-<style>
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-
-  h1 {
-    line-height: 0.9;
-    margin-bottom: var(--space-lg);
-  }
-</style>
