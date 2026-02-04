@@ -7,8 +7,8 @@
  *
  * Typography classes applied in markup:
  * - .heading-3 on logo (font-family, size, weight, line-height from typography.css)
+ * - .gradient-text on logo (full gradient across entire text, from typography.css)
  * - .playful on nav links (font-family, weight, letter-spacing from typography.css)
- * - .gradient-text on "Creative Studio" span (from typography.css)
  *
  * Depends on:
  * - tokens.css (design tokens)
@@ -72,25 +72,17 @@
 }
 
 /* ==========================================================================
-   LOGO — "ELEMENTAL SUGAR" in dark, "CREATIVE STUDIO" in gradient
+   LOGO — Full gradient text (pine -> moss -> iris -> rose)
    Font from .heading-3 (Cardo, clamp(1.5rem, 3vw, 1.778rem))
+   Gradient from .gradient-text (typography.css)
    ========================================================================== */
 
-/* Font properties come from .heading-3 class in typography.css.
+/* Font properties come from .heading-3 and .gradient-text classes.
    Only layout/decoration overrides live here. */
 .header__logo {
-  text-transform: uppercase;
   text-decoration: none;
-}
-
-/* "ELEMENTAL SUGAR" -- dark color */
-.header__logo-name {
-  color: var(--color-ink);
-}
-
-/* "CREATIVE STUDIO" -- gradient applied via .gradient-text utility */
-.header__logo-studio {
-  /* gradient-text class handles the visual gradient */
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
 }
 
 .header__logo:hover {
