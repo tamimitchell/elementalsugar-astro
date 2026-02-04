@@ -96,9 +96,9 @@ updated: 2026-02-04
 
 ### Fonts
 
-- **Cardo** (serif, display/headlines) — Google Fonts
-- **Comfortaa** (sans, playful headings/nav) — Google Fonts
-- **Atkinson Hyperlegible** (body text, accessibility) — Self-hosted WOFF2
+- **Cardo** (serif, display/headlines) — Self-hosted WOFF2 (weights: 400, 700)
+- **Comfortaa** (sans, playful headings/nav) — Self-hosted WOFF2 (weight: 700 only)
+- **Atkinson Hyperlegible** (body text, accessibility) — Self-hosted WOFF2 (weights: 400, 700)
 
 ---
 
