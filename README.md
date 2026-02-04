@@ -26,12 +26,13 @@ npm run preview
 
 ## Why Astro?
 
-**Next.js was too heavy for a 1-page static site.**
+**Perfect for content-focused, performance-first sites.**
 
-- **Astro:** 10-50KB bundle, zero JavaScript by default
-- **Next.js:** 200-500KB bundle with React hydration overhead
-
-For content-focused sites, Astro is the better choice.
+- Zero JavaScript by default
+- 10-50KB bundle size
+- Lighthouse 95+ scores out of the box
+- Static HTML generated at build time
+- Add interactivity only where needed (islands architecture)
 
 ---
 
