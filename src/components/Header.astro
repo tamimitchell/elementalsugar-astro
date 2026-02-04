@@ -48,7 +48,7 @@ const { navItems = defaultNavItems } = Astro.props;
   <div class="header__inner">
     <a
       href="#hero"
-      class="header__logo"
+      class="header__logo heading-3"
       aria-label="Elemental Sugar Creative Studio - Back to top"
     >
       <span class="header__logo-name">Elemental Sugar</span><br class="header__logo-break" />
@@ -57,7 +57,7 @@ const { navItems = defaultNavItems } = Astro.props;
 
     <nav class="header__nav" role="navigation" aria-label="Main navigation">
       {navItems.map((item) => (
-        <a href={item.href} class="header__nav-link">
+        <a href={item.href} class="header__nav-link playful">
           {item.label}
         </a>
       ))}

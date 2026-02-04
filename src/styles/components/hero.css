@@ -1,0 +1,75 @@
+/**
+ * hero.css
+ *
+ * Hero section styles for the homepage.
+ * Used inline in index.astro until a Hero.astro component is created.
+ *
+ * Classes:
+ *   .hero__headline-main — Large Comfortaa display text
+ *   .hero__headline-sub  — Cardo serif subtitle
+ *   .hero__tagline       — Comfortaa descriptive text
+ *
+ * Depends on: tokens.css, utilities.css (.sparkle-gradient)
+ */
+
+/* ============================================================================
+   HERO — Main headline (Comfortaa, bold, display size)
+   ============================================================================ */
+
+.hero__headline-main {
+  font-family: var(--font-family-playful);
+  font-weight: 700;
+  font-size: clamp(4.5rem, 12vw, 8.889rem);
+  line-height: 0.95;
+  display: block;
+  color: var(--color-ink);
+}
+
+/* ============================================================================
+   HERO — Subtitle (Cardo, light weight)
+   ============================================================================ */
+
+.hero__headline-sub {
+  font-family: var(--font-family-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 5vw, 4.889rem);
+  line-height: 1.2;
+  display: block;
+  margin-top: var(--space-lg);
+  color: var(--color-ink);
+}
+
+/* ============================================================================
+   HERO — Tagline
+   ============================================================================ */
+
+.hero__tagline {
+  font-family: var(--font-family-playful);
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-moss);
+  max-width: 1000px;
+  margin-top: var(--space-xl);
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .hero__headline-main {
+    font-size: clamp(3.5rem, 14vw, 5rem);
+    line-height: 0.9;
+  }
+
+  .hero__headline-sub {
+    font-size: clamp(1.75rem, 6.2vw, 2.5rem);
+    margin-top: var(--space-lg);
+  }
+
+  .hero__tagline {
+    font-size: var(--font-size-md);
+    margin-top: var(--space-lg);
+  }
+}

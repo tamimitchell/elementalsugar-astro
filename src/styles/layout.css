@@ -1,0 +1,59 @@
+/**
+ * layout.css
+ *
+ * Layout patterns: section containers and viewport sections.
+ * Converted from Next.js layout.scss -- no SCSS, all plain CSS.
+ *
+ * Classes:
+ *   .section-inner      — Standard content container (max-width, padding)
+ *   .section--viewport  — Full-viewport section wrapper (hero, splash)
+ *
+ * Depends on: tokens.css
+ */
+
+/* ============================================================================
+   SECTION INNER — Content container
+   ============================================================================ */
+
+.section-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding-left: var(--margin-desktop);
+  padding-right: var(--margin-desktop);
+  padding-top: var(--space-4xl);
+  padding-bottom: var(--space-4xl);
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .section-inner {
+    padding-left: var(--margin-mobile);
+    padding-right: var(--margin-mobile);
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+}
+
+/* ============================================================================
+   SECTION VIEWPORT — Full-height section wrapper
+   ============================================================================ */
+
+.section--viewport {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - var(--header-height));
+}
+
+.section--viewport .section-inner {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .section--viewport {
+    min-height: 80vh;
+  }
+}
