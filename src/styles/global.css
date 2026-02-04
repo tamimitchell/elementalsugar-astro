@@ -66,25 +66,30 @@
      COLORS — Muted, low-contrast, nature-derived
      -------------------------------------------------------------------------- */
 
-  /* Base Colors */
-  --color-parchment: #F6F4EF;     /* Warm off-white background */
+  /* Base Colors (warmer Rose Pine palette, updated 2026-02-04) */
+  --color-parchment: #F5EFE7;     /* Warm off-white background */
   --color-ink: #2E2E2B;           /* Charcoal text */
-  --color-fog: #CFCFC8;           /* Dividers, borders */
-  --color-stone: #E8E3DC;         /* Subtle backgrounds */
+  --color-fog: #D4CFC4;           /* Dividers, borders */
+  --color-stone: #EAE2D6;         /* Subtle backgrounds */
 
   /* Forest Accents */
-  --color-moss: #6F7F6A;          /* Moss green */
+  --color-moss: #5A6A55;          /* Moss green (darkened for WCAG AA on all text sizes) */
   --color-pine: #2F4A3A;          /* Deep pine */
   --color-lichen: #B8A875;        /* Lichen gold */
 
   /* Sparkle Accent (Rose Pine, WCAG AA adjusted) */
   --color-iris: #9d7fd4;          /* Darker lavender (WCAG AA) */
   --color-iris-dark: #6a4fa0;     /* Darker iris for hover states */
+  --color-iris-muted: #5B4580;    /* Muted iris */
   --color-rose: #d7827e;          /* Deeper rose (WCAG AA) */
   --color-rose-dark: #a55550;     /* Darker rose for hover states */
+  --color-rose-muted: #8B4340;    /* Muted rose */
 
   /* Alpha variants (for overlays and glass effects) */
-  --color-parchment-95: rgba(246, 244, 239, 0.95);
+  --color-parchment-95: rgba(245, 239, 231, 0.95);
+  --color-parchment-80: rgba(245, 239, 231, 0.80);
+  --color-pine-20: rgba(47, 74, 58, 0.2);
+  --color-ink-30: rgba(46, 46, 43, 0.3);
 
   /* Semantic Colors */
   --color-bg-primary: var(--color-parchment);
