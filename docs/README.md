@@ -7,27 +7,30 @@
 ## Project Overview
 
 **What:** One-page portfolio site for Elemental Sugar Creative Studio
-**Why:** Next.js was too heavy for a simple 1-page static site. Astro is perfect for content-focused sites with minimal JavaScript.
+**Why:** Showcase calm tech philosophy and soft design principles
 **Stack:** Astro 5.x + CSS Custom Properties (design tokens) + Static export
 **Goal:** Lighthouse 95+ performance, WCAG 2.1 AA accessibility
 
 ---
 
-## Why Astro Over Next.js?
+## Why Astro?
 
-### Performance First
-- **Astro:** Ships zero JavaScript by default, perfect for static content
-- **Next.js:** Heavy runtime overhead (React hydration, routing) for 1-page site
-- **Result:** 10-50KB vs 200-500KB for equivalent content
-
-### Simple = Fast
+### Perfect for Content-Focused Sites
+- Ships zero JavaScript by default
 - Static HTML generated at build time
-- No client-side hydration unless needed
-- Optimal for content-heavy, interaction-light sites
+- Optimal for portfolio and marketing sites
+- Lighthouse 95+ scores out of the box
 
 ### Progressive Enhancement
 - Add JavaScript only where needed (islands architecture)
-- Framework-agnostic components (can use React, Vue, Svelte as needed)
+- Framework-agnostic (can use React, Vue, Svelte as needed)
+- Start with HTML/CSS, enhance with interactivity
+
+### Performance First
+- 10-50KB bundle for static content
+- No client-side hydration overhead
+- Fast time-to-interactive
+- Great Core Web Vitals
 
 ---
 
@@ -295,33 +298,37 @@ Generates static HTML in `dist/` directory:
 
 ---
 
-## Migrated from Next.js
+## Choosing the Right Tool
 
-### What We Learned
+### When to Use Astro
 
-**Next.js Pain Points (for 1-page site):**
-- React hydration overhead (~200-300KB)
-- Client-side routing not needed
-- App Router complexity for static content
-- Slower build times
-- More dependencies to manage
-
-**Astro Wins:**
-- 10x smaller bundle size
-- Faster builds
-- Simpler mental model (just HTML + CSS)
-- Better Lighthouse scores out of the box
-- No framework lock-in
-
-**When to use Next.js:**
-- Complex interactivity (e.g., dashboards, web apps)
-- Server-side rendering needed
-- React ecosystem required
-
-**When to use Astro:**
+**Perfect for:**
 - Content-focused sites (portfolios, blogs, marketing)
 - Static or mostly-static sites
 - Performance is top priority
+- Simple interactions (forms, smooth scroll)
+
+**Not ideal for:**
+- Complex web applications (dashboards, SaaS)
+- Heavy client-side state management
+- Real-time collaboration features
+
+### Astro vs Other Tools
+
+**Astro vs React/Next.js:**
+- Astro: 10-50KB bundle (HTML + CSS only)
+- React: 200-500KB bundle (includes framework runtime)
+- Use React/Next.js when you need complex interactivity
+
+**Astro vs Static Site Generators (Hugo, Jekyll):**
+- Astro: Modern DX, component-based, can add JS islands
+- SSGs: Often template-based, less flexible
+- Use Astro for better developer experience
+
+**Astro vs WordPress:**
+- Astro: Fast, secure, no database, version control friendly
+- WordPress: Admin UI, plugins, non-technical editing
+- Use WordPress if non-developers need to edit content
 
 ---
 
@@ -368,9 +375,6 @@ Each section will be a separate component following Astro patterns.
 - `~/claude-workspace/SoftForge/reference/values/design-values.md`
 - `~/claude-workspace/SoftForge/active/projects/ElementalSugar/design-direction.md`
 - `~/claude-workspace/SoftForge/active/projects/ElementalSugar/content-architecture.md`
-
-**Next.js Version (for reference):**
-- `~/claude-workspace/elementalsugar.com/`
 
 **External:**
 - [Astro Docs](https://docs.astro.build)
