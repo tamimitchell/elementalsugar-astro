@@ -13,6 +13,15 @@
  */
 
 /* ============================================================================
+   HERO — Headline wrapper (prevents gradient text clipping)
+   ============================================================================ */
+
+h1[id="hero-heading"] {
+  color: var(--color-ink);
+  overflow: visible;
+}
+
+/* ============================================================================
    HERO — Main headline (Comfortaa, bold, display size)
    ============================================================================ */
 
@@ -36,7 +45,18 @@
   line-height: 1.2;
   display: block;
   margin-top: var(--space-lg);
+  margin-bottom: var(--space-xl);
   color: var(--color-ink);
+}
+
+/* ============================================================================
+   HERO — "sparkle" word (larger, inline-block prevents descender clipping)
+   ============================================================================ */
+
+.hero__sparkle {
+  font-size: clamp(3rem, 10vw, 10rem);
+  display: inline-block;
+  padding-right: 0.2em;
 }
 
 /* ============================================================================
