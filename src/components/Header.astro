@@ -48,10 +48,11 @@ const { navItems = defaultNavItems } = Astro.props;
   <div class="header__inner">
     <a
       href="#hero"
-      class="header__logo gradient-text"
+      class="header__logo"
       aria-label="Elemental Sugar Creative Studio - Back to top"
     >
-      Elemental Sugar<br class="header__logo-break" /> Creative Studio
+      <span class="header__logo-name">Elemental Sugar</span><br class="header__logo-break" />
+      <span class="header__logo-studio gradient-text">Creative Studio</span>
     </a>
 
     <nav class="header__nav" role="navigation" aria-label="Main navigation">
