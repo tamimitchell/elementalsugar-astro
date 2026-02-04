@@ -154,6 +154,7 @@
   --container-max: 1200px;
   --content-max: 65ch;            /* Optimal reading width */
   --sidebar-width: 280px;
+  --header-height: 4.5rem;        /* Header/nav height (72px) */
 
   --margin-page: 10vw;            /* Left/right page margins */
   --margin-mobile: 5vw;           /* Mobile page margins */
@@ -427,6 +428,112 @@ img {
 }
 
 /* ============================================================================
+   LAYOUT SYSTEM — Section-inner container pattern
+   ============================================================================ */
+
+/* Standard section container (max-width: 1600px, responsive padding) */
+.section-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-left: 6vw;
+  padding-right: 6vw;
+  padding-top: var(--space-4xl);
+  padding-bottom: var(--space-4xl);
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Viewport-height section (for hero, full-screen sections) */
+.section-inner--viewport {
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - var(--header-height));
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Mobile breakpoint: reduce padding */
+@media (max-width: 768px) {
+  .section-inner {
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+
+  .section-inner--viewport {
+    min-height: 80vh; /* Shorter on mobile for better scrolling */
+  }
+}
+
+/* ============================================================================
+   HERO SECTION STYLES
+   ============================================================================ */
+
+.hero__headline-main {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-extrabold);
+  font-size: clamp(4.5rem, 12vw, 8.889rem);
+  line-height: 0.95;
+  display: block;
+  color: var(--color-ink);
+}
+
+.hero__headline-sub {
+  font-family: var(--font-serif);
+  font-weight: var(--font-weight-light);
+  font-size: clamp(2rem, 5vw, 4.889rem);
+  line-height: 1.2;
+  display: block;
+  margin-top: var(--space-lg);
+  color: var(--color-ink);
+}
+
+.hero__tagline {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-loose);
+  color: var(--color-moss);
+  max-width: 1000px;
+  margin-top: var(--space-xl);
+}
+
+/* Sparkle gradient for "sparkle" word in hero */
+.sparkle-gradient {
+  background: linear-gradient(135deg,
+    var(--color-pine) 0%,
+    var(--color-moss) 30%,
+    var(--color-iris) 60%,
+    var(--color-rose) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: var(--font-weight-extrabold);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .hero__headline-main {
+    font-size: clamp(3.5rem, 14vw, 5rem);
+    line-height: 0.9;
+  }
+
+  .hero__headline-sub {
+    font-size: clamp(1.75rem, 6.2vw, 2.5rem);
+    margin-top: var(--space-lg);
+  }
+
+  .hero__tagline {
+    font-size: var(--font-size-md);
+    margin-top: var(--space-lg);
+  }
+}
+
+/* ============================================================================
    NOTES
    ============================================================================
 
@@ -440,5 +547,11 @@ img {
    WCAG AA Contrast Verified:
    - Parchment + Ink = 12.8:1 ✓ (exceeds 4.5:1)
    - Pine + Parchment = 10.2:1 ✓
+
+   Layout Pattern:
+   - Use .section-inner for all section content
+   - Use .section-inner--viewport for full-screen sections (hero, etc.)
+   - Max-width: 1600px for desktop, 6vw padding (5vw mobile)
+   - Mobile-first responsive design (breakpoint at 768px)
 
    ============================================================================ */
