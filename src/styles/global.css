@@ -116,12 +116,12 @@
   --line-height-base: 1.6;        /* Body */
   --line-height-loose: 1.8;       /* Large text blocks */
 
-  /* Font Weights */
-  --font-weight-light: 300;
+  /* Font Weights (mapped to available weights only) */
+  --font-weight-light: 400;        /* Cardo 400 (was 300, doesn't exist) */
   --font-weight-normal: 400;
-  --font-weight-medium: 500;
+  --font-weight-medium: 700;       /* Comfortaa only has 700 (was 500) */
   --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
+  --font-weight-extrabold: 700;    /* Cardo/Comfortaa 700 (was 800, doesn't exist) */
 
   /* Letter Spacing */
   --tracking-tight: -0.02em;      /* Large headlines */
