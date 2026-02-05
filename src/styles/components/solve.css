@@ -1,0 +1,127 @@
+/**
+ * solve.css
+ *
+ * Styles for SolveSection.astro.
+ * Migrated from Next.js SolveSection.scss to plain CSS with design tokens.
+ *
+ * Classes:
+ *   .solve                -- Section wrapper (pine background, gradient overlay)
+ *   .solve .section-inner -- Centered content container (flex, z-index above overlay)
+ *   .solve__label         -- Section heading spacing (centered)
+ *   .solve__list          -- Problem statement list (max-width 900px)
+ *   .solve__item          -- Individual problem statement (gradient checkmark)
+ *
+ * Layout:
+ *   - 100vh full viewport height, vertically centered (via section--viewport)
+ *   - Pine green background with subtle gradient overlay (::before)
+ *   - Centered content, max-width 900px
+ *   - Pebble Flow inspired: maximum breathing room, minimal decoration
+ *
+ * Depends on: tokens.css, layout.css, typography.css
+ */
+
+/* ============================================================================
+   SOLVE SECTION — Pine background with gradient overlay
+   ============================================================================ */
+
+.solve {
+  background: var(--color-pine);
+  color: var(--color-parchment);
+  position: relative;
+}
+
+/* Subtle gradient overlay for depth (pine-tinted -> ink-tinted) */
+.solve::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    var(--color-pine-20) 0%,
+    var(--color-ink-30) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================================================
+   SOLVE INNER — Centered flex container above overlay
+   ============================================================================ */
+
+.solve .section-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================================
+   SOLVE LABEL — Centered section heading
+   ============================================================================ */
+
+.solve__label {
+  margin-bottom: var(--space-xl);
+  text-align: center;
+}
+
+/* ============================================================================
+   SOLVE LIST — Problem statement list
+   ============================================================================ */
+
+.solve__list {
+  list-style: none;
+  padding-left: 0;
+  max-width: var(--content-narrow);
+  width: 100%;
+}
+
+/* ============================================================================
+   SOLVE ITEM — Individual problem statement with gradient checkmark
+   ============================================================================ */
+
+.solve__item {
+  color: var(--color-parchment);
+  opacity: 0.9;
+  margin-bottom: var(--space-lg);
+  padding-left: 2rem;
+  position: relative;
+  text-align: left;
+}
+
+/* Gradient checkmark (parchment -> iris -> rose, matching gradient-text-light) */
+.solve__item::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  font-size: 1.25em;
+  background: linear-gradient(
+    135deg,
+    var(--color-parchment) 0%,
+    var(--color-iris) 50%,
+    var(--color-rose) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Last item doesn't need bottom margin */
+.solve__item:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================================================
+   RESPONSIVE — Mobile adjustments
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .solve__label {
+    margin-bottom: var(--space-lg);
+  }
+
+  .solve__item {
+    margin-bottom: var(--space-md);
+  }
+}
