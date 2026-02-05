@@ -22,8 +22,7 @@
    ============================================================================ */
 
 .sparkle-gradient {
-  font-weight: 800;
-  font-style: italic;
+  font-weight: 700;
   /* Inlined from gradient-text mixin */
   background: linear-gradient(
     135deg,
