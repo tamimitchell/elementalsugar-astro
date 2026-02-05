@@ -1,0 +1,163 @@
+/**
+ * build.css
+ *
+ * Styles for BuildSection.astro and CapabilityCard.astro.
+ * Ported from Next.js BuildSection.scss + CapabilityCard.scss.
+ *
+ * Classes:
+ *   .build                    -- Section wrapper (stone background)
+ *   .build__label             -- Section heading spacing
+ *   .build__capabilities      -- Card stack layout (single column, not grid)
+ *   .capability               -- Individual capability card
+ *   .capability::before       -- Paper grain texture overlay
+ *   .capability__title        -- Card heading (pine, serif)
+ *   .capability__description  -- Card body text (ink, 75% opacity)
+ *   .capability__tech         -- Tech stack (iris-muted, uppercase)
+ *   .capability__art          -- Mystical SVG art positioning
+ *
+ * Depends on: tokens.css, layout.css, typography.css, utilities.css
+ */
+
+/* ============================================================================
+   BUILD SECTION — Stone background
+   ============================================================================ */
+
+.build {
+  background: var(--color-bg-secondary);
+}
+
+/* ============================================================================
+   BUILD LABEL — Section heading spacing
+   ============================================================================ */
+
+.build__label {
+  margin-bottom: var(--space-2xl);
+}
+
+/* ============================================================================
+   BUILD CAPABILITIES — Wide card stack (not a grid)
+   ============================================================================ */
+
+.build__capabilities {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* ============================================================================
+   CAPABILITY CARD — Parchment card with rounded corners
+   ============================================================================ */
+
+.capability {
+  background: var(--color-parchment);
+  padding: var(--space-lg);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color var(--duration-base) var(--ease-out);
+}
+
+/* Readable line length for all card content */
+.capability > * {
+  max-width: 65ch;
+}
+
+/* Subtle hover: show fog border */
+.capability:hover {
+  border-color: var(--color-fog);
+}
+
+/* ============================================================================
+   PAPER GRAIN TEXTURE — Subtle radial gradient overlay
+   ============================================================================ */
+
+.capability::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(90, 106, 85, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(184, 168, 117, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(90, 106, 85, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* ============================================================================
+   CAPABILITY TITLE — Pine color, serif
+   ============================================================================ */
+
+.capability__title {
+  color: var(--color-pine);
+  margin-bottom: var(--space-sm);
+}
+
+/* ============================================================================
+   CAPABILITY DESCRIPTION — Body text at reduced opacity
+   ============================================================================ */
+
+.capability__description {
+  color: var(--color-ink);
+  opacity: 0.75;
+  margin-bottom: var(--space-sm);
+}
+
+/* ============================================================================
+   CAPABILITY TECH — Uppercase tech stack
+   ============================================================================ */
+
+.capability__tech {
+  color: var(--color-iris-muted);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+/* ============================================================================
+   CAPABILITY ART — Mystical SVG positioning (right side, centered)
+   ============================================================================ */
+
+.capability__art {
+  position: absolute;
+  right: var(--space-md);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Hide art container when slot is empty (no visible content) */
+.capability__art:empty {
+  display: none;
+}
+
+/* ============================================================================
+   RESPONSIVE — Mobile adjustments
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .build__label {
+    margin-bottom: var(--space-xl);
+  }
+
+  .capability {
+    padding: var(--space-md);
+  }
+
+  /* Hide mystical art on mobile to prioritize readability */
+  .capability__art {
+    display: none;
+  }
+}
+
+/* ============================================================================
+   REDUCED MOTION — Respect user preferences
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .capability {
+    transition: none;
+  }
+}
