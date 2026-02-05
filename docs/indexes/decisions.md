@@ -19,6 +19,24 @@ purpose: Quick reference for "Why did we do X?" questions (project-specific)
 
 ---
 
+## 2026-02-04: About Section Uses Content-Height, Not 100vh (TAM-116)
+
+**Decision:** About section uses content-based height with standard section padding instead of `100vh` full viewport height specified in design-direction.md.
+
+**Why:**
+- **Text-heavy content** - About section has three paragraphs of body text. Forcing 900px of prose to fill 100vh creates awkward vertical stretching on tall screens (ultrawide monitors, portrait tablets) or compression on short screens (laptops with open devtools).
+- **Different content type** - Hero, Build, and Solve sections have shorter splash content (headings, lists) that benefit from viewport-height constraints. About is a closing statement that reads better with natural content flow.
+- **Pebble Flow pattern** - Content sections (blog posts, about pages) use natural document flow, not viewport constraints.
+- **Maintains breathing room** - Standard `--space-section` padding (96px top/bottom) provides generous whitespace without artificial stretching.
+
+**Font sizing:** Uses fixed `--font-size-md` (18px) instead of responsive `clamp(1.125rem, 2vw, 1.5rem)` from design spec. Keeps text grounded and readable across all viewport widths without scaling to 24px on wide screens (which would feel too large for body paragraphs).
+
+**Trade-off:** Conscious deviation from design-direction.md, but improves readability and visual balance for content-heavy section.
+
+**Related:** TAM-116, design-direction.md lines 420-445, about.css
+
+---
+
 ## 2026-02-05: Code Review Before Merge (TAM-112)
 
 **Decision:** Run code-reviewer agent on all PRs before merging, even for solo developer work.
