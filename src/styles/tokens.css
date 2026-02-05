@@ -192,7 +192,7 @@
   --space-4xl: 10rem;             /* 160px */
 
   /* Semantic Spacing */
-  --space-section: var(--space-3xl);
+  --space-section: var(--space-2xl);  /* 6rem / 96px */
   --space-block: var(--space-xl);
   --space-element: var(--space-md);
 
