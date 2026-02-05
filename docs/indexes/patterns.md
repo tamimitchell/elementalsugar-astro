@@ -2,7 +2,7 @@
 
 ---
 created: 2026-02-02
-updated: 2026-02-03
+updated: 2026-02-05
 purpose: Reusable patterns discovered or refined in this project
 ---
 
@@ -319,6 +319,159 @@ import '../styles/components/button.css';
 **Used in:**
 - `src/components/Header.astro` (contact CTA)
 - Future: contact section, hero CTA
+
+---
+
+## Hero Component Structure (TAM-112)
+
+**Pattern:** Extract large sections (40+ lines) into standalone components following consistent structure.
+
+**Problem solved:** Index pages become unwieldy with inline HTML. Hero section (42 lines) extracted to reusable component.
+
+**Component structure:**
+```astro
+---
+/**
+ * Component.astro
+ *
+ * [Purpose statement]
+ *
+ * Typography:
+ * - [Font choices with sizes]
+ *
+ * Layout:
+ * - [Viewport/spacing decisions]
+ *
+ * Accessibility:
+ * - [ARIA patterns, keyboard nav]
+ *
+ * Styles: src/styles/components/[name].css
+ */
+
+import '../styles/components/[name].css';
+
+interface Props {
+  /** Prop descriptions */
+  prop?: string;
+}
+
+const { prop = 'default' } = Astro.props;
+---
+
+<section id="[name]" class="[name] section--viewport" aria-labelledby="[name]-heading">
+  <div class="section-inner">
+    <!-- Component content -->
+  </div>
+</section>
+```
+
+**CSS structure:**
+```css
+/* src/styles/components/hero.css */
+/**
+ * hero.css
+ *
+ * Hero section styles for Hero.astro component.
+ *
+ * Classes:
+ *   .[name]                 - Section wrapper
+ *   .[name]__element        - BEM naming
+ *
+ * Depends on: tokens.css, layout.css
+ */
+
+.[name] { /* Section styles */ }
+.[name]__element { /* Element styles */ }
+```
+
+**Why this is soft-tech:**
+- **Maintainable** - Find component logic and styles quickly
+- **Documented** - JSDoc explains decisions for future-you
+- **Consistent** - All components follow same structure (Header.astro → Hero.astro)
+- **Low-energy friendly** - Clear patterns reduce cognitive load
+
+**Used in:**
+- `src/components/Header.astro` (navigation, logo, scroll blur)
+- `src/components/Hero.astro` (headline with gradient, tagline)
+
+---
+
+## Font Weight Alignment with Loaded Fonts (TAM-112)
+
+**Pattern:** Verify all `font-weight` declarations match weights defined in `@font-face` rules. Use design tokens for font weights.
+
+**Problem solved:** Phantom font-weight declarations (e.g., `font-weight: 300` when only 400/700 loaded) create confusion and fallback behavior.
+
+**Implementation:**
+
+1. **Document loaded weights in tokens.css:**
+```css
+/* tokens.css */
+/* Font Weights (aligned with loaded fonts) */
+--font-weight-regular: 400;  /* Cardo 400 */
+--font-weight-bold: 700;     /* Cardo 700 */
+--font-weight-light: 400;    /* Cardo 400 (300 doesn't exist) */
+```
+
+2. **Use tokens in component CSS:**
+```css
+/* hero.css */
+.hero__headline-sub {
+  font-family: var(--font-family-display);  /* Cardo */
+  font-weight: var(--font-weight-light);    /* Maps to 400, not phantom 300 */
+}
+```
+
+3. **Check during code review:**
+- Grep for numeric font-weight: `grep -r "font-weight: [0-9]" src/styles/`
+- Compare against `@font-face` declarations
+- Verify token mappings accurate
+
+**Why this is soft-tech:**
+- **Correctness** - No phantom declarations, no browser synthesis
+- **Clarity** - `var(--font-weight-light)` expresses intent even when using 400
+- **Maintainable** - Change font loading? Update tokens once, applies everywhere
+- **Self-documenting** - Token comments explain "why 400 for light"
+
+**Code review checklist:**
+- [ ] All font-weight values exist in loaded fonts
+- [ ] Font weights use tokens, not magic numbers
+- [ ] Token comments explain mappings (especially non-obvious ones)
+- [ ] Documentation accurate (don't say "light weight" when using 400)
+
+**Related:** SoftForge `code-review.md` (Design Token Consistency pattern)
+
+---
+
+## Astro Whitespace Handling (TAM-112)
+
+**Pattern:** Use natural HTML whitespace in Astro templates. Don't use JSX-style `{' '}` expressions.
+
+**Problem solved:** JSX pattern `{' '}` creates double spaces in Astro output (Astro preserves whitespace naturally).
+
+**Implementation:**
+```astro
+<!-- GOOD: Natural whitespace -->
+<span class="hero__headline-sub">
+  crafted with a little <span class="hero__sparkle">sparkle</span>
+</span>
+
+<!-- BAD: JSX-ism creates double space -->
+<span class="hero__headline-sub">
+  crafted with a little{' '}<span class="hero__sparkle">sparkle</span>
+</span>
+```
+
+**Why this is soft-tech:**
+- **Framework-appropriate** - Uses Astro's natural whitespace rules, not React patterns
+- **Correct HTML** - No double spaces in output
+- **Clear code** - Visual whitespace matches output whitespace
+
+**Code review check:**
+- Grep for JSX space expressions: `grep -r "{' '}" src/`
+- Should return zero results in Astro projects
+
+**Related:** SoftForge `ui-frameworks.md` (Astro patterns)
 
 ---
 
