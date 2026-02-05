@@ -1,0 +1,52 @@
+---
+/**
+ * CapabilityCard.astro
+ *
+ * A single capability card for the Build section.
+ * Displays a service offering with title, description, and tech stack.
+ *
+ * Typography:
+ * - Title: Cardo serif (heading-2 class), pine color
+ * - Description: Atkinson body text, ink color at 75% opacity
+ * - Tech stack: Uppercase, iris-muted, wider letter-spacing
+ *
+ * Layout:
+ * - Parchment background with 22px rounded corners
+ * - Paper grain texture via ::before pseudo-element
+ * - Optional mystical SVG art positioned right, vertically centered
+ * - Wide cards (full-width within container), not a grid
+ *
+ * Hover:
+ * - Subtle border-color transition (fog border appears)
+ * - Mystical art shimmer animation (defined in utilities.css)
+ *
+ * Accessibility:
+ * - Semantic h3 heading within section context
+ * - Mystical art is decorative (hidden from screen readers)
+ * - Text content max-width 65ch for readability
+ *
+ * Styles: src/styles/components/build.css
+ */
+
+interface Props {
+  /** Card heading -- the capability name */
+  title: string;
+  /** Brief description of the capability */
+  description: string;
+  /** Dot-separated tech stack (e.g., "Next.js · Astro · 11ty") */
+  technologies: string;
+}
+
+const { title, description, technologies } = Astro.props;
+---
+
+<div class="capability">
+  <h3 class="capability__title heading-2">{title}</h3>
+  <p class="capability__description">{description}</p>
+  <div class="capability__tech body-small">{technologies}</div>
+
+  {/* Slot for optional mystical SVG art (decorative) */}
+  <div class="capability__art" aria-hidden="true">
+    <slot />
+  </div>
+</div>
