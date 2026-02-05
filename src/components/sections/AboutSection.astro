@@ -1,0 +1,48 @@
+---
+/**
+ * AboutSection.astro
+ *
+ * Placeholder for the "About Elemental Sugar" section.
+ * Will be replaced with full implementation in Phase 3.
+ *
+ * Design direction:
+ * - Stone background (--color-bg-secondary)
+ * - 100vh full viewport height, vertically centered
+ * - Clean centered layout (max-width: 900px)
+ * - Text-centered, 2-3 paragraphs
+ * - No boxes, no borders, no lists
+ * - Feels like a closing statement, not a resume
+ *
+ * This placeholder provides:
+ * - Correct section ID and aria attributes
+ * - Stone background treatment
+ * - Viewport-height centering
+ * - Representative about content from content-architecture.md
+ */
+
+import '../../styles/components/sections.css';
+---
+
+<section id="about" class="section-placeholder section-placeholder--stone section-placeholder--viewport" aria-labelledby="about-heading">
+  <div class="section-inner section-placeholder__centered">
+    <h2 id="about-heading" class="section-placeholder__heading heading-1 gradient-text">About</h2>
+
+    <div class="section-placeholder__prose">
+      <p>
+        We build modern web and mobile applications, custom plugins, and the
+        infrastructure that makes platforms work together. Solid foundations
+        (elemental) crafted with care (sugar).
+      </p>
+      <p>
+        Founded by Tami Mitchell, who's spent 13 years going deep on whatever
+        the project needs. Legacy Rails apps, enterprise CMS migrations, live
+        broadcast overlays, neurodivergent-friendly iOS apps, and AI-native
+        storytelling automation.
+      </p>
+      <p>
+        We build interfaces that adapt to users, not the other way around.
+        Predictable, calm tech for people who need that.
+      </p>
+    </div>
+  </div>
+</section>
