@@ -1,0 +1,56 @@
+---
+/**
+ * Hero.astro
+ *
+ * Hero section for the ElementalSugar Creative Studio homepage.
+ * Large display typography with gradient text on "sparkle" keyword.
+ *
+ * Typography:
+ * - Main headline: Comfortaa 700 (playful/bold), clamp(4.5rem, 12vw, 8.889rem)
+ * - Subtitle: Cardo serif (light weight), clamp(2rem, 5vw, 4.889rem)
+ * - "sparkle": Gradient pine -> moss -> iris -> rose via .sparkle-gradient
+ * - Tagline: Comfortaa 700, moss green
+ *
+ * Layout:
+ * - Full viewport height on desktop (100vh minus header)
+ * - 80vh on mobile (via .section--viewport)
+ * - Left-aligned ("studio feel", not centered "marketing feel")
+ * - Vertically centered content via flexbox
+ *
+ * Accessibility:
+ * - Semantic h1 with aria-labelledby on section
+ * - "sparkle" is purely decorative gradient, text remains readable
+ * - Respects prefers-reduced-motion (via global base.css)
+ *
+ * Styles: src/styles/components/hero.css
+ */
+
+import '../styles/components/hero.css';
+
+interface Props {
+  /** Audience-facing tagline below the headline */
+  tagline?: string;
+}
+
+const {
+  tagline = 'For modern creators, thoughtful builders, and mission-driven organizations',
+} = Astro.props;
+---
+
+<section id="hero" class="hero section--viewport" aria-labelledby="hero-heading">
+  <div class="section-inner">
+    <div class="hero__content">
+      <h1 id="hero-heading" class="hero__headline">
+        <span class="hero__headline-main">
+          Calm,<br />modern<br />software
+        </span>
+        <span class="hero__headline-sub">
+          crafted with a little{' '}
+          <span class="hero__sparkle sparkle-gradient">sparkle</span>
+        </span>
+      </h1>
+
+      <p class="hero__tagline">{tagline}</p>
+    </div>
+  </div>
+</section>
