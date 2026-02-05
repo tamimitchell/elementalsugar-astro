@@ -118,6 +118,10 @@
    ============================================================================ */
 
 @media (max-width: 768px) {
+  .build {
+    text-align: center;
+  }
+
   .build__label {
     margin-bottom: var(--space-xl);
   }
