@@ -1,0 +1,47 @@
+---
+/**
+ * ContactSection.astro
+ *
+ * Placeholder for the "Work Together" contact section.
+ * Will be replaced with full implementation in Phase 3.
+ *
+ * Design direction:
+ * - Pine green background (dark section)
+ * - Centered layout
+ * - CTA with positioning filter
+ * - Email link
+ *
+ * This placeholder provides:
+ * - Correct section ID and aria attributes
+ * - Pine background with light text
+ * - Representative contact content from content-architecture.md
+ * - Email link (functional)
+ */
+
+import '../../styles/components/sections.css';
+---
+
+<section id="contact" class="section-placeholder section-placeholder--dark section-placeholder--viewport" aria-labelledby="contact-heading">
+  <div class="section-inner section-placeholder__centered">
+    <h2 id="contact-heading" class="section-placeholder__heading heading-1 gradient-text-light">Work Together</h2>
+
+    <div class="section-placeholder__prose section-placeholder__prose--light">
+      <p>
+        Building something that needs calm tech, energy-aware design, or
+        map-based storytelling? We build exactly that.
+      </p>
+      <p>
+        Got a stuck project, a gnarly integration, or something that needs
+        someone who sees connections others miss?
+      </p>
+    </div>
+
+    <a
+      href="mailto:mail@elementalsugar.com"
+      class="section-placeholder__email"
+      aria-label="Send email to Elemental Sugar Creative Studio"
+    >
+      mail@elementalsugar.com
+    </a>
+  </div>
+</section>
