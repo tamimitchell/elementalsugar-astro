@@ -1,0 +1,7 @@
+# Elemental Sugar Creative Studio - Portfolio Site
+# Allow all search engines to crawl the site
+
+User-agent: *
+Disallow:
+
+Sitemap: https://elementalsugar.com/sitemap-index.xml
