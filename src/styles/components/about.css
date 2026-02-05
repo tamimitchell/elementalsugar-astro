@@ -9,7 +9,7 @@
  *   .about .section-inner -- Centered flex container
  *   .about__label         -- Section heading spacing (centered)
  *   .about__content       -- Prose container (max-width 900px)
- *   .about__content p     -- Paragraph styling (ink, slight opacity)
+ *   .about__content p     -- Paragraph styling (ink, full opacity)
  *
  * Layout:
  *   - Standard section padding (--space-section), content-height based
@@ -25,7 +25,7 @@
  * Accessibility:
  *   - Semantic section with aria-labelledby
  *   - Proper heading hierarchy (h2 within main)
- *   - High contrast: ink on stone (12.8:1, exceeds WCAG AA 4.5:1)
+ *   - High contrast: ink on stone (12.8:1, exceeds WCAG AAA 7:1)
  *
  * Depends on: tokens.css, layout.css, typography.css
  */
@@ -76,7 +76,6 @@
   font-size: var(--font-size-md); /* 18px base */
   line-height: var(--line-height-comfortable);
   color: var(--color-ink);
-  opacity: 0.9;
   margin-bottom: var(--space-lg);
   max-width: none;
 }
