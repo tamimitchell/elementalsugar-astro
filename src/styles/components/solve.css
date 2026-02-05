@@ -6,7 +6,7 @@
  *
  * Classes:
  *   .solve                -- Section wrapper (pine background, gradient overlay)
- *   .solve__inner         -- Centered content container (flex, z-index above overlay)
+ *   .solve .section-inner -- Centered content container (flex, z-index above overlay)
  *   .solve__label         -- Section heading spacing (centered)
  *   .solve__list          -- Problem statement list (max-width 900px)
  *   .solve__item          -- Individual problem statement (gradient checkmark)
