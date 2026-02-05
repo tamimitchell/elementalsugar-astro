@@ -95,7 +95,7 @@
    ============================================================================ */
 
 .section-placeholder__centered {
-  max-width: 900px;
+  max-width: var(--content-narrow);
   margin-inline: auto;
   text-align: center;
 }
@@ -131,7 +131,7 @@
 
 .section-placeholder__prose p {
   font-size: clamp(1.125rem, 2vw, 1.5rem);
-  line-height: 1.7;
+  line-height: var(--line-height-comfortable);
   margin-bottom: var(--space-lg);
   max-width: none;
 }
@@ -147,6 +147,7 @@
 
 .section-placeholder__list {
   list-style: none;
+  padding-left: 0;
   max-width: var(--content-reading);
   margin-inline: auto;
   text-align: left;
@@ -155,7 +156,7 @@
 .section-placeholder__list li {
   font-family: var(--font-family-body);
   font-size: clamp(1.125rem, 2vw, 1.5rem);
-  line-height: 1.7;
+  line-height: var(--line-height-comfortable);
   color: var(--color-parchment);
   opacity: 0.9;
   padding: var(--space-sm) 0;
