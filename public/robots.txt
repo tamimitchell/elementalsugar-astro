@@ -4,4 +4,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://elementalsugar.com/sitemap.xml
+Sitemap: https://elementalsugar.com/sitemap-index.xml
