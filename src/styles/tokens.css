@@ -149,6 +149,7 @@
   --line-height-tight: 1.1;
   --line-height-snug: 1.3;
   --line-height-normal: 1.6;
+  --line-height-comfortable: 1.7;
   --line-height-relaxed: 1.8;
   --line-height-loose: 2.0;
 
@@ -216,6 +217,7 @@
   --margin-page: var(--margin-desktop);
   --container-max: 1200px;
   --content-reading: 65ch;        /* Optimal reading width */
+  --content-narrow: 900px;        /* Narrow content width (About, Solve sections) */
   --sidebar-width: 280px;
 
   /* --------------------------------------------------------------------------

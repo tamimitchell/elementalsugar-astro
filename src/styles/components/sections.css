@@ -1,0 +1,270 @@
+/**
+ * sections.css
+ *
+ * Shared styles for placeholder sections (TAM-113).
+ * These provide visual structure for scroll testing and will be
+ * replaced by individual section CSS files in Phase 3.
+ *
+ * Classes:
+ *   .section-placeholder              -- Base section (parchment bg)
+ *   .section-placeholder--stone       -- Stone background variant
+ *   .section-placeholder--dark        -- Pine (dark) background variant
+ *   .section-placeholder--viewport    -- Full viewport height, centered
+ *   .section-placeholder__heading     -- Section heading spacing
+ *   .section-placeholder__centered    -- Centered narrow content
+ *   .section-placeholder__content     -- Content wrapper with top spacing
+ *   .section-placeholder__prose       -- Paragraph text for About/Contact
+ *   .section-placeholder__prose--light -- Light text on dark backgrounds
+ *   .section-placeholder__list        -- Checkmark list (Solve section)
+ *   .section-placeholder__card        -- Capability card (Build section)
+ *   .section-placeholder__grid        -- Card grid (Build section)
+ *   .section-placeholder__work-item   -- Portfolio item (Work section)
+ *   .section-placeholder__meta        -- Subtitle/meta text
+ *   .section-placeholder__tech        -- Tech stack text
+ *   .section-placeholder__email       -- Contact email link
+ *
+ * Depends on: tokens.css, layout.css, typography.css
+ */
+
+/* ============================================================================
+   BASE SECTION — Parchment background (default)
+   ============================================================================ */
+
+.section-placeholder {
+  background: var(--color-bg-primary);
+}
+
+/* ============================================================================
+   STONE VARIANT — Warm beige background (Build, About)
+   ============================================================================ */
+
+.section-placeholder--stone {
+  background: var(--color-bg-secondary);
+}
+
+/* ============================================================================
+   DARK VARIANT — Pine green background (Solve, Contact)
+   ============================================================================ */
+
+.section-placeholder--dark {
+  background: var(--color-bg-dark);
+  color: var(--color-parchment);
+}
+
+.section-placeholder--dark p {
+  color: var(--color-parchment);
+  opacity: 0.9;
+}
+
+/* ============================================================================
+   VIEWPORT — Full height, vertically centered (Solve, About, Contact)
+   ============================================================================ */
+
+.section-placeholder--viewport {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.section-placeholder--viewport .section-inner {
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+}
+
+@media (max-width: 768px) {
+  .section-placeholder--viewport {
+    min-height: auto;
+  }
+
+  .section-placeholder--viewport .section-inner {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
+}
+
+/* ============================================================================
+   HEADING — Section heading spacing
+   ============================================================================ */
+
+.section-placeholder__heading {
+  margin-bottom: var(--space-xl);
+}
+
+/* ============================================================================
+   CENTERED — Narrow centered content (Solve, About, Contact)
+   ============================================================================ */
+
+.section-placeholder__centered {
+  max-width: var(--content-narrow);
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* ============================================================================
+   CONTENT — Content wrapper with top spacing
+   ============================================================================ */
+
+.section-placeholder__content {
+  margin-top: var(--space-lg);
+}
+
+/* ============================================================================
+   DESCRIPTION — Intro paragraph
+   ============================================================================ */
+
+.section-placeholder__description {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  max-width: var(--content-reading);
+  margin-bottom: var(--space-xl);
+}
+
+/* ============================================================================
+   PROSE — Paragraph text (About, Contact)
+   ============================================================================ */
+
+.section-placeholder__prose {
+  max-width: var(--content-reading);
+  margin-inline: auto;
+}
+
+.section-placeholder__prose p {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  line-height: var(--line-height-comfortable);
+  margin-bottom: var(--space-lg);
+  max-width: none;
+}
+
+.section-placeholder__prose--light p {
+  color: var(--color-parchment);
+  opacity: 0.9;
+}
+
+/* ============================================================================
+   CHECKMARK LIST — Solve section problem statements
+   ============================================================================ */
+
+.section-placeholder__list {
+  list-style: none;
+  padding-left: 0;
+  max-width: var(--content-reading);
+  margin-inline: auto;
+  text-align: left;
+}
+
+.section-placeholder__list li {
+  font-family: var(--font-family-body);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  line-height: var(--line-height-comfortable);
+  color: var(--color-parchment);
+  opacity: 0.9;
+  padding: var(--space-sm) 0;
+  padding-left: var(--space-lg);
+  position: relative;
+}
+
+.section-placeholder__list li::before {
+  content: '\2713';  /* Checkmark */
+  position: absolute;
+  left: 0;
+  color: var(--color-iris);
+  font-weight: 700;
+}
+
+/* ============================================================================
+   CARD GRID — Build section capability cards
+   ============================================================================ */
+
+.section-placeholder__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.section-placeholder__card {
+  background: var(--color-parchment);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-lg);
+}
+
+.section-placeholder__card h3 {
+  margin-bottom: var(--space-xs);
+  color: var(--color-pine);
+}
+
+.section-placeholder__card p {
+  font-size: var(--font-size-body-sm);
+  color: var(--color-moss);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+/* ============================================================================
+   WORK ITEMS — Recent Work section portfolio items
+   ============================================================================ */
+
+.section-placeholder__work-item {
+  padding: var(--space-xl) 0;
+  border-bottom: 1px solid var(--color-fog);
+}
+
+.section-placeholder__work-item:last-child {
+  border-bottom: none;
+}
+
+.section-placeholder__work-item h3 {
+  margin-bottom: var(--space-2xs);
+}
+
+.section-placeholder__meta {
+  font-family: var(--font-family-playful);
+  font-weight: 700;
+  font-size: var(--font-size-body-sm);
+  color: var(--color-moss);
+  letter-spacing: var(--letter-spacing-wide);
+  margin-bottom: var(--space-md) !important;
+}
+
+.section-placeholder__tech {
+  font-size: var(--font-size-body-sm);
+  color: var(--color-moss);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-top: var(--space-sm);
+  margin-bottom: 0 !important;
+}
+
+/* ============================================================================
+   EMAIL LINK — Contact section
+   ============================================================================ */
+
+.section-placeholder__email {
+  display: inline-block;
+  margin-top: var(--space-lg);
+  font-family: var(--font-family-playful);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: var(--color-parchment);
+  text-decoration: none;
+  letter-spacing: var(--letter-spacing-wide);
+  padding-bottom: var(--space-2xs);
+  border-bottom: 2px solid var(--color-iris);
+  transition: border-color var(--duration-base) var(--ease-out);
+}
+
+.section-placeholder__email:hover {
+  /* Override base link hover (which sets gradient text that won't show on dark bg) */
+  -webkit-text-fill-color: var(--color-parchment);
+  background: none;
+  border-color: var(--color-rose);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-placeholder__email {
+    transition: none;
+  }
+}

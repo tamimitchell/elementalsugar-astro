@@ -2,7 +2,7 @@
 
 ---
 created: 2026-02-02
-updated: 2026-02-04
+updated: 2026-02-05
 purpose: Quick reference for "Why did we do X?" questions (project-specific)
 ---
 
@@ -16,6 +16,46 @@ purpose: Quick reference for "Why did we do X?" questions (project-specific)
 
 **Universal decisions:** If it applies to ALL projects, add to SoftForge instead:
 `~/claude-workspace/SoftForge/reference/indexes/decisions.md`
+
+---
+
+## 2026-02-05: Code Review Before Merge (TAM-112)
+
+**Decision:** Run code-reviewer agent on all PRs before merging, even for solo developer work.
+
+**Why:**
+- **Caught 4 issues in TAM-112** - Design token mismatches, font weight alignment, documentation inaccuracies, framework-specific patterns
+- **Consistency enforcement** - Automated check against design token system, ensures no hardcoded values slip through
+- **Documentation accuracy** - Comments that say "light weight" but use `font-weight: 400` create confusion for future-you
+- **Framework patterns** - Catches JSX-isms in Astro (like `{' '}` expressions that create double spaces)
+- **Learning extraction** - Code review process surfaces patterns worth documenting
+
+**Pattern established:**
+1. Implement feature on branch
+2. Run code-reviewer agent (via `/code-reviewer` or Task tool)
+3. Fix issues found (design tokens, font weights, documentation)
+4. Commit fixes
+5. Merge PR (squash)
+6. Update indexes with learnings
+
+**Time cost:** ~10 minutes per PR for review + fixes. Worth it for consistency and pattern extraction.
+
+**Related:** TAM-112 (hero section), SoftForge `code-review.md` index
+
+---
+
+## 2026-02-05: Remove Eyebrow from Hero Section (TAM-112)
+
+**Decision:** Don't repeat "Elemental Sugar Creative Studio" as eyebrow in hero when header already has logo with same text.
+
+**Why:**
+- **Redundancy** - Header logo (always visible, fixed position) already identifies studio with gradient text
+- **Visual clarity** - Hero focuses on tagline without repetitive branding
+- **Information hierarchy** - Let headline and tagline breathe without competing eyebrow
+
+**Pattern:** Don't repeat brand name when it's already visible in persistent navigation.
+
+**Related:** TAM-112, design-direction.md
 
 ---
 
