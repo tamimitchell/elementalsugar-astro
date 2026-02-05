@@ -9,9 +9,8 @@
  *   .build__label             -- Section heading spacing
  *   .build__capabilities      -- Card stack layout (single column, not grid)
  *   .capability               -- Individual capability card
- *   .capability::before       -- Paper grain texture overlay
  *   .capability__title        -- Card heading (pine, serif)
- *   .capability__description  -- Card body text (ink, 75% opacity)
+ *   .capability__description  -- Card body text (ink, full opacity)
  *   .capability__tech         -- Tech stack (iris-muted, uppercase)
  *   .capability__art          -- Mystical SVG art positioning
  *
@@ -70,24 +69,6 @@
 }
 
 /* ============================================================================
-   PAPER GRAIN TEXTURE — Subtle radial gradient overlay
-   ============================================================================ */
-
-.capability::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image:
-    radial-gradient(circle at 20% 50%, rgba(90, 106, 85, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(184, 168, 117, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(90, 106, 85, 0.02) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-/* ============================================================================
    CAPABILITY TITLE — Pine color, serif
    ============================================================================ */
 
@@ -97,12 +78,11 @@
 }
 
 /* ============================================================================
-   CAPABILITY DESCRIPTION — Body text at reduced opacity
+   CAPABILITY DESCRIPTION — Body text
    ============================================================================ */
 
 .capability__description {
   color: var(--color-ink);
-  opacity: 0.75;
   margin-bottom: var(--space-sm);
 }
 
