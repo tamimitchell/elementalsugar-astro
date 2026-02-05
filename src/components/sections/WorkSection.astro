@@ -1,0 +1,61 @@
+---
+/**
+ * WorkSection.astro
+ *
+ * Placeholder for the "Recent Work" portfolio section.
+ * Will be replaced with split-card layout (Pebble Flow inspired) in Phase 3.
+ *
+ * Design direction:
+ * - Parchment background (default)
+ * - Split viewport: 40% content card + 60% project image
+ * - 50/50 grid, stone cards with rounded corners
+ * - Alternating sides per project
+ * - Storytelling: Problem -> Solution -> Outcome
+ *
+ * This placeholder provides:
+ * - Correct section ID and aria attributes
+ * - Representative project listing
+ * - Sufficient height for scroll testing
+ */
+
+import '../../styles/components/sections.css';
+---
+
+<section id="work" class="section-placeholder" aria-labelledby="work-heading">
+  <div class="section-inner">
+    <p class="eyebrow">Portfolio</p>
+    <h2 id="work-heading" class="section-placeholder__heading heading-1 gradient-text">Recent Work</h2>
+
+    <div class="section-placeholder__content">
+      <div class="section-placeholder__work-item">
+        <h3 class="heading-2">Rebelle Rally</h3>
+        <p class="section-placeholder__meta">Multi-Year Technical Partnership</p>
+        <p>
+          Live broadcast overlays, PHP API integration, React dashboards,
+          and WordPress builds for a women-only off-road navigation rally.
+        </p>
+        <p class="section-placeholder__tech">PHP, JavaScript, OBS/vMix, WordPress, React</p>
+      </div>
+
+      <div class="section-placeholder__work-item">
+        <h3 class="heading-2">SafetyChain</h3>
+        <p class="section-placeholder__meta">Enterprise Marketing Site Migration</p>
+        <p>
+          Modular page builder with DatoCMS, marketing independence,
+          and documentation that works for both developers and AI.
+        </p>
+        <p class="section-placeholder__tech">Next.js, DatoCMS, TypeScript, GraphQL, Tailwind CSS</p>
+      </div>
+
+      <div class="section-placeholder__work-item">
+        <h3 class="heading-2">Campendium</h3>
+        <p class="section-placeholder__meta">RV Camping Discovery Platform</p>
+        <p>
+          Full-stack Rails and React work on a 50,000+ location campground
+          platform with Mapbox integration and user reviews.
+        </p>
+        <p class="section-placeholder__tech">Rails, React, Stimulus, Mapbox, PostgreSQL</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,64 @@
+---
+/**
+ * BuildSection.astro
+ *
+ * Placeholder for the "We BUILD" capabilities section.
+ * Will be replaced with full capability cards + mystical SVGs in Phase 3.
+ *
+ * Design direction:
+ * - Stone background (--color-stone)
+ * - Wide capability cards (not a grid)
+ * - Parchment cards with rounded corners (22px)
+ * - Mystical tarot card SVGs (decorative)
+ *
+ * This placeholder provides:
+ * - Correct section ID and aria attributes
+ * - Stone background treatment
+ * - Representative content structure
+ * - Sufficient height for scroll testing
+ */
+
+import '../../styles/components/sections.css';
+---
+
+<section id="build" class="section-placeholder section-placeholder--stone" aria-labelledby="build-heading">
+  <div class="section-inner">
+    <p class="eyebrow">What We Do</p>
+    <h2 id="build-heading" class="section-placeholder__heading heading-1 gradient-text">We BUILD</h2>
+
+    <div class="section-placeholder__content">
+      <p class="section-placeholder__description">
+        Modern websites, custom web applications, AI-native infrastructure,
+        accessible mobile apps, map-based discovery platforms, custom plugins,
+        and live video overlays.
+      </p>
+
+      <div class="section-placeholder__grid">
+        <div class="section-placeholder__card">
+          <h3 class="heading-3">Modern websites</h3>
+          <p>Next.js, Astro, 11ty</p>
+        </div>
+        <div class="section-placeholder__card">
+          <h3 class="heading-3">Custom web applications</h3>
+          <p>Rails, Django, PostgreSQL</p>
+        </div>
+        <div class="section-placeholder__card">
+          <h3 class="heading-3">AI-native infrastructure</h3>
+          <p>MCP, Claude Code, Context-aware docs</p>
+        </div>
+        <div class="section-placeholder__card">
+          <h3 class="heading-3">Map-based platforms</h3>
+          <p>Mapbox, MapLibre</p>
+        </div>
+        <div class="section-placeholder__card">
+          <h3 class="heading-3">Mobile applications</h3>
+          <p>iOS, Swift/SwiftUI</p>
+        </div>
+        <div class="section-placeholder__card">
+          <h3 class="heading-3">Live video overlays</h3>
+          <p>OBS/vMix, Real-time data</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
