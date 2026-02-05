@@ -1,0 +1,100 @@
+/**
+ * about.css
+ *
+ * Styles for AboutSection.astro.
+ * Migrated from Next.js AboutSection.scss to plain CSS with design tokens.
+ *
+ * Classes:
+ *   .about                -- Section wrapper (stone background, centered text)
+ *   .about .section-inner -- Centered flex container
+ *   .about__label         -- Section heading spacing (centered)
+ *   .about__content       -- Prose container (max-width 900px)
+ *   .about__content p     -- Paragraph styling (ink, slight opacity)
+ *
+ * Layout:
+ *   - Standard section padding (--space-section), content-height based
+ *   - Stone background (warm beige, --color-bg-secondary)
+ *   - Centered content, max-width 900px (--content-narrow)
+ *   - Pebble Flow inspired: generous breathing room, clean text-only layout
+ *   - No boxes, no borders, no lists -- reads like a closing statement
+ *
+ * Typography:
+ *   - Section heading: Comfortaa 700, gradient-text (heading-1 class)
+ *   - Body paragraphs: Base 18px (--font-size-md), comfortable line height
+ *
+ * Accessibility:
+ *   - Semantic section with aria-labelledby
+ *   - Proper heading hierarchy (h2 within main)
+ *   - High contrast: ink on stone (12.8:1, exceeds WCAG AA 4.5:1)
+ *
+ * Depends on: tokens.css, layout.css, typography.css
+ */
+
+/* ============================================================================
+   ABOUT SECTION -- Stone background, centered text
+   ============================================================================ */
+
+.about {
+  background: var(--color-bg-secondary);
+  text-align: center;
+  padding-block: var(--space-section); /* Standard section spacing */
+  padding-inline: var(--space-lg);
+}
+
+/* ============================================================================
+   ABOUT INNER -- Centered flex container
+   ============================================================================ */
+
+.about .section-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ============================================================================
+   ABOUT LABEL -- Centered section heading
+   ============================================================================ */
+
+.about__label {
+  margin-bottom: var(--space-xl);
+}
+
+/* ============================================================================
+   ABOUT CONTENT -- Prose container (900px max-width)
+   ============================================================================ */
+
+.about__content {
+  max-width: var(--content-narrow);
+  width: 100%;
+}
+
+/* ============================================================================
+   ABOUT PARAGRAPHS -- Readable body text with slight warmth
+   ============================================================================ */
+
+.about__content p {
+  font-size: var(--font-size-md); /* 18px base */
+  line-height: var(--line-height-comfortable);
+  color: var(--color-ink);
+  opacity: 0.9;
+  margin-bottom: var(--space-lg);
+  max-width: none;
+}
+
+.about__content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================================================
+   RESPONSIVE -- Mobile adjustments
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .about__label {
+    margin-bottom: var(--space-lg);
+  }
+
+  .about__content p {
+    margin-bottom: var(--space-md);
+  }
+}
