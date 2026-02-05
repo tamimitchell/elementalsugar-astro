@@ -2,38 +2,46 @@
 /**
  * SolveSection.astro
  *
- * Placeholder for the "We SOLVE" section.
- * Will be replaced with full implementation in Phase 3.
+ * "We Solve" section with centered problem statements on dark background.
+ * Migrated from Next.js SolveSection to Astro with proper BEM styling.
  *
- * Design direction:
- * - Pine green background (--color-bg-dark)
- * - 100vh full viewport height, vertically centered
- * - Gradient text heading (parchment -> iris -> rose on dark bg)
- * - Simple checkmark list
- * - Max-width 900px, centered
- * - Direct, calm, therapist-like tone
+ * Content source: docs/softforge-links/content-architecture.md
+ * Design source: docs/softforge-links/design-direction.md (Pebble Flow centered layouts)
  *
- * This placeholder provides:
- * - Correct section ID and aria attributes
- * - Pine background with light text
- * - Viewport-height centering
- * - Representative problem statements
+ * Layout:
+ * - 100vh full viewport height, vertically centered (section--viewport)
+ * - Pine green background with gradient overlay (::before)
+ * - Centered content (max-width: 900px via --content-narrow)
+ * - Simple checkmarks (CSS ::before with gradient)
+ * - Scannable problem statements with AISEO-optimized parenthetical details
+ *
+ * Typography:
+ * - Section heading: Comfortaa 700, gradient-text-light (heading-1 class)
+ * - Problem statements: body-text-lg, parchment color at 90% opacity
+ *
+ * Accessibility:
+ * - Semantic section with aria-labelledby
+ * - Proper heading hierarchy (h2 within main)
+ * - High contrast: parchment on pine (10.2:1, exceeds WCAG AA 4.5:1)
+ * - List uses role="list" for screen reader clarity
+ *
+ * Styles: src/styles/components/solve.css
  */
 
-import '../../styles/components/sections.css';
+import '../../styles/components/solve.css';
 ---
 
-<section id="solve" class="section-placeholder section-placeholder--dark section-placeholder--viewport" aria-labelledby="solve-heading">
-  <div class="section-inner section-placeholder__centered">
-    <h2 id="solve-heading" class="section-placeholder__heading heading-1 gradient-text-light">We SOLVE</h2>
+<section id="solve" class="solve section--viewport" aria-labelledby="solve-heading">
+  <div class="section-inner">
+    <h2 id="solve-heading" class="solve__label heading-1 gradient-text-light">We SOLVE</h2>
 
-    <ul class="section-placeholder__list" role="list">
-      <li>Slow sites killing conversions</li>
-      <li>WCAG 2.1 AA deadlines without panic</li>
-      <li>Turning maps and real-world data into storytelling</li>
-      <li>AI development workflows that actually help</li>
-      <li>Taking your build exactly where you envisioned</li>
-      <li>Wiring together complex integrations</li>
+    <ul class="solve__list" role="list">
+      <li class="solve__item body-text-lg">Slow sites killing conversions</li>
+      <li class="solve__item body-text-lg">WCAG 2.1 AA deadlines without panic (accessibility audits, screen reader testing, semantic HTML)</li>
+      <li class="solve__item body-text-lg">Turning maps, GPS, and real-world data into storytelling (Mapbox routing, geocoding, offline maps, real-time tracking)</li>
+      <li class="solve__item body-text-lg">AI development workflows that actually help (AI-assisted development, discovery optimization, context setup)</li>
+      <li class="solve__item body-text-lg">Taking your build exactly where you envisioned (custom code for no-code/low-code platforms, API integrations, advanced features)</li>
+      <li class="solve__item body-text-lg">Wiring together complex integrations (third-party APIs, real-time data feeds, multi-platform architectures)</li>
     </ul>
   </div>
 </section>
