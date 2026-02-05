@@ -2,47 +2,80 @@
 /**
  * ContactSection.astro
  *
- * Placeholder for the "Work Together" contact section.
- * Will be replaced with full implementation in Phase 3.
+ * "Work Together" contact section with background photography and glass card.
+ * Migrated from Next.js ContactSection to Astro with proper BEM styling.
  *
- * Design direction:
- * - Pine green background (dark section)
- * - Centered layout
- * - CTA with positioning filter
- * - Email link
+ * Content source: docs/softforge-links/content-architecture.md
+ * Design source: Next.js ContactSection.tsx + ContactSection.scss (source of truth)
  *
- * This placeholder provides:
- * - Correct section ID and aria attributes
- * - Pine background with light text
- * - Representative contact content from content-architecture.md
- * - Email link (functional)
+ * Layout:
+ * - 100vh full viewport height, vertically centered (section--viewport)
+ * - Colorado mountain background image (local, lazy loaded)
+ * - Pine gradient glass card, right-aligned on desktop, centered on mobile
+ * - Card max-width 600px with generous padding
+ *
+ * Typography:
+ * - Section heading: Comfortaa 700, gradient-text-light (heading-1 class)
+ * - Body paragraphs: body-text-lg, parchment at 90% opacity
+ * - Email link: body-text-lg, iris underline with hover transition
+ *
+ * Accessibility:
+ * - Semantic section with aria-labelledby
+ * - Proper heading hierarchy (h2 within main)
+ * - High contrast: parchment on pine card (10.2:1, exceeds WCAG AA 4.5:1)
+ * - Focus-visible states on interactive elements
+ * - Large tap target for email link (mobile friendly)
+ * - Background image has descriptive alt text
+ *
+ * Performance:
+ * - Background image self-hosted (no external requests, no third-party tracking)
+ * - Background image lazy loaded (below the fold)
+ * - No JavaScript required (pure CSS layout)
+ * - backdrop-filter with @supports fallback
+ *
+ * Styles: src/styles/components/contact.css
  */
 
-import '../../styles/components/sections.css';
+import '../../styles/components/contact.css';
 ---
 
-<section id="contact" class="section-placeholder section-placeholder--dark section-placeholder--viewport" aria-labelledby="contact-heading">
-  <div class="section-inner section-placeholder__centered">
-    <h2 id="contact-heading" class="section-placeholder__heading heading-1 gradient-text-light">Work Together</h2>
+<section id="contact" class="contact section--viewport" aria-labelledby="contact-heading">
+  <div class="contact__background">
+    <img
+      src="/images/contact-bg-colorado-sunset.jpg"
+      alt="Colorado mountain sunset with purple and golden sky"
+      loading="lazy"
+      decoding="async"
+      fetchpriority="low"
+      width="1600"
+      height="1067"
+    />
+  </div>
 
-    <div class="section-placeholder__prose section-placeholder__prose--light">
-      <p>
+  <div class="section-inner">
+    <div class="contact__card">
+      <h2 id="contact-heading" class="contact__label heading-1 gradient-text-light">Work Together</h2>
+
+      <p class="contact__intro body-text-lg">
         Building something that needs calm tech, energy-aware design, or
         map-based storytelling? We build exactly that.
       </p>
-      <p>
+
+      <p class="contact__intro body-text-lg">
         Got a stuck project, a gnarly integration, or something that needs
         someone who sees connections others miss? We've been solving these
         problems for 13 years.
       </p>
-    </div>
 
-    <a
-      href="mailto:mail@elementalsugar.com"
-      class="section-placeholder__email"
-      aria-label="Send email to Elemental Sugar Creative Studio"
-    >
-      mail@elementalsugar.com
-    </a>
+      <p class="contact__email body-text-lg">
+        <a
+          href="mailto:mail@elementalsugar.com"
+          class="contact__link"
+          aria-label="Send email to Elemental Sugar Creative Studio"
+        >
+          mail@elementalsugar.com
+        </a>
+      </p>
+    </div>
   </div>
 </section>
