@@ -1,22 +1,37 @@
 /**
  * hero.css
  *
- * Hero section styles for the homepage.
- * Used inline in index.astro until a Hero.astro component is created.
+ * Hero section styles for Hero.astro component.
  *
  * Classes:
+ *   .hero                — Section background
+ *   .hero__content       — Content wrapper (left-aligned)
+ *   .hero__headline      — h1 wrapper (prevents gradient text clipping)
  *   .hero__headline-main — Large Comfortaa display text
  *   .hero__headline-sub  — Cardo serif subtitle
- *   .hero__tagline       — Comfortaa descriptive text
+ *   .hero__sparkle       — Gradient "sparkle" word (uses .sparkle-gradient utility)
+ *   .hero__tagline       — Audience-facing description
  *
- * Depends on: tokens.css, utilities.css (.sparkle-gradient)
+ * Layout:
+ *   Uses .section--viewport for full-height centering (100vh desktop, 80vh mobile)
+ *   Uses .section-inner for max-width container and horizontal padding
+ *
+ * Depends on: tokens.css, layout.css, utilities.css (.sparkle-gradient)
  */
+
+/* ============================================================================
+   HERO — Section background
+   ============================================================================ */
+
+.hero {
+  background: var(--color-parchment);
+}
 
 /* ============================================================================
    HERO — Headline wrapper (prevents gradient text clipping)
    ============================================================================ */
 
-h1[id="hero-heading"] {
+.hero__headline {
   color: var(--color-ink);
   overflow: visible;
 }
@@ -35,17 +50,16 @@ h1[id="hero-heading"] {
 }
 
 /* ============================================================================
-   HERO — Subtitle (Cardo, light weight)
+   HERO — Subtitle (Cardo, 400 regular)
    ============================================================================ */
 
 .hero__headline-sub {
   font-family: var(--font-family-display);
-  font-weight: 300;
+  font-weight: var(--font-weight-light);
   font-size: clamp(2rem, 5vw, 4.889rem);
   line-height: 1.2;
   display: block;
   margin-top: var(--space-lg);
-  margin-bottom: var(--space-xl);
   color: var(--color-ink);
 }
 
@@ -69,7 +83,7 @@ h1[id="hero-heading"] {
   font-size: var(--font-size-lg);
   line-height: var(--line-height-relaxed);
   color: var(--color-moss);
-  max-width: 1000px;
+  max-width: var(--content-reading); /* Optimal reading width for tagline */
   margin-top: var(--space-xl);
 }
 
