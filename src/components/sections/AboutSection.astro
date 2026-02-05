@@ -2,47 +2,44 @@
 /**
  * AboutSection.astro
  *
- * Placeholder for the "About Elemental Sugar" section.
- * Will be replaced with full implementation in Phase 3.
+ * "About Elemental Sugar" section with studio philosophy and founder credentials.
+ * Migrated from Next.js AboutSection to Astro with proper BEM styling.
  *
- * Design direction:
- * - Stone background (--color-bg-secondary)
- * - 100vh full viewport height, vertically centered
- * - Clean centered layout (max-width: 900px)
- * - Text-centered, 2-3 paragraphs
+ * Content source: docs/softforge-links/content-architecture.md
+ * Design source: Next.js AboutSection.tsx + AboutSection.scss (source of truth)
+ *
+ * Layout:
+ * - Standard section padding (--space-section), content-height based
+ * - Stone background (warm beige, --color-bg-secondary)
+ * - Centered content (max-width: 900px via --content-narrow)
+ * - Text-centered, 3 paragraphs -- reads like a closing statement, not a resume
  * - No boxes, no borders, no lists
- * - Feels like a closing statement, not a resume
  *
- * This placeholder provides:
- * - Correct section ID and aria attributes
- * - Stone background treatment
- * - Viewport-height centering
- * - Representative about content from content-architecture.md
+ * Typography:
+ * - Section heading: Comfortaa 700, gradient text (heading-1 + playful classes)
+ * - Body paragraphs: Base 18px (--font-size-md), comfortable line height
+ *
+ * Accessibility:
+ * - Semantic section with aria-labelledby
+ * - Proper heading hierarchy (h2 within main)
+ * - High contrast: ink on stone (12.8:1, exceeds WCAG AA 4.5:1)
+ *
+ * Styles: src/styles/components/about.css
  */
 
-import '../../styles/components/sections.css';
+import '../../styles/components/about.css';
 ---
 
-<section id="about" class="section-placeholder section-placeholder--stone section-placeholder--viewport" aria-labelledby="about-heading">
-  <div class="section-inner section-placeholder__centered">
-    <h2 id="about-heading" class="section-placeholder__heading heading-1 gradient-text">About</h2>
+<section id="about" class="about" aria-labelledby="about-heading">
+  <div class="section-inner">
+    <h2 id="about-heading" class="about__label heading-1 playful gradient-text">About Elemental Sugar</h2>
 
-    <div class="section-placeholder__prose">
-      <p>
-        We build modern web and mobile applications, custom plugins, and the
-        infrastructure that makes platforms work together. Solid foundations
-        (elemental) crafted with care (sugar).
-      </p>
-      <p>
-        Founded by Tami Mitchell, who's spent 13 years going deep on whatever
-        the project needs. Legacy Rails apps, enterprise CMS migrations, live
-        broadcast overlays, neurodivergent-friendly iOS apps, and AI-native
-        storytelling automation.
-      </p>
-      <p>
-        We build interfaces that adapt to users, not the other way around.
-        Predictable, calm tech for people who need that.
-      </p>
+    <div class="about__content">
+      <p>We build modern web and mobile applications, custom plugins, and the infrastructure that makes platforms work together. Next.js sites, Rails apps, WordPress plugins, iOS apps, integrations between services. Sometimes that's building from scratch, sometimes it's finishing what got stuck. Solid foundations (elemental) crafted with care (sugar). That's the idea, anyway.</p>
+
+      <p>Founded by Tami Mitchell, who's spent 13 years going deep on whatever the project needs. Legacy Rails apps that needed gentle refactoring. Enterprise CMS migrations with 246 blog posts to wrangle. Live broadcast overlays for off-road rallies. Neurodivergent-friendly iOS apps. AI-native storytelling automation. Systems that respect actual human capacity.</p>
+
+      <p>We build interfaces that adapt to users, not the other way around. Predictable, calm tech for people who need that. When we use AI, it's practical infrastructure&mdash;like documentation that works for both developers reading it and Claude Code using it as context. Tools that help get work done, not hype or hand-wringing.</p>
     </div>
   </div>
 </section>
