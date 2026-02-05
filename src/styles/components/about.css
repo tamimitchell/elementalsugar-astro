@@ -37,8 +37,6 @@
 .about {
   background: var(--color-bg-secondary);
   text-align: center;
-  padding-block: var(--space-section); /* Standard section spacing */
-  padding-inline: var(--space-lg);
 }
 
 /* ============================================================================

@@ -117,6 +117,11 @@
    ============================================================================ */
 
 @media (max-width: 768px) {
+  .solve .section-inner {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+
   .solve__label {
     margin-bottom: var(--space-lg);
   }

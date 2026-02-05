@@ -178,6 +178,8 @@
 @media (max-width: 768px) {
   .contact .section-inner {
     justify-content: center;
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
   }
 
   .contact__card {
