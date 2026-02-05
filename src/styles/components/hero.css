@@ -50,12 +50,12 @@
 }
 
 /* ============================================================================
-   HERO — Subtitle (Cardo, light weight)
+   HERO — Subtitle (Cardo, 400 regular)
    ============================================================================ */
 
 .hero__headline-sub {
   font-family: var(--font-family-display);
-  font-weight: 300;
+  font-weight: var(--font-weight-light);
   font-size: clamp(2rem, 5vw, 4.889rem);
   line-height: 1.2;
   display: block;
@@ -83,7 +83,7 @@
   font-size: var(--font-size-lg);
   line-height: var(--line-height-relaxed);
   color: var(--color-moss);
-  max-width: 1000px;
+  max-width: var(--content-reading); /* Optimal reading width for tagline */
   margin-top: var(--space-xl);
 }
 
