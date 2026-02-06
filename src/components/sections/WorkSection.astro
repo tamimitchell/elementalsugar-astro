@@ -2,21 +2,24 @@
 /**
  * WorkSection.astro
  *
- * Portfolio section with split-card layout and native HTML expand/collapse.
+ * Portfolio section with simple single-column blog-style layout.
  *
  * Design:
- * - 50/50 split grid: content card (left) + images (right)
- * - Alternating sides for visual rhythm (even projects flip)
- * - Native <details>/<summary> for progressive disclosure (zero JS)
- * - Vertical image stack (Phase 1: 1 image, Phase 2: 2-3 images)
- * - Parchment background, stone cards with rounded corners
+ * - Single column, max-width 900px
+ * - Text-focused layout (no images for now)
+ * - Full project details visible
+ * - Clean typography with generous spacing
  *
  * Content structure per project:
  * - Title + brief summary
- * - Expandable details (Challenge, Approach, Result)
+ * - Full details (Challenge, Approach, Result)
  * - Tech stack
- * - Project image(s)
  */
+
+interface ProjectImage {
+  url: string;
+  alt: string;
+}
 
 interface Project {
   title: string;
@@ -26,8 +29,7 @@ interface Project {
   approachExtra?: string;
   result: string;
   techStack: string;
-  imageUrl: string;
-  imageAlt: string;
+  images: ProjectImage[];
 }
 
 const projects: Project[] = [
@@ -39,8 +41,10 @@ const projects: Project[] = [
     approachExtra: "The video overlay system ended up being its own reusable tool. Production liked having a custom-built system we could refine together in a short amount of time, instead of trying to shoehorn their needs into existing broadcast software.",
     result: "Professional broadcast overlays running live during the 2025 rally, with production controlling graphics in real-time. Scoring system stayed stable while the front-end got modernized. Multi-year relationship with a lot of variety: WordPress builds, custom plugins, systems integration, live broadcast tools, data pipelines.",
     techStack: "WordPress · React · PHP · JavaScript · OBS/vMix · Elementor · JotForm",
-    imageUrl: "/rebellerally.webp",
-    imageAlt: "Rebelle Rally live broadcast overlay showing Day 6 standings, team rankings, and real-time scoring graphics over desert race footage"
+    images: [
+      { url: "/rebellerally-1.webp", alt: "Rebelle Rally live broadcast overlay showing Day 6 standings" },
+      { url: "/rebellerally-2.webp", alt: "Rebelle Rally team rankings and real-time scoring graphics" }
+    ]
   },
   {
     title: "SafetyChain — Enterprise Marketing Site Migration",
@@ -50,8 +54,10 @@ const projects: Project[] = [
     approachExtra: "The documentation piece ended up being key — it worked as both developer onboarding and Claude Code context, which helped ship features faster and enabled SafetyChain developers to build directly from the docs.",
     result: "Marketing builds and previews pages independently now, and SafetyChain developers ship features using the documentation. Launched September 2025. Faster workflow, less developer bottleneck. The AI-forward approach made it possible to deliver custom enterprise-scale work with a small team, using comprehensive docs as AI context for everyone.",
     techStack: "Next.js · TypeScript · DatoCMS · GraphQL · Tailwind CSS · Storybook · Netlify",
-    imageUrl: "/safetychain.webp",
-    imageAlt: "SafetyChain enterprise marketing homepage showcasing modular component system with hero section, industry insights, and performance metrics"
+    images: [
+      { url: "/safetychain-1.webp", alt: "SafetyChain enterprise marketing homepage with modular component system" },
+      { url: "/safetychain-2.webp", alt: "SafetyChain hero section and industry insights" }
+    ]
   },
   {
     title: "Campendium — RV Camping Discovery Platform",
@@ -61,8 +67,10 @@ const projects: Project[] = [
     approachExtra: "A lot of the value was the maintenance work that keeps legacy Rails apps healthy — refactoring database queries, standardizing React components and Stimulus controllers, steadily reducing technical debt. Not flashy, but essential for keeping a platform stable when thousands of RV travelers rely on it daily.",
     result: "Platform stayed stable while shipping new features. Database queries got faster, frontend components modernized, analytics setup helping inform product decisions.",
     techStack: "Rails · React · Stimulus · Mapbox · PostgreSQL · Active Storage · Segment Analytics",
-    imageUrl: "/campendium.webp",
-    imageAlt: "Campendium RV camping discovery platform with Mapbox map showing campground locations, search filters, ratings, and availability in Colorado mountain region"
+    images: [
+      { url: "/campendium-1.webp", alt: "Campendium RV camping discovery platform with Mapbox map" },
+      { url: "/campendium-2.webp", alt: "Campendium campground locations and search filters" }
+    ]
   }
 ];
 ---
@@ -72,44 +80,25 @@ const projects: Project[] = [
     <h2 id="work-heading" class="work__heading heading-1 gradient-text">Recent Work</h2>
 
     <div class="work__projects">
-      {projects.map((project, index) => (
-        <article class="project" class:list={{ 'project--reverse': index % 2 === 1 }}>
-          <div class="project__card">
-            <h3 class="project__title heading-2">{project.title}</h3>
+      {projects.map((project) => (
+        <article class="project">
+          <h3 class="project__title heading-2">{project.title}</h3>
 
-            <p class="project__brief">{project.brief}</p>
+          <p class="project__brief">{project.brief}</p>
 
-            <details class="project__details">
-              <summary class="project__expand-link">View details →</summary>
+          <h4 class="project__details-heading">The Challenge</h4>
+          <p>{project.challenge}</p>
 
-              <div class="project__details-content">
-                <h4 class="project__details-heading">The Challenge</h4>
-                <p class="project__details-text">{project.challenge}</p>
+          <h4 class="project__details-heading">The Approach</h4>
+          <p>{project.approach}</p>
+          {project.approachExtra && (
+            <p>{project.approachExtra}</p>
+          )}
 
-                <h4 class="project__details-heading">The Approach</h4>
-                <p class="project__details-text">{project.approach}</p>
-                {project.approachExtra && (
-                  <p class="project__details-text">{project.approachExtra}</p>
-                )}
+          <h4 class="project__details-heading">The Result</h4>
+          <p>{project.result}</p>
 
-                <h4 class="project__details-heading">The Result</h4>
-                <p class="project__details-text">{project.result}</p>
-              </div>
-            </details>
-
-            <div class="project__tech-stack">{project.techStack}</div>
-          </div>
-
-          <div class="project__images">
-            <img
-              src={project.imageUrl}
-              alt={project.imageAlt}
-              class="project__image"
-              loading="lazy"
-              width="800"
-              height="600"
-            />
-          </div>
+          <div class="project__tech-stack">{project.techStack}</div>
         </article>
       ))}
     </div>
@@ -134,217 +123,68 @@ const projects: Project[] = [
   }
 
   .work__projects {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
     display: flex;
     flex-direction: column;
-    gap: calc(var(--space-2xl) * 2);
+    gap: var(--space-4xl);
   }
 
-  /* Project card layout */
+  /* Single column project layout */
   .project {
-    position: relative;
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: var(--space-md);
-  }
-
-  /* Alternating sides using CSS direction trick */
-  .project--reverse {
-    direction: rtl;
-  }
-
-  .project--reverse > * {
-    direction: ltr;
-  }
-
-  /* Content card */
-  .project__card {
-    background: var(--color-stone);
-    border-radius: 22px;
-    padding: var(--space-xl);
-    margin: var(--space-lg);
-    position: relative;
-    z-index: 10;
-    max-height: 90vh;
-    overflow-y: auto;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
+    gap: var(--space-lg);
   }
 
-  /* Custom scrollbar styling */
-  .project__card::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  .project__card::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 22px;
-  }
-
-  .project__card::-webkit-scrollbar-thumb {
-    background: var(--color-moss);
-    border-radius: 22px;
-    opacity: 0.5;
-  }
-
-  .project__card::-webkit-scrollbar-thumb:hover {
-    background: var(--color-pine);
-  }
-
-  /* Card content */
   .project__title {
-    color: var(--color-ink);
+    color: var(--color-pine);
     margin-bottom: var(--space-md);
   }
 
   .project__brief {
+    font-size: var(--font-size-md);
     color: var(--color-ink);
     opacity: 0.85;
-    margin-bottom: var(--space-lg);
-  }
-
-  /* Native details/summary styling */
-  .project__details {
-    margin-top: var(--space-md);
-  }
-
-  .project__expand-link {
-    display: inline-block;
-    color: var(--color-moss);
-    cursor: pointer;
-    padding: var(--space-xs) 0;
-    border-bottom: 1px solid transparent;
-    transition: border-color var(--duration-base) var(--ease-out);
-    list-style: none; /* Remove default arrow */
-  }
-
-  /* Hide default disclosure triangle */
-  .project__expand-link::-webkit-details-marker {
-    display: none;
-  }
-
-  .project__expand-link::marker {
-    content: '';
-  }
-
-  .project__expand-link:hover {
-    border-bottom-color: var(--color-moss);
-  }
-
-  .project__expand-link:focus-visible {
-    outline: 2px solid var(--color-iris);
-    outline-offset: 4px;
-    border-radius: 2px;
-  }
-
-  /* Change text when expanded */
-  .project__details[open] .project__expand-link::after {
-    content: ' ×';
-  }
-
-  .project__details:not([open]) .project__expand-link::after {
-    content: '';
-  }
-
-  .project__details-content {
-    margin-top: var(--space-md);
+    margin-bottom: var(--space-xl);
   }
 
   .project__details-heading {
     color: var(--color-moss);
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
     font-weight: 700;
-    margin-top: var(--space-md);
+    margin-top: var(--space-xl);
     margin-bottom: var(--space-sm);
   }
 
-  .project__details-text {
+  .project p {
     color: var(--color-ink);
     opacity: 0.85;
     margin-bottom: var(--space-md);
+    line-height: 1.7;
   }
 
   .project__tech-stack {
     padding-top: var(--space-lg);
     border-top: 1px solid var(--color-fog);
-    margin-top: auto;
+    margin-top: var(--space-lg);
     color: var(--color-moss);
     opacity: 0.7;
     line-height: 1.8;
-  }
-
-  /* Image stack (vertical) */
-  .project__images {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-    padding: var(--space-lg);
-  }
-
-  .project__image {
-    width: 100%;
-    height: 90vh;
-    object-fit: cover;
-    border-radius: 22px;
+    font-size: var(--font-size-sm);
   }
 
   /* Responsive: Mobile/Tablet */
-  @media (max-width: 1024px) {
-    .project {
-      grid-template-columns: 1fr;
-      min-height: auto;
-      gap: var(--space-lg);
-      margin-bottom: var(--space-2xl);
-    }
-
-    .project--reverse {
-      direction: ltr;
-    }
-
-    .project__card {
-      margin: 0;
-      margin-bottom: calc(-1 * var(--space-lg));
-      z-index: 10;
-      border-radius: 22px 22px 0 0;
-      max-height: none;
-      min-height: 400px;
-    }
-
-    .project__image {
-      height: 60vh;
+  @media (max-width: 768px) {
+    .work__projects {
+      padding: 0 var(--space-md);
+      gap: var(--space-3xl);
     }
 
     .work__heading {
       padding-left: var(--space-md);
       padding-right: var(--space-md);
-    }
-  }
-
-  @media (max-width: 640px) {
-    .project__card {
-      padding: var(--space-lg);
-      min-height: 350px;
-    }
-
-    .project__image {
-      height: 50vh;
-    }
-
-    .project__images {
-      padding: var(--space-md);
-    }
-  }
-
-  /* Respect reduced motion preferences */
-  @media (prefers-reduced-motion: reduce) {
-    .project__expand-link {
-      transition: none;
-    }
-
-    .project__card {
-      scroll-behavior: auto;
     }
   }
 </style>
