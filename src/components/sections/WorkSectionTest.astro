@@ -1,0 +1,185 @@
+---
+/**
+ * WorkSectionTest.astro
+ *
+ * Simple test component for new 40/60 split layout
+ * Full viewport height with content + image cards
+ */
+---
+
+<section class="work-test">
+  <div class="work-test__container">
+    <!-- Content Card (40%) -->
+    <div class="work-test__content-wrapper">
+      <div class="work-test__content">
+      <h3 class="work-test__title heading-2">Rebelle Rally — Multi-Year Technical Partnership</h3>
+
+      <p class="work-test__brief">
+        Live broadcast graphics, scoring system modernization, and multi-platform
+        integration for a women-only off-road navigation rally across Nevada and California.
+      </p>
+
+      <h4 class="work-test__details-heading">The Challenge</h4>
+      <p>
+        The Rebelle Rally is a women-only off-road navigation rally. Think orienteering
+        with 4x4s across Nevada and California, with high-tech tracking and scoring behind
+        the scenes. Past work ranges from WordPress builds and custom plugins to React
+        vehicle tracking dashboards and Mapbox storytelling. 2025 brought a new challenge:
+        live broadcast graphics for their streaming coverage. The catch? Their PHP scoring
+        system had been reliably running rallies for years. Any new work had to integrate
+        without breaking what worked.
+      </p>
+
+      <h4 class="work-test__details-heading">The Approach</h4>
+      <p>
+        Started with a PHP API layer that reads from the existing scoring database without
+        touching the scoring logic itself. Then built browser-based live overlays (JavaScript)
+        that production could control from their booth during broadcast. Standings graphics,
+        challenge results, sponsor logos, all updating in real-time as transparent overlays
+        for OBS/vMix. The scoring pages got rebuilt in JavaScript on top of the same backend.
+        Also made a team bio importer (JotForm to WordPress) — teams submit once, we review
+        for quality control, then it flows through to the site.
+      </p>
+      <p>
+        The video overlay system ended up being its own reusable tool. Production liked
+        having a custom-built system we could refine together in a short amount of time,
+        instead of trying to shoehorn their needs into existing broadcast software.
+      </p>
+
+      <h4 class="work-test__details-heading">The Result</h4>
+      <p>
+        Professional broadcast overlays running live during the 2025 rally, with production
+        controlling graphics in real-time. Scoring system stayed stable while the front-end
+        got modernized. Multi-year relationship with a lot of variety: WordPress builds,
+        custom plugins, systems integration, live broadcast tools, data pipelines.
+      </p>
+
+      <div class="work-test__tech-stack">WordPress · React · PHP · JavaScript · OBS/vMix · Elementor · JotForm</div>
+      </div>
+    </div>
+
+    <!-- Image Card (60%) -->
+    <div class="work-test__images">
+      <div class="work-test__image-wrapper">
+        <img src="/rebellerally-1.webp" alt="Rebelle Rally screenshot 1" />
+      </div>
+      <div class="work-test__image-wrapper">
+        <img src="/rebellerally-2.webp" alt="Rebelle Rally screenshot 2" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .work-test {
+    background: var(--color-parchment);
+    padding: 12px;
+  }
+
+  .work-test__container {
+    display: grid;
+    grid-template-columns: 2fr 2fr; /* 40/60 split */
+    gap: 12px;
+    height: 86vh;
+    max-height: 86vh;
+  }
+
+  /* Content card wrapper - clips scrollbar with overflow: hidden */
+  .work-test__content-wrapper {
+    background: var(--color-stone);
+    border-radius: 22px;
+    overflow: hidden; /* This clips the scrollbar at rounded corners! */
+    height: 100%;
+  }
+
+  /* Content card - scrollable inner container */
+  .work-test__content {
+    padding: var(--space-xl);
+    padding-right: var(--space-lg); /* Less padding on right for scrollbar */
+    overflow-y: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+  }
+
+  /* Full height scrollbar - now properly clipped! */
+  .work-test__content::-webkit-scrollbar {
+    width: 6px; /* Thinner, more subtle */
+  }
+
+  .work-test__content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .work-test__content::-webkit-scrollbar-thumb {
+    background: var(--color-moss);
+    border-radius: 10px;
+    opacity: 0.6;
+  }
+
+  .work-test__content::-webkit-scrollbar-thumb:hover {
+    background: var(--color-pine);
+    opacity: 1;
+  }
+
+  .work-test__title {
+    color: var(--color-pine); /* Dark green like capability cards */
+    margin-bottom: var(--space-md);
+  }
+
+  .work-test__brief {
+    color: var(--color-ink);
+    opacity: 0.85;
+    margin-bottom: var(--space-xl);
+  }
+
+  .work-test__details-heading {
+    color: var(--color-moss);
+    font-size: var(--font-size-lg); /* Larger section headers */
+    font-weight: 700;
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+  }
+
+  .work-test__content p {
+    color: var(--color-ink);
+    opacity: 0.85;
+    margin-bottom: var(--space-md);
+  }
+
+  .work-test__tech-stack {
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-fog);
+    margin-top: auto;
+    color: var(--color-moss);
+    opacity: 0.7;
+    line-height: 1.8;
+    font-size: var(--font-size-sm);
+  }
+
+  /* Image card */
+  .work-test__images {
+    border-radius: 22px;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 1fr 1fr; /* 50/50 split */
+    gap: 12px; /* No gap between images */
+    height: 100%; /* Ensure full height */
+  }
+
+  .work-test__image-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 22px;
+  }
+
+  .work-test__images img {
+    width: 100%;
+    height: 100%; /* Fill wrapper completely */
+    object-fit: cover;
+    display: block; /* Remove inline spacing */
+    border-radius: 22px;
+  }
+</style>
