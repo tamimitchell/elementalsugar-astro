@@ -20,50 +20,58 @@ interface ProjectImage {
 
 interface Project {
   title: string;
+  subtitle: string;
   brief: string;
   challenge: string;
   approach: string;
   approachExtra?: string;
   result: string;
   techStack: string;
+  url: string;
   images: ProjectImage[];
 }
 
 const projects: Project[] = [
   {
-    title: "Rebelle Rally — Multi-Year Technical Partnership",
+    title: "Rebelle Rally",
+    subtitle: "Multi-Year Technical Partnership",
     brief: "Live broadcast graphics, scoring system modernization, and multi-platform integration for a women-only off-road navigation rally across Nevada and California.",
     challenge: "The Rebelle Rally is a women-only off-road navigation rally. Think orienteering with 4x4s across Nevada and California, with high-tech tracking and scoring behind the scenes. Past work ranges from WordPress builds and custom plugins to React vehicle tracking dashboards and Mapbox storytelling. 2025 brought a new challenge: live broadcast graphics for their streaming coverage. The catch? Their PHP scoring system had been reliably running rallies for years. Any new work had to integrate without breaking what worked.",
     approach: "Started with a PHP API layer that reads from the existing scoring database without touching the scoring logic itself. Then built browser-based live overlays (JavaScript) that production could control from their booth during broadcast. Standings graphics, challenge results, sponsor logos, all updating in real-time as transparent overlays for OBS/vMix. The scoring pages got rebuilt in JavaScript on top of the same backend. Also made a team bio importer (JotForm to WordPress) — teams submit once, we review for quality control, then it flows through to the site.",
     approachExtra: "The video overlay system ended up being its own reusable tool. Production liked having a custom-built system we could refine together in a short amount of time, instead of trying to shoehorn their needs into existing broadcast software.",
     result: "Professional broadcast overlays running live during the 2025 rally, with production controlling graphics in real-time. Scoring system stayed stable while the front-end got modernized. Multi-year relationship with a lot of variety: WordPress builds, custom plugins, systems integration, live broadcast tools, data pipelines.",
     techStack: "WordPress · React · PHP · JavaScript · OBS/vMix · Elementor · JotForm",
+    url: "https://rebellerally.com",
     images: [
       { url: "/rebellerally-1.webp", alt: "Rebelle Rally live broadcast overlay showing Day 6 standings" },
       { url: "/rebellerally-2.webp", alt: "Rebelle Rally team rankings and real-time scoring graphics" }
     ]
   },
   {
-    title: "SafetyChain — Enterprise Marketing Site Migration",
-    brief: "Enterprise marketing site migration with AI-forward documentation, giving marketing independence while enabling developer velocity through comprehensive context.",
+    title: "SafetyChain",
+    subtitle: "Enterprise Marketing Site Migration",
+    brief: "Next.js + DatoCMS migration building a bespoke CMS for marketing independence. AI-forward documentation multiplying development velocity on custom enterprise-scale work.",
     challenge: "Marketing wanted more independence to build and test landing pages — trying different approaches to see what performs best. The existing site was more template-based, which worked but limited how much marketing could customize and preview before publishing. Needed a flexible system where non-technical folks could build, preview, and publish landing pages, blog posts, and resource pages independently, plus migrate hundreds of custom posts and pages.",
     approach: "Started with Next.js 14 + DatoCMS, then built a modular block system using DatoCMS's component architecture. Created reusable section components so marketing could preview and drag-and-drop to build pages. Custom content models, TypeScript + GraphQL type safety, comprehensive component library. Migrated hundreds of posts and pages.",
     approachExtra: "The documentation piece ended up being key — it worked as both developer onboarding and Claude Code context, which helped ship features faster and enabled SafetyChain developers to build directly from the docs.",
     result: "Marketing builds and previews pages independently now, and SafetyChain developers ship features using the documentation. Launched September 2025. Faster workflow, less developer bottleneck. The AI-forward approach made it possible to deliver custom enterprise-scale work with a small team, using comprehensive docs as AI context for everyone.",
     techStack: "Next.js · TypeScript · DatoCMS · GraphQL · Tailwind CSS · Storybook · Netlify",
+    url: "https://safetychain.com",
     images: [
       { url: "/safetychain-1.webp", alt: "SafetyChain enterprise marketing homepage with modular component system" },
       { url: "/safetychain-2.webp", alt: "SafetyChain hero section and industry insights" }
     ]
   },
   {
-    title: "Campendium — RV Camping Discovery Platform",
+    title: "Campendium",
+    subtitle: "RV Camping Discovery Platform",
     brief: "Full-stack Rails and React work on RV camping discovery platform with 50,000+ locations, user reviews, and Mapbox integration.",
     challenge: "Campendium helps RV travelers discover campgrounds and plan trips — 50,000+ locations, user reviews, Mapbox integration. Legacy Rails codebase needed ongoing feature work while staying stable for active users.",
     approach: "Full-stack Rails and React/Stimulus work. Enhanced Mapbox filtering for campground discovery, added Active Storage for file uploads, worked on cross-brand OAuth. Built out Segment analytics and dug into user testing sessions to help guide product decisions.",
     approachExtra: "A lot of the value was the maintenance work that keeps legacy Rails apps healthy — refactoring database queries, standardizing React components and Stimulus controllers, steadily reducing technical debt. Not flashy, but essential for keeping a platform stable when thousands of RV travelers rely on it daily.",
     result: "Platform stayed stable while shipping new features. Database queries got faster, frontend components modernized, analytics setup helping inform product decisions.",
     techStack: "Rails · React · Stimulus · Mapbox · PostgreSQL · Active Storage · Segment Analytics",
+    url: "https://campendium.com",
     images: [
       { url: "/campendium-1.webp", alt: "Campendium RV camping discovery platform with Mapbox map" },
       { url: "/campendium-2.webp", alt: "Campendium campground locations and search filters" }
@@ -83,9 +91,16 @@ const projects: Project[] = [
             <!-- Content Card (40%) -->
             <div class="work__content-wrapper">
               <div class="work__content">
-                <h3 class="work__title heading-2">{project.title}</h3>
+                <h3 class="work__title heading-2">
+                  {project.title}
+                  <span class="work__subtitle">{project.subtitle}</span>
+                </h3>
 
                 <p class="work__brief">{project.brief}</p>
+
+                <a href={project.url} class="work__visit-link" target="_blank" rel="noopener noreferrer">
+                  Visit site →
+                </a>
 
                 <details class="work__details">
                   <summary class="work__expand-link">
@@ -206,10 +221,41 @@ const projects: Project[] = [
     margin-bottom: var(--space-md);
   }
 
+  .work__subtitle {
+    display: block;
+    font-size: var(--font-size-md); /* Smaller than main title */
+    font-weight: 400; /* Regular weight */
+    color: var(--color-moss); /* Lighter green */
+    margin-top: var(--space-xs);
+    opacity: 0.85;
+  }
+
   .work__brief {
     color: var(--color-ink);
     opacity: 0.85;
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  /* Visit site link */
+  .work__visit-link {
+    display: inline-block;
+    color: var(--color-moss);
+    text-decoration: none;
+    font-weight: 500;
+    padding: var(--space-xs) 0;
+    margin-bottom: var(--space-md);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--duration-base) var(--ease-out);
+  }
+
+  .work__visit-link:hover {
+    border-bottom-color: var(--color-moss);
+  }
+
+  .work__visit-link:focus-visible {
+    outline: 2px solid var(--color-iris);
+    outline-offset: 4px;
+    border-radius: 2px;
   }
 
   /* Native details/summary styling */
@@ -362,7 +408,8 @@ const projects: Project[] = [
       scroll-behavior: auto;
     }
 
-    .work__expand-link {
+    .work__expand-link,
+    .work__visit-link {
       transition: none;
     }
   }

@@ -58,11 +58,6 @@
     border-color var(--duration-base) var(--ease-out);
 }
 
-/* Readable line length for all card content */
-.capability > * {
-  max-width: 65ch;
-}
-
 /* Subtle hover: show fog border */
 .capability:hover {
   border-color: var(--color-fog);
@@ -75,6 +70,7 @@
 .capability__title {
   color: var(--color-pine);
   margin-bottom: var(--space-sm);
+  max-width: 55ch; /* Narrower for readability */
 }
 
 /* ============================================================================
@@ -84,6 +80,7 @@
 .capability__description {
   color: var(--color-ink);
   margin-bottom: var(--space-sm);
+  max-width: 55ch; /* Narrower for readability */
 }
 
 /* ============================================================================
@@ -95,6 +92,7 @@
   letter-spacing: var(--letter-spacing-wider);
   text-transform: uppercase;
   margin-bottom: 0;
+  max-width: 80ch; /* Wider to keep tech tags on one line */
 }
 
 /* ============================================================================
@@ -118,10 +116,6 @@
    ============================================================================ */
 
 @media (max-width: 768px) {
-  .build {
-    text-align: center;
-  }
-
   .build__label {
     margin-bottom: var(--space-xl);
   }
