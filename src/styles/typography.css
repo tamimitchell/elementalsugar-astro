@@ -163,3 +163,20 @@ p {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Pride gradient with more space for trans colors */
+.progress-pride-gradient {
+  background: linear-gradient(
+    90deg,
+    #E40303 0%,    /* Red (pride) */
+    #FF8C00 15%,   /* Orange (pride) */
+    #008026 30%,   /* Green (pride) */
+    #24408E 45%,   /* Blue (pride) */
+    #732982 55%,   /* Purple (pride) */
+    #F06292 70%,   /* Pink (trans) - lighter, more visible */
+    #5BCEFA 100%   /* Light blue (trans) - more room */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
