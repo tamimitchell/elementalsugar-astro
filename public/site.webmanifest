@@ -1,0 +1,28 @@
+{
+  "name": "Elemental Sugar Creative Studio",
+  "short_name": "Elemental Sugar",
+  "description": "Calm, modern software crafted with a little sparkle. Discovery and storytelling tools for modern creators.",
+  "icons": [
+    {
+      "src": "/favicon-16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#2F4A3A",
+  "background_color": "#F5EFE7",
+  "display": "browser",
+  "start_url": "/",
+  "scope": "/"
+}
