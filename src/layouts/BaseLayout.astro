@@ -31,7 +31,13 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : null
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
     {canonicalURL && <link rel="canonical" href={canonicalURL} />}
     <meta name="generator" content={Astro.generator} />
 
@@ -106,6 +112,10 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : null
     </a>
 
     <slot />
+
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "67f26be596824601820f5160b68a34ca"}'></script>
+    <!-- End Cloudflare Web Analytics -->
   </body>
 </html>
 
