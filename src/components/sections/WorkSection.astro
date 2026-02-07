@@ -13,10 +13,7 @@
  * - Stone background cards with rounded corners
  */
 
-interface ProjectImage {
-  url: string;
-  alt: string;
-}
+import { Image } from 'astro:assets';
 
 interface Project {
   title: string;
@@ -28,7 +25,12 @@ interface Project {
   result: string;
   techStack: string;
   url: string;
-  images: ProjectImage[];
+  image: {
+    url: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
 }
 
 const projects: Project[] = [
@@ -42,10 +44,12 @@ const projects: Project[] = [
     result: "Professional broadcast overlays running live during the 2025 rally, with production controlling graphics in real-time. Scoring system stayed stable while the front-end got modernized. Multi-year relationship with a lot of variety: WordPress builds, custom plugins, systems integration, live broadcast tools, data pipelines.",
     techStack: "WordPress · React · PHP · JavaScript · OBS/vMix · Elementor · JotForm",
     url: "https://rebellerally.com",
-    images: [
-      { url: "/rebellerally-1.webp", alt: "Rebelle Rally live broadcast overlay showing Day 6 standings" },
-      { url: "/rebellerally-2.webp", alt: "Rebelle Rally team rankings and real-time scoring graphics" }
-    ]
+    image: {
+      url: "/rebellerally.webp",
+      alt: "Rebelle Rally live broadcast overlay showing Day 6 standings",
+      width: 1920,
+      height: 1074
+    }
   },
   {
     title: "SafetyChain",
@@ -57,10 +61,12 @@ const projects: Project[] = [
     result: "Marketing builds and previews pages independently now, and SafetyChain developers ship features using the documentation. Launched September 2025. Faster workflow, less developer bottleneck. The AI-forward approach made it possible to deliver custom enterprise-scale work with a small team, using comprehensive docs as AI context for everyone.",
     techStack: "Next.js · TypeScript · DatoCMS · GraphQL · Tailwind CSS · Storybook · Netlify",
     url: "https://safetychain.com",
-    images: [
-      { url: "/safetychain-1.webp", alt: "SafetyChain enterprise marketing homepage with modular component system" },
-      { url: "/safetychain-2.webp", alt: "SafetyChain hero section and industry insights" }
-    ]
+    image: {
+      url: "/safetychain.webp",
+      alt: "SafetyChain enterprise marketing homepage with modular component system",
+      width: 1998,
+      height: 2280
+    }
   },
   {
     title: "Campendium",
@@ -72,10 +78,12 @@ const projects: Project[] = [
     result: "Platform stayed stable while shipping new features. Database queries got faster, frontend components modernized, analytics setup helping inform product decisions.",
     techStack: "Rails · React · Stimulus · Mapbox · PostgreSQL · Active Storage · Segment Analytics",
     url: "https://campendium.com",
-    images: [
-      { url: "/campendium-1.webp", alt: "Campendium RV camping discovery platform with Mapbox map" },
-      { url: "/campendium-2.webp", alt: "Campendium campground locations and search filters" }
-    ]
+    image: {
+      url: "/campendium.webp",
+      alt: "Campendium RV camping discovery platform with Mapbox map",
+      width: 1920,
+      height: 1080
+    }
   }
 ];
 ---
@@ -98,40 +106,46 @@ const projects: Project[] = [
 
                 <p class="work__brief">{project.brief}</p>
 
-                <a href={project.url} class="work__visit-link" target="_blank" rel="noopener noreferrer">
-                  Visit site →
-                </a>
+                <div class="work__links">
+                  <details class="work__details" aria-label={`${project.title} project details`}>
+                    <summary class="work__expand-link" aria-label="Show or hide project details">
+                      <span class="work__expand-text-closed">The nerdy details ↓</span>
+                      <span class="work__expand-text-open">Summarize ↑</span>
+                    </summary>
 
-                <details class="work__details">
-                  <summary class="work__expand-link">
-                    <span class="work__expand-text-closed">The nerdy details ▼</span>
-                    <span class="work__expand-text-open">Summarize ▲</span>
-                  </summary>
+                    <div class="work__details-content" role="region" aria-labelledby="work__expand-link">
+                      <div class="work__details-inner">
+                        <h4 class="subheading" aria-label="The Challenge">The Challenge</h4>
+                        <p>{project.challenge}</p>
 
-                  <div class="work__details-content">
-                    <h4 class="work__details-heading">The Challenge</h4>
-                    <p>{project.challenge}</p>
+                        <h4 class="subheading" aria-label="The Approach">The Approach</h4>
+                        <p>{project.approach}</p>
+                        {project.approachExtra && (
+                          <p>{project.approachExtra}</p>
+                        )}
 
-                    <h4 class="work__details-heading">The Approach</h4>
-                    <p>{project.approach}</p>
-                    {project.approachExtra && (
-                      <p>{project.approachExtra}</p>
-                    )}
+                        <h4 class="subheading" aria-label="The Result">The Result</h4>
+                        <p>{project.result}</p>
+                      </div>
+                    </div>
+                  </details>
 
-                    <h4 class="work__details-heading">The Result</h4>
-                    <p>{project.result}</p>
-                  </div>
-                </details>
+                  <a href={project.url} class="work__visit-link" target="_blank" rel="noopener noreferrer">
+                    Visit site ↗
+                  </a>
+                </div>
 
-                <div class="work__tech-stack">{project.techStack}</div>
+                <div class="work__tech-stack body-small">{project.techStack}</div>
               </div>
             </div>
 
             <!-- Image Card (60%) -->
             <div class="work__image-card">
-              <img
-                src={project.images[0].url}
-                alt={project.images[0].alt}
+              <Image
+                src={project.image.url}
+                alt={project.image.alt}
+                width={project.image.width}
+                height={project.image.height}
                 loading="lazy"
               />
             </div>
@@ -166,13 +180,13 @@ const projects: Project[] = [
   }
 
   .work__project {
-    padding: 12px;
+    padding: var(--space-md); /* 24px - matches design token rhythm */
   }
 
   .work__container {
     display: grid;
     grid-template-columns: 2fr 3fr; /* 40/60 split */
-    gap: 12px;
+    gap: var(--space-lg); /* 40px - matches Build card gap for consistency */
     height: 86vh;
     max-height: 86vh;
   }
@@ -180,14 +194,20 @@ const projects: Project[] = [
   /* Content card wrapper - clips scrollbar with overflow: hidden */
   .work__content-wrapper {
     background: var(--color-stone);
-    border-radius: 22px;
+    border-radius: var(--border-radius-lg); /* 22px - matches Build cards */
     overflow: hidden; /* This clips the scrollbar at rounded corners! */
     height: 100%;
+    border: 1px solid transparent;
+    transition: border-color var(--duration-base) var(--ease-out);
+  }
+
+  .work__content-wrapper:hover {
+    border-color: var(--color-fog); /* Matches Build capability:hover */
   }
 
   /* Content card - scrollable inner container */
   .work__content {
-    padding: var(--space-xl);
+    padding: var(--space-xl); /* 64px - feature card padding (matches Contact) */
     padding-right: var(--space-lg); /* Less padding on right for scrollbar */
     overflow-y: auto;
     height: 100%;
@@ -223,33 +243,52 @@ const projects: Project[] = [
 
   .work__subtitle {
     display: block;
-    font-size: var(--font-size-md); /* Smaller than main title */
-    font-weight: 400; /* Regular weight */
-    color: var(--color-moss); /* Lighter green */
+    font-size: var(--font-size-body-sm); /* 14px - clearly secondary, eyebrow style */
+    font-weight: 700; /* Bold for visual weight */
+    color: var(--color-ink); /* Charcoal - cohesive with text */
+    opacity: 0.7; /* Subtle but WCAG AA compliant (3:1 for bold 14px) */
     margin-top: var(--space-xs);
-    opacity: 0.85;
+    letter-spacing: var(--letter-spacing-wide); /* Visual separation */
+    text-transform: uppercase; /* Matches tech stack/eyebrow pattern */
   }
 
   .work__brief {
     color: var(--color-ink);
-    opacity: 0.85;
-    margin-bottom: var(--space-md);
+    /* Removed opacity for full contrast (accessibility) */
+    font-size: var(--font-size-body-lg); /* 20px - emphasize as key summary */
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-lg); /* More space before links */
   }
 
-  /* Visit site link */
+  /* Links container - horizontal layout with space between */
+  .work__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg); /* Space before tech stack */
+  }
+
+  /* Visit site link - matches nav hover gradient */
   .work__visit-link {
     display: inline-block;
     color: var(--color-moss);
     text-decoration: none;
     font-weight: 500;
     padding: var(--space-xs) 0;
-    margin-bottom: var(--space-md);
-    border-bottom: 1px solid transparent;
-    transition: border-color var(--duration-base) var(--ease-out);
+    transition: all var(--duration-base) var(--ease-out);
   }
 
   .work__visit-link:hover {
-    border-bottom-color: var(--color-moss);
+    /* Match nav gradient hover (iris-dark → rose-dark) */
+    background: linear-gradient(
+      90deg,
+      var(--color-iris-dark) 0%,
+      var(--color-rose-dark) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .work__visit-link:focus-visible {
@@ -260,8 +299,14 @@ const projects: Project[] = [
 
   /* Native details/summary styling */
   .work__details {
-    margin-top: var(--space-md);
-    margin-bottom: var(--space-lg);
+    /* Position relative for absolute positioning of expanded content */
+    position: relative;
+  }
+
+  /* When details are open, content breaks out full width */
+  .work__details[open] {
+    /* Details expands to full width when open */
+    position: static;
   }
 
   .work__expand-link {
@@ -269,8 +314,7 @@ const projects: Project[] = [
     color: var(--color-moss);
     cursor: pointer;
     padding: var(--space-xs) 0;
-    border-bottom: 1px solid transparent;
-    transition: border-color var(--duration-base) var(--ease-out);
+    transition: all var(--duration-base) var(--ease-out);
     list-style: none; /* Remove default arrow */
     font-weight: 500;
   }
@@ -285,7 +329,15 @@ const projects: Project[] = [
   }
 
   .work__expand-link:hover {
-    border-bottom-color: var(--color-moss);
+    /* Match nav gradient hover (iris-dark → rose-dark) */
+    background: linear-gradient(
+      90deg,
+      var(--color-iris-dark) 0%,
+      var(--color-rose-dark) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .work__expand-link:focus-visible {
@@ -312,15 +364,36 @@ const projects: Project[] = [
   }
 
   .work__details-content {
-    margin-top: var(--space-md);
+    width: 100%; /* Full width so it wraps to new line */
+    display: grid;
+    grid-template-rows: 0fr; /* Collapsed state */
+    transition: grid-template-rows var(--duration-slow) var(--ease-out);
+    overflow: hidden;
   }
 
-  .work__details-heading {
-    color: var(--color-moss);
-    font-size: var(--font-size-lg); /* Larger section headers */
-    font-weight: 700;
+  .work__details[open] .work__details-content {
+    grid-template-rows: 1fr; /* Expanded state */
+  }
+
+  /* Closing animation - keep expanded during animation */
+  .work__details.is-closing .work__details-content {
+    grid-template-rows: 0fr; /* Animate back to collapsed */
+  }
+
+  /* Inner wrapper for content */
+  .work__details-inner {
+    min-height: 0; /* Required for grid animation to work */
+    padding-top: var(--space-md);
+  }
+
+  /* Subheading styles now come from .subheading utility class */
+  .work__details-inner .subheading {
     margin-top: var(--space-lg);
     margin-bottom: var(--space-sm);
+  }
+
+  .work__details-inner .subheading:first-child {
+    margin-top: 0; /* No top margin on first heading */
   }
 
   .work__content p {
@@ -330,26 +403,34 @@ const projects: Project[] = [
     line-height: 1.7;
   }
 
+  /* Tech stack - matches Build section capability cards */
   .work__tech-stack {
     padding-top: var(--space-lg);
     border-top: 1px solid var(--color-fog);
     margin-top: auto;
-    color: var(--color-moss);
-    opacity: 0.7;
-    line-height: 1.8;
-    font-size: var(--font-size-sm);
+    /* Font size and line-height from .body-small utility class */
+    /* Tech-specific styling matches .capability__tech */
+    color: var(--color-iris-muted);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
   }
 
   /* Image card - matches content card style */
   .work__image-card {
     background: var(--color-stone);
-    border-radius: 22px;
-    padding: var(--space-xl);
+    border-radius: var(--border-radius-lg); /* 22px - matches Build cards */
+    padding: var(--space-xl); /* 64px - feature card padding (matches Contact) */
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    border: 1px solid transparent;
+    transition: border-color var(--duration-base) var(--ease-out);
+  }
+
+  .work__image-card:hover {
+    border-color: var(--color-fog); /* Matches Build capability:hover */
   }
 
   .work__image-card img {
@@ -389,16 +470,23 @@ const projects: Project[] = [
 
   @media (max-width: 640px) {
     .work__project {
-      padding: 8px;
+      padding: var(--space-sm); /* 16px on mobile */
     }
 
     .work__content {
-      padding: var(--space-lg);
+      padding: var(--space-lg); /* 40px on mobile - still generous but less than desktop 64px */
     }
 
     .work__image-card {
       min-height: 300px;
-      padding: var(--space-lg);
+      padding: var(--space-lg); /* 40px on mobile */
+    }
+
+    /* Stack links vertically on mobile */
+    .work__links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
     }
   }
 
@@ -409,8 +497,54 @@ const projects: Project[] = [
     }
 
     .work__expand-link,
-    .work__visit-link {
+    .work__visit-link,
+    .work__content-wrapper,
+    .work__image-card,
+    .work__details-content {
       transition: none;
+    }
+
+    /* Disable gradient animations on hover */
+    .work__expand-link:hover,
+    .work__visit-link:hover {
+      background: none;
+      color: var(--color-moss);
+      -webkit-text-fill-color: var(--color-moss);
+    }
+
+    /* Instant expansion instead of animated */
+    .work__details-content {
+      transition: none;
+      grid-template-rows: 0fr;
+    }
+
+    .work__details[open] .work__details-content {
+      grid-template-rows: 1fr;
     }
   }
 </style>
+
+<script>
+  // Smooth animation for details/summary elements
+  // Prevents abrupt close by animating before browser removes [open]
+  document.querySelectorAll<HTMLDetailsElement>('.work__details').forEach((details) => {
+    const summary = details.querySelector<HTMLElement>('.work__expand-link');
+
+    if (!summary) return; // Type guard: skip if summary not found
+
+    summary.addEventListener('click', (e) => {
+      // If closing (currently open), prevent default and animate first
+      if (details.open) {
+        e.preventDefault();
+        details.classList.add('is-closing');
+
+        // Wait for animation to finish, then actually close
+        setTimeout(() => {
+          details.removeAttribute('open');
+          details.classList.remove('is-closing');
+        }, 500); // Match CSS transition duration
+      }
+      // If opening, let browser handle it normally (animation works)
+    });
+  });
+</script>
