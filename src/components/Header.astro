@@ -85,8 +85,8 @@ const { navItems = defaultNavItems } = Astro.props;
       }
     };
 
-    // Check initial scroll position (for page refreshes mid-scroll)
-    updateHeader();
+    // Batch initial check with browser render cycle to prevent forced reflow
+    requestAnimationFrame(updateHeader);
 
     // Use passive listener for best scroll performance
     window.addEventListener('scroll', updateHeader, { passive: true });
