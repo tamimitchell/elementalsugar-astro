@@ -2,7 +2,16 @@
 
 > Calm, modern software crafted with a little sparkle
 
-One-page portfolio site built with Astro 5.x, showcasing energy-aware design and soft tech principles.
+One-page portfolio site built with Astro 5.17, showcasing calm tech philosophy and neurodivergent-friendly design.
+
+**🌐 Live Site:** [elementalsugar.com](https://elementalsugar.com)
+
+## Performance
+
+- **Lighthouse Performance:** 95+ (mobile + desktop)
+- **Lighthouse Accessibility:** 100/100
+- **Bundle Size:** <50KB (HTML + CSS only, zero JavaScript)
+- **WCAG 2.1 AA Compliant** - Verified contrast ratios, keyboard navigation, screen reader tested
 
 ---
 
@@ -126,19 +135,30 @@ See `src/styles/global.css` for complete token reference.
 
 ---
 
+## Featured In
+
+- **[Everywhere is Queer](https://everywhereisqueer.com)** - LGBTQ+ business directory (Feb 2026)
+- **[Astro Showcase](https://astro.build/showcase)** - Official Astro directory (Submitted Feb 2026)
+
 ## Links
 
+- **Live Site:** [elementalsugar.com](https://elementalsugar.com)
 - **GitHub:** [tamimitchell/elementalsugar-astro](https://github.com/tamimitchell/elementalsugar-astro)
-- **Linear Project:** TAM-67 (ElementalSugar Portfolio Site)
-- **One Page Love:** [onepagelove.com](https://onepagelove.com) (target directory)
-- **Design Reference:** See `docs/README.md`
+- **Studio:** [Elemental Sugar Creative Studio](https://elementalsugar.com)
+- **Full Docs:** [`docs/README.md`](./docs/README.md)
 
 ---
+
+## Credits
+
+**Design & Development:** [Tami Mitchell](https://github.com/tamimitchell)
+**Framework:** [Astro](https://astro.build)
+**Hosting:** [Cloudflare Pages](https://pages.cloudflare.com)
 
 ## License
 
-Private project — All rights reserved
+© 2026 Elemental Sugar Creative Studio. All rights reserved.
 
 ---
 
-*Built with Astro 5.x • Last updated: 2026-02-04*
+*Building calm, accessible tech that adapts to humans, not the other way around.*
