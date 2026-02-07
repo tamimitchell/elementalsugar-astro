@@ -135,11 +135,6 @@ See `src/styles/global.css` for complete token reference.
 
 ---
 
-## Featured In
-
-- **[Everywhere is Queer](https://everywhereisqueer.com)** - LGBTQ+ business directory (Feb 2026)
-- **[Astro Showcase](https://astro.build/showcase)** - Official Astro directory (Submitted Feb 2026)
-
 ## Links
 
 - **Live Site:** [elementalsugar.com](https://elementalsugar.com)
