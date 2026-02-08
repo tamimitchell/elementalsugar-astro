@@ -3,13 +3,13 @@
  * WorkSection.astro
  *
  * Portfolio section with 40/60 split layout
- * Full viewport height cards with scrollable content + stacked images
+ * Natural height cards that grow with content
  *
  * Design:
  * - 40/60 split (content left, images right)
- * - Full viewport height per project (86vh)
- * - Scrollable content card with custom scrollbar
- * - Two images stacked vertically (50/50)
+ * - Natural content height (no viewport constraints)
+ * - Content card with expandable details
+ * - Images display at natural aspect ratio
  * - Stone background cards with rounded corners
  */
 
@@ -186,17 +186,15 @@ const projects: Project[] = [
   .work__container {
     display: grid;
     grid-template-columns: 2fr 3fr; /* 40/60 split */
-    gap: var(--space-lg); /* 40px - matches Build card gap for consistency */
-    height: 86vh;
-    max-height: 86vh;
+    gap: var(--space-md); /* 24px - tighter for horizontal cards */
   }
 
   /* Content card wrapper - clips scrollbar with overflow: hidden */
   .work__content-wrapper {
     background: var(--color-stone);
     border-radius: var(--border-radius-lg); /* 22px - matches Build cards */
+    max-height: 700px; /* Match image card height for visual balance */
     overflow: hidden; /* This clips the scrollbar at rounded corners! */
-    height: 100%;
     border: 1px solid transparent;
     transition: border-color var(--duration-base) var(--ease-out);
   }
@@ -420,7 +418,7 @@ const projects: Project[] = [
     background: var(--color-stone);
     border-radius: var(--border-radius-lg); /* 22px - matches Build cards */
     padding: var(--space-xl); /* 64px - feature card padding (matches Contact) */
-    height: 100%;
+    max-height: 700px; /* Cap image height to prevent dominating layout */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -445,21 +443,33 @@ const projects: Project[] = [
 
   /* Responsive: Mobile/Tablet */
   @media (max-width: 1024px) {
+    .work__project {
+      padding: 0; /* Remove outer padding on mobile */
+    }
+
     .work__container {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto auto;
+      display: flex;
+      flex-direction: column;
       height: auto;
       max-height: none;
-      gap: var(--space-lg);
+      gap: 0; /* No gap - everything in one card */
+      background: var(--color-stone);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden; /* Clip to rounded corners */
     }
 
     .work__content-wrapper {
-      min-height: 400px;
+      min-height: auto;
+      border-radius: 0; /* No rounded corners - part of parent container */
+      border: none; /* No border on mobile */
     }
 
     .work__image-card {
-      min-height: 400px;
+      min-height: 300px;
       height: auto;
+      border-radius: 0; /* No rounded corners - part of parent container */
+      border: none; /* No border on mobile */
+      padding-top: 0; /* No top padding since it's connected to content above */
     }
 
     .work__heading {
@@ -471,6 +481,11 @@ const projects: Project[] = [
   @media (max-width: 640px) {
     .work__project {
       padding: var(--space-sm); /* 16px on mobile */
+    }
+
+    .work__heading {
+      padding-left: var(--space-sm); /* Match project card padding (16px) */
+      padding-right: var(--space-sm);
     }
 
     .work__content {
