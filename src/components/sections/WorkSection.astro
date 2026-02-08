@@ -13,8 +13,6 @@
  * - Stone background cards with rounded corners
  */
 
-import { Image } from 'astro:assets';
-
 interface Project {
   title: string;
   subtitle: string;
@@ -93,7 +91,7 @@ const projects: Project[] = [
     <h2 id="work-heading" class="work__heading heading-1 gradient-text">Recent Work</h2>
 
     <div class="work__projects">
-      {projects.map((project) => (
+      {projects.map((project, index) => (
         <article class="work__project">
           <div class="work__container">
             <!-- Content Card (40%) -->
@@ -107,24 +105,24 @@ const projects: Project[] = [
                 <p class="work__brief">{project.brief}</p>
 
                 <div class="work__links">
-                  <details class="work__details" aria-label={`${project.title} project details`}>
-                    <summary class="work__expand-link" aria-label="Show or hide project details">
+                  <details class="work__details">
+                    <summary class="work__expand-link" id={`work-details-${index}`}>
                       <span class="work__expand-text-closed">The nerdy details ↓</span>
                       <span class="work__expand-text-open">Summarize ↑</span>
                     </summary>
 
-                    <div class="work__details-content" role="region" aria-labelledby="work__expand-link">
+                    <div class="work__details-content" role="region" aria-labelledby={`work-details-${index}`}>
                       <div class="work__details-inner">
-                        <h4 class="subheading" aria-label="The Challenge">The Challenge</h4>
+                        <h4 class="subheading">The Challenge</h4>
                         <p>{project.challenge}</p>
 
-                        <h4 class="subheading" aria-label="The Approach">The Approach</h4>
+                        <h4 class="subheading">The Approach</h4>
                         <p>{project.approach}</p>
                         {project.approachExtra && (
                           <p>{project.approachExtra}</p>
                         )}
 
-                        <h4 class="subheading" aria-label="The Result">The Result</h4>
+                        <h4 class="subheading">The Result</h4>
                         <p>{project.result}</p>
                       </div>
                     </div>
@@ -141,7 +139,7 @@ const projects: Project[] = [
 
             <!-- Image Card (60%) -->
             <div class="work__image-card">
-              <Image
+              <img
                 src={project.image.url}
                 alt={project.image.alt}
                 width={project.image.width}
@@ -557,7 +555,7 @@ const projects: Project[] = [
         setTimeout(() => {
           details.removeAttribute('open');
           details.classList.remove('is-closing');
-        }, 500); // Match CSS transition duration
+        }, 600); // Match --duration-slow (600ms)
       }
       // If opening, let browser handle it normally (animation works)
     });

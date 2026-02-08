@@ -83,9 +83,9 @@
 .contact__card {
   background: linear-gradient(
     135deg,
-    #3d5a4d 0%,
+    var(--color-pine-light) 0%,
     var(--color-pine) 50%,
-    #2a4032 100%
+    var(--color-pine-dark) 100%
   );
   padding: var(--space-xl);
   border-radius: var(--border-radius-lg);
@@ -218,9 +218,9 @@
   .contact__card {
     background: linear-gradient(
       135deg,
-      #3d5a4d 0%,
+      var(--color-pine-light) 0%,
       var(--color-pine) 40%,
-      #2a4032 100%
+      var(--color-pine-dark) 100%
     );
   }
 }
