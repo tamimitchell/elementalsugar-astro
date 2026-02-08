@@ -30,7 +30,7 @@ import ContactSection from '../components/sections/ContactSection.astro';
 >
   <Header />
 
-  <main id="main-content" role="main">
+  <main id="main-content">
     <Hero />
     <BuildSection />
     <SolveSection />
@@ -38,4 +38,28 @@ import ContactSection from '../components/sections/ContactSection.astro';
     <AboutSection />
     <ContactSection />
   </main>
+
+  <footer class="site-footer">
+    <p>&copy; {new Date().getFullYear()} Elemental Sugar Creative Studio</p>
+  </footer>
 </BaseLayout>
+
+<style>
+  .site-footer {
+    background: linear-gradient(
+      135deg,
+      var(--color-pine) 0%,
+      var(--color-moss) 30%,
+      var(--color-iris) 60%,
+      var(--color-rose) 100%
+    );
+    color: var(--color-parchment);
+    text-align: center;
+    padding: var(--space-xs) var(--margin-desktop);
+    font-size: var(--font-size-body-sm);
+  }
+
+  .site-footer p {
+    margin: 0;
+  }
+</style>

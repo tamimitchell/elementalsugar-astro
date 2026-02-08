@@ -110,15 +110,15 @@ Complete design token system available as CSS custom properties in `src/styles/g
 
 **Base Colors:**
 ```css
---color-parchment: #F6F4EF;  /* Warm off-white background */
+--color-parchment: #F5EFE7;  /* Warm off-white background */
 --color-ink: #2E2E2B;        /* Charcoal text */
---color-fog: #CFCFC8;        /* Dividers, borders */
---color-stone: #E8E3DC;      /* Subtle backgrounds */
+--color-fog: #D4CFC4;        /* Dividers, borders */
+--color-stone: #EAE2D6;      /* Subtle backgrounds */
 ```
 
 **Forest Accents:**
 ```css
---color-moss: #6F7F6A;       /* Moss green */
+--color-moss: #5A6A55;       /* Moss green */
 --color-pine: #2F4A3A;       /* Deep pine */
 --color-lichen: #B8A875;     /* Lichen gold */
 ```

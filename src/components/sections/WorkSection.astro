@@ -189,6 +189,7 @@ const projects: Project[] = [
 
   /* Content card wrapper - clips scrollbar with overflow: hidden */
   .work__content-wrapper {
+    position: relative;
     background: var(--color-stone);
     border-radius: var(--border-radius-lg); /* 22px - matches Build cards */
     max-height: 700px; /* Match image card height for visual balance */
@@ -199,6 +200,19 @@ const projects: Project[] = [
 
   .work__content-wrapper:hover {
     border-color: var(--color-fog); /* Matches Build capability:hover */
+  }
+
+  /* Scroll fade hint when content is clipped by max-height */
+  .work__content-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--space-xl);
+    background: linear-gradient(to top, var(--color-stone), transparent);
+    pointer-events: none;
+    border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
   }
 
   /* Content card - scrollable inner container */
@@ -394,7 +408,6 @@ const projects: Project[] = [
 
   .work__content p {
     color: var(--color-ink);
-    opacity: 0.85;
     margin-bottom: var(--space-md);
     line-height: 1.7;
   }
@@ -439,10 +452,15 @@ const projects: Project[] = [
     border-radius: 12px; /* Subtle rounding on image itself */
   }
 
-  /* Responsive: Mobile/Tablet */
+  /* Responsive: Tablet (stacked layout) */
   @media (max-width: 1024px) {
+    .work__heading {
+      padding-left: var(--margin-desktop); /* Match .section-inner */
+      padding-right: var(--margin-desktop);
+    }
+
     .work__project {
-      padding: 0; /* Remove outer padding on mobile */
+      padding: 0 var(--margin-desktop); /* Match .section-inner horizontal */
     }
 
     .work__container {
@@ -458,8 +476,14 @@ const projects: Project[] = [
 
     .work__content-wrapper {
       min-height: auto;
+      max-height: none; /* Remove desktop cap so details can expand */
+      overflow: visible; /* Let content grow naturally */
       border-radius: 0; /* No rounded corners - part of parent container */
       border: none; /* No border on mobile */
+    }
+
+    .work__content-wrapper::after {
+      display: none; /* No scroll fade on mobile - content isn't clipped */
     }
 
     .work__image-card {
@@ -469,30 +493,27 @@ const projects: Project[] = [
       border: none; /* No border on mobile */
       padding-top: 0; /* No top padding since it's connected to content above */
     }
-
-    .work__heading {
-      padding-left: var(--space-md);
-      padding-right: var(--space-md);
-    }
   }
 
-  @media (max-width: 640px) {
-    .work__project {
-      padding: var(--space-sm); /* 16px on mobile */
+  /* Responsive: Mobile */
+  @media (max-width: 768px) {
+    .work__heading {
+      padding-left: var(--margin-mobile); /* Match .section-inner mobile */
+      padding-right: var(--margin-mobile);
+      margin-bottom: var(--space-xl); /* Match Build section mobile */
     }
 
-    .work__heading {
-      padding-left: var(--space-sm); /* Match project card padding (16px) */
-      padding-right: var(--space-sm);
+    .work__project {
+      padding: 0 var(--margin-mobile); /* Match .section-inner mobile */
     }
 
     .work__content {
-      padding: var(--space-lg); /* 40px on mobile - still generous but less than desktop 64px */
+      padding: var(--space-md); /* 24px - match Build card padding on mobile */
     }
 
     .work__image-card {
       min-height: 300px;
-      padding: var(--space-lg); /* 40px on mobile */
+      padding: var(--space-md); /* 24px - match Build card padding on mobile */
     }
 
     /* Stack links vertically on mobile */
