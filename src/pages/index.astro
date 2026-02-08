@@ -9,7 +9,7 @@
  *   Hero    — Studio intro with display typography
  *   Build   — Capabilities with card grid
  *   Solve   — Problems we solve, dark bg
- *   Work    — Recent portfolio projects (hidden for now)
+ *   Work    — Recent portfolio projects
  *   About   — Studio philosophy + founder
  *   Contact — CTA with email link
  */
@@ -19,7 +19,7 @@ import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import BuildSection from '../components/sections/BuildSection.astro';
 import SolveSection from '../components/sections/SolveSection.astro';
-// import WorkSection from '../components/sections/WorkSection.astro';
+import WorkSection from '../components/sections/WorkSection.astro';
 import AboutSection from '../components/sections/AboutSection.astro';
 import ContactSection from '../components/sections/ContactSection.astro';
 ---
@@ -30,12 +30,36 @@ import ContactSection from '../components/sections/ContactSection.astro';
 >
   <Header />
 
-  <main id="main-content" role="main">
+  <main id="main-content">
     <Hero />
     <BuildSection />
     <SolveSection />
-    <!-- <WorkSection /> -->
+    <WorkSection />
     <AboutSection />
     <ContactSection />
   </main>
+
+  <footer class="site-footer">
+    <p>&copy; {new Date().getFullYear()} Elemental Sugar Creative Studio</p>
+  </footer>
 </BaseLayout>
+
+<style>
+  .site-footer {
+    background: linear-gradient(
+      135deg,
+      var(--color-pine) 0%,
+      var(--color-moss) 30%,
+      var(--color-iris) 60%,
+      var(--color-rose) 100%
+    );
+    color: var(--color-parchment);
+    text-align: center;
+    padding: var(--space-xs) var(--margin-desktop);
+    font-size: var(--font-size-body-sm);
+  }
+
+  .site-footer p {
+    margin: 0;
+  }
+</style>

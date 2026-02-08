@@ -93,6 +93,10 @@
   --color-rose-dark: #a55550;
   --color-rose-muted: #8B4340;
 
+  /* Pine variants (for gradient glass cards) */
+  --color-pine-light: #3d5a4d;
+  --color-pine-dark: #2a4032;
+
   /* Alpha variants (for overlays and glass effects) */
   --color-parchment-95: rgba(245, 239, 231, 0.95);
   --color-parchment-80: rgba(245, 239, 231, 0.80);

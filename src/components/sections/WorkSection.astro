@@ -2,75 +2,86 @@
 /**
  * WorkSection.astro
  *
- * Portfolio section with simple single-column blog-style layout.
+ * Portfolio section with 40/60 split layout
+ * Natural height cards that grow with content
  *
  * Design:
- * - Single column, max-width 900px
- * - Text-focused layout (no images for now)
- * - Full project details visible
- * - Clean typography with generous spacing
- *
- * Content structure per project:
- * - Title + brief summary
- * - Full details (Challenge, Approach, Result)
- * - Tech stack
+ * - 40/60 split (content left, images right)
+ * - Natural content height (no viewport constraints)
+ * - Content card with expandable details
+ * - Images display at natural aspect ratio
+ * - Stone background cards with rounded corners
  */
-
-interface ProjectImage {
-  url: string;
-  alt: string;
-}
 
 interface Project {
   title: string;
+  subtitle: string;
   brief: string;
   challenge: string;
   approach: string;
   approachExtra?: string;
   result: string;
   techStack: string;
-  images: ProjectImage[];
+  url: string;
+  image: {
+    url: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
 }
 
 const projects: Project[] = [
   {
-    title: "Rebelle Rally — Multi-Year Technical Partnership",
+    title: "Rebelle Rally",
+    subtitle: "Multi-Year Technical Partnership",
     brief: "Live broadcast graphics, scoring system modernization, and multi-platform integration for a women-only off-road navigation rally across Nevada and California.",
     challenge: "The Rebelle Rally is a women-only off-road navigation rally. Think orienteering with 4x4s across Nevada and California, with high-tech tracking and scoring behind the scenes. Past work ranges from WordPress builds and custom plugins to React vehicle tracking dashboards and Mapbox storytelling. 2025 brought a new challenge: live broadcast graphics for their streaming coverage. The catch? Their PHP scoring system had been reliably running rallies for years. Any new work had to integrate without breaking what worked.",
     approach: "Started with a PHP API layer that reads from the existing scoring database without touching the scoring logic itself. Then built browser-based live overlays (JavaScript) that production could control from their booth during broadcast. Standings graphics, challenge results, sponsor logos, all updating in real-time as transparent overlays for OBS/vMix. The scoring pages got rebuilt in JavaScript on top of the same backend. Also made a team bio importer (JotForm to WordPress) — teams submit once, we review for quality control, then it flows through to the site.",
     approachExtra: "The video overlay system ended up being its own reusable tool. Production liked having a custom-built system we could refine together in a short amount of time, instead of trying to shoehorn their needs into existing broadcast software.",
     result: "Professional broadcast overlays running live during the 2025 rally, with production controlling graphics in real-time. Scoring system stayed stable while the front-end got modernized. Multi-year relationship with a lot of variety: WordPress builds, custom plugins, systems integration, live broadcast tools, data pipelines.",
     techStack: "WordPress · React · PHP · JavaScript · OBS/vMix · Elementor · JotForm",
-    images: [
-      { url: "/rebellerally-1.webp", alt: "Rebelle Rally live broadcast overlay showing Day 6 standings" },
-      { url: "/rebellerally-2.webp", alt: "Rebelle Rally team rankings and real-time scoring graphics" }
-    ]
+    url: "https://rebellerally.com",
+    image: {
+      url: "/rebellerally.webp",
+      alt: "Rebelle Rally live broadcast overlay showing Day 6 standings",
+      width: 1920,
+      height: 1074
+    }
   },
   {
-    title: "SafetyChain — Enterprise Marketing Site Migration",
-    brief: "Enterprise marketing site migration with AI-forward documentation, giving marketing independence while enabling developer velocity through comprehensive context.",
+    title: "SafetyChain",
+    subtitle: "Enterprise Marketing Site Migration",
+    brief: "Next.js + DatoCMS migration building a bespoke CMS for marketing independence. AI-forward documentation multiplying development velocity on custom enterprise-scale work.",
     challenge: "Marketing wanted more independence to build and test landing pages — trying different approaches to see what performs best. The existing site was more template-based, which worked but limited how much marketing could customize and preview before publishing. Needed a flexible system where non-technical folks could build, preview, and publish landing pages, blog posts, and resource pages independently, plus migrate hundreds of custom posts and pages.",
     approach: "Started with Next.js 14 + DatoCMS, then built a modular block system using DatoCMS's component architecture. Created reusable section components so marketing could preview and drag-and-drop to build pages. Custom content models, TypeScript + GraphQL type safety, comprehensive component library. Migrated hundreds of posts and pages.",
     approachExtra: "The documentation piece ended up being key — it worked as both developer onboarding and Claude Code context, which helped ship features faster and enabled SafetyChain developers to build directly from the docs.",
     result: "Marketing builds and previews pages independently now, and SafetyChain developers ship features using the documentation. Launched September 2025. Faster workflow, less developer bottleneck. The AI-forward approach made it possible to deliver custom enterprise-scale work with a small team, using comprehensive docs as AI context for everyone.",
     techStack: "Next.js · TypeScript · DatoCMS · GraphQL · Tailwind CSS · Storybook · Netlify",
-    images: [
-      { url: "/safetychain-1.webp", alt: "SafetyChain enterprise marketing homepage with modular component system" },
-      { url: "/safetychain-2.webp", alt: "SafetyChain hero section and industry insights" }
-    ]
+    url: "https://safetychain.com",
+    image: {
+      url: "/safetychain.webp",
+      alt: "SafetyChain enterprise marketing homepage with modular component system",
+      width: 1998,
+      height: 2280
+    }
   },
   {
-    title: "Campendium — RV Camping Discovery Platform",
+    title: "Campendium",
+    subtitle: "RV Camping Discovery Platform",
     brief: "Full-stack Rails and React work on RV camping discovery platform with 50,000+ locations, user reviews, and Mapbox integration.",
     challenge: "Campendium helps RV travelers discover campgrounds and plan trips — 50,000+ locations, user reviews, Mapbox integration. Legacy Rails codebase needed ongoing feature work while staying stable for active users.",
     approach: "Full-stack Rails and React/Stimulus work. Enhanced Mapbox filtering for campground discovery, added Active Storage for file uploads, worked on cross-brand OAuth. Built out Segment analytics and dug into user testing sessions to help guide product decisions.",
     approachExtra: "A lot of the value was the maintenance work that keeps legacy Rails apps healthy — refactoring database queries, standardizing React components and Stimulus controllers, steadily reducing technical debt. Not flashy, but essential for keeping a platform stable when thousands of RV travelers rely on it daily.",
     result: "Platform stayed stable while shipping new features. Database queries got faster, frontend components modernized, analytics setup helping inform product decisions.",
     techStack: "Rails · React · Stimulus · Mapbox · PostgreSQL · Active Storage · Segment Analytics",
-    images: [
-      { url: "/campendium-1.webp", alt: "Campendium RV camping discovery platform with Mapbox map" },
-      { url: "/campendium-2.webp", alt: "Campendium campground locations and search filters" }
-    ]
+    url: "https://campendium.com",
+    image: {
+      url: "/campendium.webp",
+      alt: "Campendium RV camping discovery platform with Mapbox map",
+      width: 1920,
+      height: 1080
+    }
   }
 ];
 ---
@@ -80,25 +91,63 @@ const projects: Project[] = [
     <h2 id="work-heading" class="work__heading heading-1 gradient-text">Recent Work</h2>
 
     <div class="work__projects">
-      {projects.map((project) => (
-        <article class="project">
-          <h3 class="project__title heading-2">{project.title}</h3>
+      {projects.map((project, index) => (
+        <article class="work__project">
+          <div class="work__container">
+            <!-- Content Card (40%) -->
+            <div class="work__content-wrapper">
+              <div class="work__content">
+                <h3 class="work__title heading-2">
+                  {project.title}
+                  <span class="work__subtitle">{project.subtitle}</span>
+                </h3>
 
-          <p class="project__brief">{project.brief}</p>
+                <p class="work__brief">{project.brief}</p>
 
-          <h4 class="project__details-heading">The Challenge</h4>
-          <p>{project.challenge}</p>
+                <div class="work__links">
+                  <details class="work__details">
+                    <summary class="work__expand-link" id={`work-details-${index}`}>
+                      <span class="work__expand-text-closed">The nerdy details <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6l6 -6" /></svg></span>
+                      <span class="work__expand-text-open">Summarize <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6 -6l6 6" /></svg></span>
+                    </summary>
 
-          <h4 class="project__details-heading">The Approach</h4>
-          <p>{project.approach}</p>
-          {project.approachExtra && (
-            <p>{project.approachExtra}</p>
-          )}
+                    <div class="work__details-content" role="region" aria-labelledby={`work-details-${index}`}>
+                      <div class="work__details-inner">
+                        <h4 class="subheading">The Challenge</h4>
+                        <p>{project.challenge}</p>
 
-          <h4 class="project__details-heading">The Result</h4>
-          <p>{project.result}</p>
+                        <h4 class="subheading">The Approach</h4>
+                        <p>{project.approach}</p>
+                        {project.approachExtra && (
+                          <p>{project.approachExtra}</p>
+                        )}
 
-          <div class="project__tech-stack">{project.techStack}</div>
+                        <h4 class="subheading">The Result</h4>
+                        <p>{project.result}</p>
+                      </div>
+                    </div>
+                  </details>
+
+                  <a href={project.url} class="work__visit-link" target="_blank" rel="noopener noreferrer">
+                    Visit site <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg>
+                  </a>
+                </div>
+
+                <div class="work__tech-stack body-small">{project.techStack}</div>
+              </div>
+            </div>
+
+            <!-- Image Card (60%) -->
+            <div class="work__image-card">
+              <img
+                src={project.image.url}
+                alt={project.image.alt}
+                width={project.image.width}
+                height={project.image.height}
+                loading="lazy"
+              />
+            </div>
+          </div>
         </article>
       ))}
     </div>
@@ -123,68 +172,421 @@ const projects: Project[] = [
   }
 
   .work__projects {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 var(--space-lg);
     display: flex;
     flex-direction: column;
-    gap: var(--space-4xl);
+    gap: var(--space-2xl);
   }
 
-  /* Single column project layout */
-  .project {
+  .work__project {
+    padding: var(--space-md); /* 24px - matches design token rhythm */
+  }
+
+  .work__container {
+    display: grid;
+    grid-template-columns: 2fr 3fr; /* 40/60 split */
+    gap: var(--space-md); /* 24px - tighter for horizontal cards */
+  }
+
+  /* Content card wrapper - clips scrollbar with overflow: hidden */
+  .work__content-wrapper {
+    position: relative;
+    background: var(--color-stone);
+    border-radius: var(--border-radius-lg); /* 22px - matches Build cards */
+    max-height: 700px; /* Match image card height for visual balance */
+    overflow: hidden; /* This clips the scrollbar at rounded corners! */
+    border: 1px solid transparent;
+    transition: border-color var(--duration-base) var(--ease-out);
+  }
+
+  .work__content-wrapper:hover {
+    border-color: var(--color-fog); /* Matches Build capability:hover */
+  }
+
+  /* Scroll fade hint when content is clipped by max-height */
+  .work__content-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--space-xl);
+    background: linear-gradient(to top, var(--color-stone), transparent);
+    pointer-events: none;
+    border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+  }
+
+  /* Content card - scrollable inner container */
+  .work__content {
+    padding: var(--space-xl); /* 64px - feature card padding (matches Contact) */
+    padding-right: var(--space-lg); /* Less padding on right for scrollbar */
+    overflow-y: auto;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
+    scroll-behavior: smooth;
   }
 
-  .project__title {
-    color: var(--color-pine);
+  /* Full height scrollbar - now properly clipped! */
+  .work__content::-webkit-scrollbar {
+    width: 6px; /* Thinner, more subtle */
+  }
+
+  .work__content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .work__content::-webkit-scrollbar-thumb {
+    background: var(--color-moss);
+    border-radius: 10px;
+    opacity: 0.6;
+  }
+
+  .work__content::-webkit-scrollbar-thumb:hover {
+    background: var(--color-pine);
+    opacity: 1;
+  }
+
+  .work__title {
+    color: var(--color-pine); /* Dark green like capability cards */
     margin-bottom: var(--space-md);
   }
 
-  .project__brief {
-    font-size: var(--font-size-md);
-    color: var(--color-ink);
-    opacity: 0.85;
-    margin-bottom: var(--space-xl);
+  .work__subtitle {
+    display: block;
+    font-size: var(--font-size-body-sm); /* 14px - clearly secondary, eyebrow style */
+    font-weight: 700; /* Bold for visual weight */
+    color: var(--color-ink); /* Charcoal - cohesive with text */
+    opacity: 0.7; /* Subtle but WCAG AA compliant (3:1 for bold 14px) */
+    margin-top: var(--space-xs);
+    letter-spacing: var(--letter-spacing-wide); /* Visual separation */
+    text-transform: uppercase; /* Matches tech stack/eyebrow pattern */
   }
 
-  .project__details-heading {
+  .work__brief {
+    color: var(--color-ink);
+    /* Removed opacity for full contrast (accessibility) */
+    font-size: var(--font-size-body-lg); /* 20px - emphasize as key summary */
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-lg); /* More space before links */
+  }
+
+  /* Tabler Icons - inline SVG sizing */
+  .icon {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: -1px; /* Optical alignment with text */
+  }
+
+  /* Links container - horizontal layout with space between */
+  .work__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg); /* Space before tech stack */
+  }
+
+  /* Visit site link - matches nav hover gradient */
+  .work__visit-link {
+    display: inline-block;
     color: var(--color-moss);
-    font-size: var(--font-size-lg);
-    font-weight: 700;
-    margin-top: var(--space-xl);
+    text-decoration: none;
+    font-weight: 500;
+    padding: var(--space-xs) 0;
+    transition: all var(--duration-base) var(--ease-out);
+  }
+
+  .work__visit-link:hover {
+    /* Match nav gradient hover (iris-dark → rose-dark) */
+    background: linear-gradient(
+      90deg,
+      var(--color-iris-dark) 0%,
+      var(--color-rose-dark) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .work__visit-link:focus-visible {
+    outline: 2px solid var(--color-iris);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  /* Native details/summary styling */
+  .work__details {
+    /* Position relative for absolute positioning of expanded content */
+    position: relative;
+  }
+
+  /* When details are open, content breaks out full width */
+  .work__details[open] {
+    /* Details expands to full width when open */
+    position: static;
+  }
+
+  .work__expand-link {
+    display: inline-block;
+    color: var(--color-moss);
+    cursor: pointer;
+    padding: var(--space-xs) 0;
+    transition: all var(--duration-base) var(--ease-out);
+    list-style: none; /* Remove default arrow */
+    font-weight: 500;
+  }
+
+  /* Hide default disclosure triangle */
+  .work__expand-link::-webkit-details-marker {
+    display: none;
+  }
+
+  .work__expand-link::marker {
+    content: '';
+  }
+
+  .work__expand-link:hover {
+    /* Match nav gradient hover (iris-dark → rose-dark) */
+    background: linear-gradient(
+      90deg,
+      var(--color-iris-dark) 0%,
+      var(--color-rose-dark) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .work__expand-link:focus-visible {
+    outline: 2px solid var(--color-iris);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  /* Toggle text visibility based on open state */
+  .work__expand-text-closed {
+    display: inline;
+  }
+
+  .work__expand-text-open {
+    display: none;
+  }
+
+  .work__details[open] .work__expand-text-closed {
+    display: none;
+  }
+
+  .work__details[open] .work__expand-text-open {
+    display: inline;
+  }
+
+  .work__details-content {
+    width: 100%; /* Full width so it wraps to new line */
+    display: grid;
+    grid-template-rows: 0fr; /* Collapsed state */
+    transition: grid-template-rows var(--duration-slow) var(--ease-out);
+    overflow: hidden;
+  }
+
+  .work__details[open] .work__details-content {
+    grid-template-rows: 1fr; /* Expanded state */
+  }
+
+  /* Closing animation - keep expanded during animation */
+  .work__details.is-closing .work__details-content {
+    grid-template-rows: 0fr; /* Animate back to collapsed */
+  }
+
+  /* Inner wrapper for content */
+  .work__details-inner {
+    min-height: 0; /* Required for grid animation to work */
+    padding-top: var(--space-md);
+  }
+
+  /* Subheading styles now come from .subheading utility class */
+  .work__details-inner .subheading {
+    margin-top: var(--space-lg);
     margin-bottom: var(--space-sm);
   }
 
-  .project p {
+  .work__details-inner .subheading:first-child {
+    margin-top: 0; /* No top margin on first heading */
+  }
+
+  .work__content p {
     color: var(--color-ink);
-    opacity: 0.85;
     margin-bottom: var(--space-md);
     line-height: 1.7;
   }
 
-  .project__tech-stack {
+  /* Tech stack - matches Build section capability cards */
+  .work__tech-stack {
     padding-top: var(--space-lg);
     border-top: 1px solid var(--color-fog);
-    margin-top: var(--space-lg);
-    color: var(--color-moss);
-    opacity: 0.7;
-    line-height: 1.8;
-    font-size: var(--font-size-sm);
+    margin-top: auto;
+    /* Font size and line-height from .body-small utility class */
+    /* Tech-specific styling matches .capability__tech */
+    color: var(--color-iris-muted);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
   }
 
-  /* Responsive: Mobile/Tablet */
-  @media (max-width: 768px) {
-    .work__projects {
-      padding: 0 var(--space-md);
-      gap: var(--space-3xl);
+  /* Image card - matches content card style */
+  .work__image-card {
+    background: var(--color-stone);
+    border-radius: var(--border-radius-lg); /* 22px - matches Build cards */
+    padding: var(--space-xl); /* 64px - feature card padding (matches Contact) */
+    max-height: 700px; /* Cap image height to prevent dominating layout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid transparent;
+    transition: border-color var(--duration-base) var(--ease-out);
+  }
+
+  .work__image-card:hover {
+    border-color: var(--color-fog); /* Matches Build capability:hover */
+  }
+
+  .work__image-card img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Maintain aspect ratio */
+    display: block;
+    border-radius: 12px; /* Subtle rounding on image itself */
+  }
+
+  /* Responsive: Tablet (stacked layout) */
+  @media (max-width: 1024px) {
+    .work__heading {
+      padding-left: var(--margin-desktop); /* Match .section-inner */
+      padding-right: var(--margin-desktop);
     }
 
+    .work__project {
+      padding: 0 var(--margin-desktop); /* Match .section-inner horizontal */
+    }
+
+    .work__container {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      max-height: none;
+      gap: 0; /* No gap - everything in one card */
+      background: var(--color-stone);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden; /* Clip to rounded corners */
+    }
+
+    .work__content-wrapper {
+      min-height: auto;
+      max-height: none; /* Remove desktop cap so details can expand */
+      overflow: visible; /* Let content grow naturally */
+      border-radius: 0; /* No rounded corners - part of parent container */
+      border: none; /* No border on mobile */
+    }
+
+    .work__content-wrapper::after {
+      display: none; /* No scroll fade on mobile - content isn't clipped */
+    }
+
+    .work__image-card {
+      min-height: 300px;
+      height: auto;
+      border-radius: 0; /* No rounded corners - part of parent container */
+      border: none; /* No border on mobile */
+      padding-top: 0; /* No top padding since it's connected to content above */
+    }
+  }
+
+  /* Responsive: Mobile */
+  @media (max-width: 768px) {
     .work__heading {
-      padding-left: var(--space-md);
-      padding-right: var(--space-md);
+      padding-left: var(--margin-mobile); /* Match .section-inner mobile */
+      padding-right: var(--margin-mobile);
+      margin-bottom: var(--space-xl); /* Match Build section mobile */
+    }
+
+    .work__project {
+      padding: 0 var(--margin-mobile); /* Match .section-inner mobile */
+    }
+
+    .work__content {
+      padding: var(--space-md); /* 24px - match Build card padding on mobile */
+    }
+
+    .work__image-card {
+      min-height: 300px;
+      padding: var(--space-md); /* 24px - match Build card padding on mobile */
+    }
+
+    /* Stack links vertically on mobile */
+    .work__links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+  }
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .work__content {
+      scroll-behavior: auto;
+    }
+
+    .work__expand-link,
+    .work__visit-link,
+    .work__content-wrapper,
+    .work__image-card,
+    .work__details-content {
+      transition: none;
+    }
+
+    /* Disable gradient animations on hover */
+    .work__expand-link:hover,
+    .work__visit-link:hover {
+      background: none;
+      color: var(--color-moss);
+      -webkit-text-fill-color: var(--color-moss);
+    }
+
+    /* Instant expansion instead of animated */
+    .work__details-content {
+      transition: none;
+      grid-template-rows: 0fr;
+    }
+
+    .work__details[open] .work__details-content {
+      grid-template-rows: 1fr;
     }
   }
 </style>
+
+<script>
+  // Smooth animation for details/summary elements
+  // Prevents abrupt close by animating before browser removes [open]
+  document.querySelectorAll<HTMLDetailsElement>('.work__details').forEach((details) => {
+    const summary = details.querySelector<HTMLElement>('.work__expand-link');
+
+    if (!summary) return; // Type guard: skip if summary not found
+
+    summary.addEventListener('click', (e) => {
+      // If closing (currently open), prevent default and animate first
+      if (details.open) {
+        e.preventDefault();
+        details.classList.add('is-closing');
+
+        // Wait for animation to finish, then actually close
+        setTimeout(() => {
+          details.removeAttribute('open');
+          details.classList.remove('is-closing');
+        }, 600); // Match --duration-slow (600ms)
+      }
+      // If opening, let browser handle it normally (animation works)
+    });
+  });
+</script>
